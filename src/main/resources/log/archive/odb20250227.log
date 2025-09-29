@@ -1,0 +1,1339 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 09:09:56 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 13700@LetaPC
+
+[2025-02-27 09:09:56 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 09:09:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 09:09:56 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 09:09:56 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 09:09:56 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 09:09:56 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 09:09:56 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 09:09:56 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 09:09:56 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 09:09:56 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 09:09:56 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 09:14:01 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 4144@LetaPC
+
+[2025-02-27 09:14:01 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 09:14:01 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 09:14:01 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 09:14:01 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:24:47 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 9-9)
+
+[2025-02-27 11:24:48 #2 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 1760@LetaPC
+
+[2025-02-27 11:24:48 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:24:48 #4 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 11:24:48 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:24:48 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:31:28 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 11344@LetaPC
+
+[2025-02-27 11:31:28 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:31:28 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 11:31:28 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:31:28 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:33:51 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 19932@LetaPC
+
+[2025-02-27 11:33:51 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:33:51 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 11:33:51 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:33:51 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:38:48 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 3412@LetaPC
+
+[2025-02-27 11:38:48 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:38:48 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 11:38:48 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:38:48 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:44:56 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 10-10)
+
+[2025-02-27 11:44:56 #2 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 15420@LetaPC
+
+[2025-02-27 11:44:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:44:56 #4 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 11:44:56 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:44:56 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:51:01 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 9144@LetaPC
+
+[2025-02-27 11:51:01 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 11:51:01 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:51:01 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 11:51:01 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 11:51:01 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 11:51:01 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 11:51:01 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:51:01 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 11:51:01 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 11:51:01 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 11:51:01 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 16:46:36 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 9340@LetaPC
+
+[2025-02-27 16:46:37 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 16:46:37 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 16:46:37 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 16:46:37 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 16:46:37 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 16:46:37 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 16:46:37 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 16:46:37 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 16:46:37 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 16:46:37 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 16:46:37 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:03:56 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 17148@LetaPC
+
+[2025-02-27 17:03:57 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:03:57 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:03:57 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:03:57 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:03:57 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:03:57 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:03:57 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:03:57 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:03:57 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:03:57 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:03:57 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:10:00 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 3108@LetaPC
+
+[2025-02-27 17:10:00 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:10:00 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:10:00 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:10:00 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:10:00 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:10:00 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:10:00 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:10:00 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:10:00 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:10:00 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:10:00 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:11:22 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 8296@LetaPC
+
+[2025-02-27 17:11:23 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:11:23 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:11:23 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:11:23 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:11:23 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:11:23 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:11:23 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:11:23 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:11:23 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:11:23 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:11:23 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:27:30 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 17940@LetaPC
+
+[2025-02-27 17:27:30 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:27:30 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:27:30 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:27:30 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:27:30 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:27:30 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:27:31 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:27:31 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:27:31 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:27:31 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:27:31 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:32:11 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 13676@LetaPC
+
+[2025-02-27 17:32:12 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:32:12 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:32:12 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:32:12 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:32:12 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:32:12 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:32:12 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:32:12 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:32:12 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:32:12 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:32:12 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:53:25 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 19264@LetaPC
+
+[2025-02-27 17:53:26 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:53:26 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:53:26 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:53:26 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:53:26 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:53:26 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:53:26 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:53:26 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:53:26 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:53:26 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:53:26 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 17:57:24 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 16676@LetaPC
+
+[2025-02-27 17:57:24 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 17:57:24 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 17:57:24 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 17:57:24 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 17:57:24 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 17:57:24 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 17:57:24 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 17:57:24 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 17:57:24 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 17:57:24 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 17:57:24 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:00:18 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 12404@LetaPC
+
+[2025-02-27 18:00:18 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:00:18 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:00:18 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:00:18 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:00:18 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:00:18 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:00:18 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:00:18 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:00:18 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:00:18 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:00:18 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:02:47 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 9488@LetaPC
+
+[2025-02-27 18:02:47 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:02:47 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:02:47 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:02:47 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:02:47 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:02:47 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:02:47 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:02:47 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:02:47 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:02:47 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:02:47 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:05:02 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 1012@LetaPC
+
+[2025-02-27 18:05:02 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:05:02 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:05:02 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:05:02 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:05:02 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:05:02 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:05:02 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:05:02 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:05:02 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:05:02 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:05:02 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:07:01 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 5100@LetaPC
+
+[2025-02-27 18:07:01 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:07:01 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:07:01 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:07:01 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:07:01 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:07:01 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:07:01 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:07:01 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:07:01 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:07:01 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:07:01 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:08:52 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 3884@LetaPC
+
+[2025-02-27 18:08:52 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:08:52 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:08:52 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:08:52 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:08:52 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:08:52 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:08:52 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:08:52 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:08:52 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:08:52 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:08:52 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:13:32 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 4460@LetaPC
+
+[2025-02-27 18:13:32 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:13:32 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:13:32 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:13:32 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:13:32 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:13:32 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:13:32 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:13:32 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:13:32 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:13:32 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:13:32 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:16:16 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 3028@LetaPC
+
+[2025-02-27 18:16:16 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:16:16 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:16:16 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:16:16 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:16:16 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:16:16 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:16:16 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:16:16 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:16:16 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:16:16 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:16:16 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:25:14 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 4672@LetaPC
+
+[2025-02-27 18:25:14 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:25:14 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:25:14 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:25:14 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:25:14 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:25:14 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:25:14 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:25:14 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:25:14 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:25:14 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:25:14 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:30:31 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 15040@LetaPC
+
+[2025-02-27 18:30:31 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:30:31 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:30:31 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:30:31 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:30:31 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:30:31 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:30:31 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:30:31 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:30:31 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:30:31 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:30:31 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:36:03 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 5512@LetaPC
+
+[2025-02-27 18:36:03 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:36:03 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:36:03 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:36:03 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:36:03 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:36:03 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:36:03 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:36:03 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:36:03 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:36:03 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:36:03 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:40:56 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 10788@LetaPC
+
+[2025-02-27 18:40:56 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:40:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:40:56 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:40:56 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:40:56 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:40:56 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:40:56 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:40:56 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:40:56 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:40:56 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:40:56 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:43:59 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 11120@LetaPC
+
+[2025-02-27 18:43:59 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:43:59 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:43:59 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:43:59 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:43:59 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:43:59 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:43:59 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:43:59 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:43:59 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:43:59 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:43:59 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:48:39 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 13500@LetaPC
+
+[2025-02-27 18:48:39 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:48:39 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:48:39 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:48:39 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:48:39 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:48:39 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:48:39 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:48:39 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:48:40 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:48:40 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:48:40 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:51:04 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 11628@LetaPC
+
+[2025-02-27 18:51:04 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:51:04 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:51:04 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:51:04 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:51:04 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:51:04 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:51:04 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:51:04 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:51:04 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:51:04 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:51:04 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 18:59:11 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 15832@LetaPC
+
+[2025-02-27 18:59:11 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 18:59:11 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 18:59:11 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 18:59:11 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 18:59:11 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 18:59:11 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 18:59:11 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 18:59:11 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 18:59:11 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 18:59:11 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 18:59:11 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:01:48 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 18836@LetaPC
+
+[2025-02-27 19:01:49 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 19:01:49 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:01:49 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 19:01:49 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 19:01:49 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:01:49 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 19:01:49 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:01:49 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 19:01:49 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 19:01:49 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 19:01:49 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:05:55 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 5752@LetaPC
+
+[2025-02-27 19:05:55 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 19:05:55 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:05:55 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 19:05:55 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 19:05:55 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:05:55 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 19:05:55 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:05:55 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 19:05:55 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 19:05:55 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 19:05:55 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:13:46 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 4136@LetaPC
+
+[2025-02-27 19:13:46 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 19:13:46 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:13:46 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 19:13:46 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 19:13:46 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:13:46 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 19:13:46 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:13:46 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 19:13:46 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 19:13:46 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 19:13:46 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:15:27 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 6752@LetaPC
+
+[2025-02-27 19:15:27 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 19:15:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:15:27 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 19:15:27 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 19:15:27 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:15:27 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 19:15:27 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:15:27 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 19:15:27 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 19:15:27 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 19:15:27 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:16:59 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 1-10)
+
+[2025-02-27 19:16:59 #2 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 3996@LetaPC
+
+[2025-02-27 19:17:00 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:17:00 #4 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:17:00 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:17:00 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:47:48 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 8304@LetaPC
+
+[2025-02-27 19:47:48 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:47:48 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:47:48 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:47:48 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:50:44 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 6856@LetaPC
+
+[2025-02-27 19:50:44 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:50:44 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:50:44 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:50:44 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:52:02 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 11-11)
+
+[2025-02-27 19:52:02 #2 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 9192@LetaPC
+
+[2025-02-27 19:52:02 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:52:02 #4 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:52:02 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:52:02 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:53:05 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 2272@LetaPC
+
+[2025-02-27 19:53:05 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:53:05 #3 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:53:05 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:53:05 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 19:54:45 #1 store] 
+Database 'C:\Users\urbia\git\Rides24\src\main\resources\rides.temp' is opened by 10260@LetaPC
+
+[2025-02-27 19:54:45 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 19:54:45 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 19:54:45 #4 type.registry] 
+New type domain.Reservation
+
+[2025-02-27 19:54:45 #5 type.registry] 
+New type domain.Ride
+
+[2025-02-27 19:54:45 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-02-27 19:54:45 #7 type.registry] 
+New type domain.Traveler
+
+[2025-02-27 19:54:45 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 19:54:45 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-02-27 19:54:45 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 19:54:45 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-02-27 19:54:45 #12 type.registry] 
+New type java.util.Vector<domain.Reservation>
+

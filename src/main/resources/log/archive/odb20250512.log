@@ -1,0 +1,472 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 19:39:26 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 62-65)
+
+[2025-05-12 19:39:26 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 24488@LetaPC
+
+[2025-05-12 19:39:26 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 19:39:26 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 19:39:26 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 19:39:26 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 19:39:26 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 19:39:26 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 19:39:26 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 19:39:26 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 19:45:49 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 66-68)
+
+[2025-05-12 19:45:49 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 16424@LetaPC
+
+[2025-05-12 19:45:50 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 19:45:50 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 19:45:50 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 19:45:50 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 19:45:50 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 19:45:50 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 19:45:50 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 19:45:50 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 19:51:40 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 19628@LetaPC
+
+[2025-05-12 19:51:40 #2 type.registry] 
+New type domain.Driver
+
+[2025-05-12 19:51:40 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 19:51:40 #4 type.registry] 
+New type domain.Complaint
+
+[2025-05-12 19:51:40 #5 type.registry] 
+New type domain.Transaction
+
+[2025-05-12 19:51:40 #6 type.registry] 
+New type domain.Car
+
+[2025-05-12 19:51:40 #7 type.registry] 
+New type domain.Reservation
+
+[2025-05-12 19:51:40 #8 type.registry] 
+New type domain.Ride
+
+[2025-05-12 19:51:40 #9 type.registry] 
+New type int[]
+
+[2025-05-12 19:51:40 #10 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 19:51:40 #11 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 19:51:40 #12 type.registry] 
+New type domain.Traveler
+
+[2025-05-12 19:51:40 #13 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 19:51:40 #14 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 19:51:40 #15 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 19:51:40 #16 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 19:51:40 #17 type.registry] 
+New type domain.Alert
+
+[2025-05-12 19:51:40 #18 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 19:51:40 #19 type.registry] 
+New type domain.Admin
+
+[2025-05-12 19:51:40 #20 type] 
+Type domain.Admin is not enhanced.
+
+[2025-05-12 19:51:40 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-05-12 19:51:40 #22 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-05-12 19:51:40 #23 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-05-12 19:51:40 #24 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-05-12 19:51:40 #25 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+[2025-05-12 19:51:40 #26 type.registry] 
+New type java.util.Vector<domain.Complaint>
+
+[2025-05-12 19:52:24 #27 type.registry] 
+New type java.util.Vector<domain.Alert>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 20:02:23 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 1-28)
+
+[2025-05-12 20:02:23 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 2620@LetaPC
+
+[2025-05-12 20:02:23 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 20:02:23 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 20:02:23 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 20:02:23 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 20:02:23 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 20:02:23 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 20:02:23 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 20:02:23 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 20:02:23 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 20:20:46 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 29-33)
+
+[2025-05-12 20:20:46 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 8764@LetaPC
+
+[2025-05-12 20:20:46 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 20:20:46 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 20:20:46 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 20:20:46 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 20:20:46 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 20:20:46 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 20:20:46 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 20:20:46 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 20:20:46 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 20:22:57 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 19912@LetaPC
+
+[2025-05-12 20:22:57 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 20:22:57 #3 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 20:22:57 #4 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 20:22:57 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 20:22:57 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 20:22:57 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 20:22:57 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 20:22:57 #9 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 20:22:57 #10 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 20:46:44 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 34-34)
+
+[2025-05-12 20:46:44 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 4680@LetaPC
+
+[2025-05-12 20:46:44 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 20:46:44 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 20:46:44 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 20:46:44 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 20:46:44 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 20:46:44 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 20:46:44 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 20:46:44 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 20:46:44 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 20:49:27 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 35-36)
+
+[2025-05-12 20:49:27 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 16776@LetaPC
+
+[2025-05-12 20:49:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 20:49:27 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 20:49:27 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 20:49:27 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 20:49:27 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 20:49:27 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 20:49:27 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 20:49:27 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 20:49:27 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 21:00:54 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 37-40)
+
+[2025-05-12 21:00:54 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 15272@LetaPC
+
+[2025-05-12 21:00:54 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 21:00:54 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 21:00:54 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 21:00:54 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 21:00:54 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 21:00:54 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 21:00:54 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 21:00:54 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 21:00:54 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 21:04:51 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 41-43)
+
+[2025-05-12 21:04:51 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 23876@LetaPC
+
+[2025-05-12 21:04:51 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 21:04:51 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 21:04:51 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 21:04:51 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 21:04:51 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 21:04:51 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 21:04:51 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 21:04:51 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 21:04:51 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-12 21:09:43 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 5712@LetaPC
+
+[2025-05-12 21:09:43 #2 type.registry] 
+New type domain.Driver
+
+[2025-05-12 21:09:43 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-12 21:09:43 #4 type.registry] 
+New type domain.Complaint
+
+[2025-05-12 21:09:43 #5 type.registry] 
+New type domain.Transaction
+
+[2025-05-12 21:09:43 #6 type.registry] 
+New type domain.Car
+
+[2025-05-12 21:09:43 #7 type.registry] 
+New type domain.Reservation
+
+[2025-05-12 21:09:43 #8 type.registry] 
+New type domain.Ride
+
+[2025-05-12 21:09:43 #9 type.registry] 
+New type int[]
+
+[2025-05-12 21:09:43 #10 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-12 21:09:43 #11 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-12 21:09:43 #12 type.registry] 
+New type domain.Traveler
+
+[2025-05-12 21:09:43 #13 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-12 21:09:43 #14 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-12 21:09:43 #15 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-12 21:09:43 #16 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-12 21:09:43 #17 type.registry] 
+New type domain.Alert
+
+[2025-05-12 21:09:43 #18 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-12 21:09:43 #19 type.registry] 
+New type domain.Admin
+
+[2025-05-12 21:09:43 #20 type] 
+Type domain.Admin is not enhanced.
+
+[2025-05-12 21:09:43 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-05-12 21:09:43 #22 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-05-12 21:09:43 #23 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-05-12 21:09:43 #24 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-05-12 21:09:43 #25 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+[2025-05-12 21:09:43 #26 type.registry] 
+New type java.util.Vector<domain.Complaint>
+
+[2025-05-12 21:10:18 #27 type.registry] 
+New type java.util.Vector<domain.Alert>
+

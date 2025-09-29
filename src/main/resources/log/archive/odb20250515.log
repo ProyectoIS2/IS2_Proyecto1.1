@@ -1,0 +1,35 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-05-15 12:10:21 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' has been recovered (tr. 32-41)
+
+[2025-05-15 12:10:21 #2 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 11636@LetaPC
+
+[2025-05-15 12:10:22 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-05-15 12:10:22 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-05-15 12:10:22 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-05-15 12:10:22 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-05-15 12:10:22 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-05-15 12:10:22 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-05-15 12:10:22 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-05-15 12:10:22 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-05-15 12:10:22 #11 type] 
+Type domain.Admin is not enhanced.
+

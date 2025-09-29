@@ -1,0 +1,560 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:02:03 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 8696@LetaPC
+
+[2025-04-01 17:02:03 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:02:03 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:02:03 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:02:03 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:02:03 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:02:03 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:02:03 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:02:03 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:02:03 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:02:03 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:02:03 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:02:03 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:02:03 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:02:03 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:02:03 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:02:03 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:02:03 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:07:54 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 17616@LetaPC
+
+[2025-04-01 17:07:54 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:07:54 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:07:54 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:07:54 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:07:54 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:07:54 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:07:54 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:07:54 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:07:54 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:07:54 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:07:54 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:07:54 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:07:54 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:07:54 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:07:54 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:07:54 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:07:54 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:18:30 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 16180@LetaPC
+
+[2025-04-01 17:18:30 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:18:30 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:18:30 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:18:30 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:18:30 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:18:30 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:18:30 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:18:30 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:18:30 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:18:30 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:18:30 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:18:30 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:18:30 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:18:30 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:18:30 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:18:30 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:18:30 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:40:27 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 14380@LetaPC
+
+[2025-04-01 17:40:28 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:40:28 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:40:28 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:40:28 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:40:28 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:40:28 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:40:28 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:40:28 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:40:28 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:40:28 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:40:28 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:40:28 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:40:28 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:40:28 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:40:28 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:40:28 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:40:28 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:52:57 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 8244@LetaPC
+
+[2025-04-01 17:52:57 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:52:57 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:52:57 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:52:57 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:52:57 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:52:57 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:52:57 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:52:57 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:52:57 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:52:57 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:52:57 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:52:57 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:52:57 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:52:57 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:52:57 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:52:57 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:52:57 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:53:23 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 11892@LetaPC
+
+[2025-04-01 17:53:23 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:53:23 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:53:23 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:53:23 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:53:23 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:53:23 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:53:23 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:53:23 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:53:23 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:53:23 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:53:23 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:53:23 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:53:23 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:53:23 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:53:23 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:53:23 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:53:23 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 17:58:56 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 14920@LetaPC
+
+[2025-04-01 17:58:56 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 17:58:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 17:58:56 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 17:58:56 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 17:58:56 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 17:58:56 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 17:58:56 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 17:58:56 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 17:58:56 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 17:58:56 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 17:58:56 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 17:58:56 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 17:58:56 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 17:58:56 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 17:58:56 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 17:58:56 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 17:58:56 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 18:05:35 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 18436@LetaPC
+
+[2025-04-01 18:05:35 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 18:05:35 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 18:05:35 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 18:05:35 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 18:05:35 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 18:05:35 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 18:05:35 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 18:05:35 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 18:05:35 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 18:05:35 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 18:05:35 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 18:05:35 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 18:05:35 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 18:05:36 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 18:05:36 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 18:05:36 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 18:05:36 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 18:10:14 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 16364@LetaPC
+
+[2025-04-01 18:10:14 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 18:10:14 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 18:10:14 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 18:10:14 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 18:10:14 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 18:10:14 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 18:10:14 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 18:10:14 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 18:10:14 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 18:10:14 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 18:10:14 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 18:10:14 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 18:10:14 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 18:10:14 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 18:10:14 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 18:10:14 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 18:10:14 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-01 18:49:52 #1 store] 
+Database 'C:\Users\urbia\OneDrive\Documentos\Escritorio\EHU_1.Maila\PMOOws\Rides24\src\main\resources\rides.temp' is opened by 8668@LetaPC
+
+[2025-04-01 18:49:52 #2 type.registry] 
+New type domain.Driver
+
+[2025-04-01 18:49:52 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-01 18:49:52 #4 type.registry] 
+New type domain.Transaction
+
+[2025-04-01 18:49:52 #5 type.registry] 
+New type domain.Car
+
+[2025-04-01 18:49:52 #6 type.registry] 
+New type domain.Reservation
+
+[2025-04-01 18:49:52 #7 type.registry] 
+New type domain.Ride
+
+[2025-04-01 18:49:52 #8 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-04-01 18:49:52 #9 type.registry] 
+New type domain.Traveler
+
+[2025-04-01 18:49:52 #10 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-01 18:49:52 #11 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-04-01 18:49:52 #12 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-01 18:49:52 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-04-01 18:49:52 #14 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-04-01 18:49:52 #15 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-04-01 18:49:52 #16 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-04-01 18:49:52 #17 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-04-01 18:49:52 #18 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
