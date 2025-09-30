@@ -493,7 +493,7 @@ public class DataAccess  {
 		db.persist(d);
 		db.getTransaction().commit();
 	}
-	
+	//a
 	public List<Car> getDriverCars(String email){
 		db.getTransaction().begin();
 		Driver d = db.find(Driver.class, email);
