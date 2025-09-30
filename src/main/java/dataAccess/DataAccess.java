@@ -483,7 +483,7 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		Driver d = db.find(Driver.class, driverEmail);
 		Car c = db.find(Car.class, carPlate);
-		if(!(c == null)) {
+		if(c != null) {
 			db.getTransaction().commit();
 			throw new CarAlreadyExistsException();
 		}
