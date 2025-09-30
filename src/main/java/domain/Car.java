@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -25,7 +26,7 @@ public class Car implements Serializable{
 	private boolean disabled;
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Ride> rides=new Vector<Ride>();
+	private List<Ride> rides=new ArrayList<Ride>();
 	
 	public Car (String plate, int nPlaces, Driver d, boolean dis) {
 		this.plate=plate;
