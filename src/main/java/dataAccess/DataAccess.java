@@ -94,16 +94,17 @@ public class DataAccess  {
 
 			
 			//Create rides
-			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 7, car1);
+			String Bilbao = "bilbo";
+			driver1.addRide("Donostia", Bilbao, UtilDate.newDate(year,month,15), 7, car1);
 			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 8, car1);
-			driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, car5);
+			driver1.addRide(Bilbao, "Donostia", UtilDate.newDate(year,month,25), 4, car5);
 			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 8, car5);
 			
-			driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, car2);
-			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 5, car4);
+			driver2.addRide("Donostia", Bilbao, UtilDate.newDate(year,month,15), 3, car2);
+			driver2.addRide(Bilbao, "Donostia", UtilDate.newDate(year,month,25), 5, car4);
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 5, car2);
 
-			driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 3, car3);
+			driver3.addRide(Bilbao, "Donostia", UtilDate.newDate(year,month,14), 3, car3);
 
 			Admin admin1 = new Admin("aitzol@gmail.com", "Aitzol", "123");
 			Admin admin2 = new Admin("eneko@gmail.com", "Eneko", "123");
