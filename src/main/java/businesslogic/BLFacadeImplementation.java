@@ -23,7 +23,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	public BLFacadeImplementation()  {		
 		logger.info("Creating BLFacadeImplementation instance");
 		dbManager=new DataAccess();
-		//dbManager.close();
+		
 	}
 	
     public BLFacadeImplementation(DataAccess da)  {
