@@ -3,7 +3,6 @@ package businesslogic;
 import java.util.Date;
 import java.util.List;
 
-//import domain.Booking;
 import domain.Ride;
 import domain.Transaction;
 import domain.Traveler;
