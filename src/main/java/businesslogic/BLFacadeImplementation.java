@@ -1,4 +1,5 @@
 package businesslogic;
+import java.util.logging.Logger;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,9 +18,10 @@ import exceptions.*;
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
 	DataAccess dbManager;
+	Logger logger = Logger.getLogger(getClass().getName());
 
 	public BLFacadeImplementation()  {		
-		System.out.println("Creating BLFacadeImplementation instance");
+		logger.info("Creating BLFacadeImplementation instance");
 		dbManager=new DataAccess();
 		//dbManager.close();
 	}
