@@ -29,7 +29,7 @@ public class BLFacadeImplementation  implements BLFacade {
     public BLFacadeImplementation(DataAccess da)  {
 		
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
-		ConfigXML c=ConfigXML.getInstance();
+		ConfigXML.getInstance();
 		
 		dbManager=da;		
 	}
