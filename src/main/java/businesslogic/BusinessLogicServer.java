@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import configuration.ConfigXML;
 
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.xml.ws.Endpoint;
 
 
@@ -40,7 +41,7 @@ public class BusinessLogicServer extends JDialog {
 	public static void main(String[] args) {
 		try {
 			BusinessLogicServer dialog = new BusinessLogicServer();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
