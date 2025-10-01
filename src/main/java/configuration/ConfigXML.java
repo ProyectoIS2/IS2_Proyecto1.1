@@ -1,6 +1,8 @@
 package configuration;
 
+
 import java.io.File;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,6 +16,8 @@ import org.w3c.dom.NodeList;
  * It provides the configuration data from the "resources/config.xml" XML file
  */
 public class ConfigXML {
+	
+	Logger logger = Logger.getLogger(getClass().getName());
 	
 	private String configFile = "src/main/resources/config.xml";
 		
@@ -119,13 +123,13 @@ public class ConfigXML {
 				
 			  password=getTagValue("password", config);
 
-			  System.out.print("Read from config.xml: ");
-			  System.out.print("\t businessLogicLocal="+businessLogicLocal);
-			  System.out.print("\t databaseLocal="+databaseLocal);
-			  System.out.println("\t dataBaseInitialized="+isDatabaseInitialized); 
+			  logger.info("Read from config.xml: ");
+			  logger.info("\t businessLogicLocal="+businessLogicLocal);
+			  logger.info("\t databaseLocal="+databaseLocal);
+			  logger.info("\t dataBaseInitialized="+isDatabaseInitialized); 
 					  
 		  } catch (Exception e) {
-			System.out.println("Error in ConfigXML.java: problems with "+ configFile);
+			  logger.info("Error in ConfigXML.java: problems with "+ configFile);
 		    e.printStackTrace();
 		  }		
 		
