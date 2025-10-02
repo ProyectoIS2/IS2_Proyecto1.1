@@ -61,7 +61,7 @@ public class CreateReservationDBWhiteTest {
 
     // Test 1: Ride inexistente
     @Test
-    public void test1_RideDoesNotExist() {
+    public void test1() {
         try {
             Reservation res = dataAccess.createReservation(1, 99999, "t1@test.com");
             assertNull(res);
@@ -72,7 +72,7 @@ public class CreateReservationDBWhiteTest {
 
     // Test 2: Asientos insuficientes
     @Test
-    public void test2_NotEnoughSeats() {
+    public void test2() {
         try {
             assertThrows(NotEnoughAvailableSeatsException.class,
                 () -> dataAccess.createReservation(99, r1.getRideNumber(), "t1@test.com"));
@@ -83,7 +83,7 @@ public class CreateReservationDBWhiteTest {
 
     // Caso 3: Reserva ya existe
     @Test
-    public void test3_ReservationAlreadyExists() {
+    public void test3() {
         try {
             dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com"); // primera OK
             assertThrows(ReservationAlreadyExistException.class,
@@ -95,7 +95,7 @@ public class CreateReservationDBWhiteTest {
 
     // Caso 4: Reserva creada correctamente
     @Test
-    public void test4_ReservationCreated() {
+    public void test4() {
         try {
             Reservation res = dataAccess.createReservation(2, r1.getRideNumber(), "t1@test.com");
             assertNotNull(res);
