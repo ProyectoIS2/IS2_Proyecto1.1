@@ -48,9 +48,9 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 
-		<sonar.organization>jononekin</sonar.organization>
+		<sonar.organization>proyectois2-1</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.projectKey>jononekin_monopoly-euskara</sonar.projectKey>
+		<sonar.projectKey>ProyectoIS2_IS2_Proyecto1.1</sonar.projectKey>
 	</properties>
 
 	<!-- https://mvnrepository.com/artifact/junit/junit -->
