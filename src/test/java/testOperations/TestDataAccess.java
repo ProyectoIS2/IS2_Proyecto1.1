@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import configuration.ConfigXML;
+import domain.Car;
 import domain.Driver;
 import domain.Ride;
 
@@ -86,24 +87,22 @@ public class TestDataAccess {
 
 	}
 		
-		public Driver addDriverWithRide(String email, String name, String from, String to,  Date date, int nPlaces, float price) {
-			System.out.println(">> TestDataAccess: addDriverWithRide");
-				Driver driver=null;
-				db.getTransaction().begin();
-				try {
-					 driver = db.find(Driver.class, email);
-					if (driver==null)
-						driver=new Driver(name,email, to);
-				    driver.addRide(from, to, date, nPlaces, price);
-					db.getTransaction().commit();
-					return driver;
-					
-				}
-				catch (Exception e){
-					e.printStackTrace();
-				}
-				return null;
-	    }
+	public Driver addDriverWithRide(String email, String name, String from, String to, Date date, int nPlaces, float price) {
+	    System.out.println(">> TestDataAccess: addDriverWithRide");
+	    Driver driver = db.find(Driver.class, email);
+	    if (driver == null)
+	        driver = new Driver(email, name, "123");
+
+	    Car car = new Car("PLATE" + Math.random(), nPlaces, driver, false);
+	    driver.addCar(car);
+
+	    db.getTransaction().begin();
+	    driver.addRide(from, to, date, price, car); // ✅ ahora coincide con la firma
+	    db.persist(driver);
+	    db.persist(car);
+	    db.getTransaction().commit();
+	    return driver;
+	}
 		
 		
 		public boolean existRide(String email, String from, String to, Date date) {

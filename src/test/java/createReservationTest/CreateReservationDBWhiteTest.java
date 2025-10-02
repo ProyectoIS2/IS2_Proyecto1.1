@@ -9,73 +9,101 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
+import java.time.Instant;
 import java.util.Date;
 
 import org.junit.*;
 
 public class CreateReservationDBWhiteTest {
 
-    private DataAccess dataAccess;          
-    private TestDataAccess testDA;  
+    private DataAccess dataAccess;
+    private TestDataAccess testDA;
+
+    private Traveler t1;
+    private Ride r1;
 
     @Before
     public void setUp() {
         dataAccess = new DataAccess();
         testDA = new TestDataAccess();
+
         testDA.open();
+        dataAccess.open();
+
+        // Crear driver con ride de prueba
+        Driver d1 = testDA.addDriverWithRide(
+            "driver1@test.com", "Driver1",
+            "Donostia", "Bilbao", Date.from(Instant.now()), 5, 10
+        );
+        r1 = d1.getRides().get(0);
+
+        // Crear traveler
+        try {
+            t1 = dataAccess.createTraveler("t1@test.com", "Traveler1", "123");
+        } catch (UserAlreadyExistException e) {
+            t1 = null; // ya existía
+        }
     }
 
     @After
     public void tearDown() {
+        dataAccess.close();
+        testDA.close();
+
+        // Limpieza de datos
+        testDA.open();
+        testDA.removeDriver("driver1@test.com");
+   //     if (t1 != null) testDA.removeTraveler(t1.getEmail());
         testDA.close();
     }
 
-    // Test 1: NullPointerException => El ride indicado no existe
+    // Test 1: Ride inexistente
     @Test
-    public void test1() throws Exception {
-        assertNull(dataAccess.createReservation(2, null, "t1@test.com")); 
+    public void test1_RideDoesNotExist() {
+        try {
+            Reservation res = dataAccess.createReservation(1, 99999, "t1@test.com");
+            assertNull(res);
+        } catch (Exception e) {
+            fail("No debería lanzar excepción en test1: " + e.getMessage());
+        }
     }
 
-    // Test 2: NotEnoughAvailableSeatsException => asientos indicados > asientos disponibles
+    // Test 2: Asientos insuficientes
     @Test
-    public void test2() throws Exception {
-        Driver d = testDA.addDriverWithRide("driver@test.com", "Driver",
-                "Donostia", "Bilbao", new Date(), 1, 10);
-        Ride r = d.getRides().get(0);
-        dataAccess.createTraveler("t1@test.com", "Traveler1", "123");
-
-        assertThrows(NotEnoughAvailableSeatsException.class,
-            () -> dataAccess.createReservation(2, r.getRideNumber(), "t1@test.com"));
+    public void test2_NotEnoughSeats() {
+        try {
+            assertThrows(NotEnoughAvailableSeatsException.class,
+                () -> dataAccess.createReservation(99, r1.getRideNumber(), "t1@test.com"));
+        } catch (Exception e) {
+            fail("Error inesperado en test2: " + e.getMessage());
+        }
     }
 
-    // Test 3: ReservationAlreadyExistException => la reserva ya se ha realizado 
+    // Caso 3: Reserva ya existe
     @Test
-    public void test3() throws Exception {
-        Driver d = testDA.addDriverWithRide("driver@test.com", "Driver",
-                "Donostia", "Bilbao", new Date(), 5, 10);
-        Ride r = d.getRides().get(0);
-        dataAccess.createTraveler("t1@test.com", "Traveler1", "123");
-
-        dataAccess.createReservation(2, r.getRideNumber(), "t1@test.com");
-
-        assertThrows(ReservationAlreadyExistException.class,
-            () -> dataAccess.createReservation(2, r.getRideNumber(), "t1@test.com"));
+    public void test3_ReservationAlreadyExists() {
+        try {
+            dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com"); // primera OK
+            assertThrows(ReservationAlreadyExistException.class,
+                () -> dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com")); // segunda falla
+        } catch (Exception e) {
+            fail("Error inesperado en test3: " + e.getMessage());
+        }
     }
 
-    // Test4: Reserva creada correctamente
+    // Caso 4: Reserva creada correctamente
     @Test
-    public void test4() throws Exception {
-        Driver d = testDA.addDriverWithRide("driver@test.com", "Driver",
-                "Donostia", "Bilbao", new Date(), 5, 10);
-        Ride r = d.getRides().get(0);
-        dataAccess.createTraveler("t1@test.com", "Traveler1", "123");
-
-        Reservation res = dataAccess.createReservation(2, r.getRideNumber(), "t1@test.com");
-
-        assertNotNull(res);
-        assertEquals("t1@test.com", res.getTraveler().getEmail());
-        assertEquals(r.getRideNumber(), res.getRide().getRideNumber());
+    public void test4_ReservationCreated() {
+        try {
+            Reservation res = dataAccess.createReservation(2, r1.getRideNumber(), "t1@test.com");
+            assertNotNull(res);
+            assertEquals("t1@test.com", res.getTraveler().getEmail());
+            assertEquals(r1.getRideNumber(), res.getRide().getRideNumber());
+        } catch (Exception e) {
+            fail("Error inesperado en test4: " + e.getMessage());
+        }
     }
 }
 
