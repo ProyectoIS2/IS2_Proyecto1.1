@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DataAccess.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">dataAccess</a> &gt; <span class="el_source">DataAccess.java</span></div><h1>DataAccess.java</h1><pre class="source lang-java linenums">package dataAccess;
+
+import java.io.File;
+import java.net.NoRouteToHostException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import configuration.ConfigXML;
+import configuration.UtilDate;
+import domain.*;
+import exceptions.*;
+
+/**
+ * It implements the data access to the objectDb database
+ */
+public class DataAccess  {
+	private  EntityManager  db;
+	private  EntityManagerFactory emf;
+
+
+<span class="pc" id="L32">	ConfigXML c=ConfigXML.getInstance();</span>
+
+<span class="fc" id="L34">     public DataAccess()  {</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">		if (c.isDatabaseInitialized()) {</span>
+<span class="nc" id="L36">			String fileName=c.getDbFilename();</span>
+
+<span class="nc" id="L38">			File fileToDelete= new File(fileName);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">			if(fileToDelete.delete()){</span>
+<span class="nc" id="L40">				File fileToDeleteTemp= new File(fileName+&quot;$&quot;);</span>
+<span class="nc" id="L41">				fileToDeleteTemp.delete();</span>
+
+<span class="nc" id="L43">				  System.out.println(&quot;File deleted&quot;);</span>
+<span class="nc" id="L44">				} else {</span>
+<span class="nc" id="L45">				  System.out.println(&quot;Operation failed&quot;);</span>
+				}
+		}
+<span class="fc" id="L48">		open();</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		if  (c.isDatabaseInitialized())initializeDB();</span>
+		
+<span class="fc" id="L51">		System.out.println(&quot;DataAccess created =&gt; isDatabaseLocal: &quot;+c.isDatabaseLocal()+&quot; isDatabaseInitialized: &quot;+c.isDatabaseInitialized());</span>
+
+<span class="fc" id="L53">		close();</span>
+
+<span class="fc" id="L55">	}</span>
+     
+<span class="nc" id="L57">    public DataAccess(EntityManager db) {</span>
+<span class="nc" id="L58">    	this.db=db;</span>
+<span class="nc" id="L59">    }</span>
+
+	/**
+	 * This is the data access method that initializes the database with some events and questions.
+	 * This method is invoked by the business logic (constructor of BLFacadeImplementation) when the option &quot;initialize&quot; is declared in the tag dataBaseOpenMode of resources/config.xml file
+	 */	
+	public void initializeDB(){
+		
+<span class="nc" id="L67">		db.getTransaction().begin();</span>
+
+		try {
+
+<span class="nc" id="L71">		   Calendar today = Calendar.getInstance();</span>
+		   
+<span class="nc" id="L73">		   int month=today.get(Calendar.MONTH);</span>
+<span class="nc" id="L74">		   int year=today.get(Calendar.YEAR);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		   if (month==12) { month=1; year+=1;}  </span>
+	    
+		   
+		    //Create drivers 
+<span class="nc" id="L79">			Driver driver1=new Driver(&quot;driver1@gmail.com&quot;,&quot;Aitor Fernandez&quot;, &quot;123&quot;);</span>
+<span class="nc" id="L80">			Driver driver2=new Driver(&quot;driver2@gmail.com&quot;,&quot;Ane Gaztañaga&quot;, &quot;456&quot;);</span>
+<span class="nc" id="L81">			Driver driver3=new Driver(&quot;driver3@gmail.com&quot;,&quot;Test driver&quot;, &quot;789&quot;);</span>
+			
+<span class="nc" id="L83">			Car car1 = new Car(&quot;1234 ABC&quot;, 4, driver1, false);</span>
+<span class="nc" id="L84">			Car car2 = new Car(&quot;2345 DFG&quot;, 4, driver2, false);</span>
+<span class="nc" id="L85">			Car car3 = new Car(&quot;3456 HIJ&quot;, 6, driver3, true);</span>
+<span class="nc" id="L86">			Car car4 = new Car(&quot;4567 KLM&quot;, 9, driver2, true);</span>
+<span class="nc" id="L87">			Car car5 = new Car(&quot;5678 NÑO&quot;, 1, driver1, false);</span>
+			
+<span class="nc" id="L89">			driver1.addCar(car1);</span>
+<span class="nc" id="L90">			driver1.addCar(car5);</span>
+<span class="nc" id="L91">			driver2.addCar(car4);</span>
+<span class="nc" id="L92">			driver2.addCar(car2);</span>
+<span class="nc" id="L93">			driver3.addCar(car3);</span>
+
+			
+			//Create rides
+<span class="nc" id="L97">			String Bilbao = &quot;bilbo&quot;;</span>
+<span class="nc" id="L98">			String Donosti = &quot;Donostia&quot;;</span>
+<span class="nc" id="L99">			driver1.addRide(Donosti, Bilbao, UtilDate.newDate(year,month,15), 7, car1);</span>
+<span class="nc" id="L100">			driver1.addRide(Donosti, &quot;Gazteiz&quot;, UtilDate.newDate(year,month,6), 8, car1);</span>
+<span class="nc" id="L101">			driver1.addRide(Bilbao, Donosti, UtilDate.newDate(year,month,25), 4, car5);</span>
+<span class="nc" id="L102">			driver1.addRide(Donosti, &quot;Iruña&quot;, UtilDate.newDate(year,month,7), 8, car5);</span>
+			
+<span class="nc" id="L104">			driver2.addRide(Donosti, Bilbao, UtilDate.newDate(year,month,15), 3, car2);</span>
+<span class="nc" id="L105">			driver2.addRide(Bilbao, Donosti, UtilDate.newDate(year,month,25), 5, car4);</span>
+<span class="nc" id="L106">			driver2.addRide(&quot;Eibar&quot;, &quot;Gasteiz&quot;, UtilDate.newDate(year,month,6), 5, car2);</span>
+
+<span class="nc" id="L108">			driver3.addRide(Bilbao, Donosti, UtilDate.newDate(year,month,14), 3, car3);</span>
+
+<span class="nc" id="L110">			Admin admin1 = new Admin(&quot;aitzol@gmail.com&quot;, &quot;Aitzol&quot;, &quot;123&quot;);</span>
+<span class="nc" id="L111">			Admin admin2 = new Admin(&quot;eneko@gmail.com&quot;, &quot;Eneko&quot;, &quot;123&quot;);</span>
+						
+<span class="nc" id="L113">			db.persist(driver1);</span>
+<span class="nc" id="L114">			db.persist(driver2);</span>
+<span class="nc" id="L115">			db.persist(driver3);</span>
+
+<span class="nc" id="L117">			db.persist(admin1);</span>
+<span class="nc" id="L118">			db.persist(admin2);</span>
+			
+<span class="nc" id="L120">			db.getTransaction().commit();</span>
+<span class="nc" id="L121">			System.out.println(&quot;Db initialized&quot;);</span>
+<span class="nc" id="L122">		}</span>
+<span class="nc" id="L123">		catch (Exception e){</span>
+<span class="nc" id="L124">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L126">	}</span>
+	
+	/**
+	 * This method returns all the cities where rides depart 
+	 * @return collection of cities
+	 */
+	public List&lt;String&gt; getDepartCities(){
+<span class="nc" id="L133">			TypedQuery&lt;String&gt; query = db.createQuery(&quot;SELECT DISTINCT r.from FROM Ride r ORDER BY r.from&quot;, String.class);</span>
+<span class="nc" id="L134">			List&lt;String&gt; cities = query.getResultList();</span>
+<span class="nc" id="L135">			return cities;</span>
+		
+	}
+	/**
+	 * This method returns all the arrival destinations, from all rides that depart from a given city  
+	 * 
+	 * @param from the depart location of a ride
+	 * @return all the arrival destinations
+	 */
+	public List&lt;String&gt; getArrivalCities(String from){
+<span class="nc" id="L145">		TypedQuery&lt;String&gt; query = db.createQuery(&quot;SELECT DISTINCT r.to FROM Ride r WHERE r.from=?1 ORDER BY r.to&quot;,String.class);</span>
+<span class="nc" id="L146">		query.setParameter(1, from);</span>
+<span class="nc" id="L147">		List&lt;String&gt; arrivingCities = query.getResultList(); </span>
+<span class="nc" id="L148">		return arrivingCities;</span>
+		
+	}
+	/**
+	 * This method creates a ride for a driver
+	 * 
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @param nPlaces available seats
+	 * @param driverEmail to which ride is added
+	 * 
+	 * @return the created ride, or null, or an exception
+	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
+ 	 * @throws RideAlreadyExistException if the same ride already exists for the driver
+	 */
+	public Ride createRide(String from, String to, Date date, float price, String driverEmail, String carPlate) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+<span class="nc" id="L165">		System.out.println(&quot;&gt;&gt; DataAccess: createRide=&gt; from= &quot;+from+&quot; to= &quot;+to+&quot; driver=&quot;+driverEmail+&quot; date &quot;+date);</span>
+		try {
+<span class="nc bnc" id="L167" title="All 2 branches missed.">			if(new Date().compareTo(date)&gt;0) {</span>
+<span class="nc" id="L168">				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateRideGUI.ErrorRideMustBeLaterThanToday&quot;));</span>
+			}
+<span class="nc" id="L170">			db.getTransaction().begin();</span>
+			
+<span class="nc" id="L172">			Driver driver = db.find(Driver.class, driverEmail);</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">			if (driver.doesRideExists(from, to, date)) {</span>
+<span class="nc" id="L174">				db.getTransaction().commit();</span>
+<span class="nc" id="L175">				throw new RideAlreadyExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.RideAlreadyExist&quot;));</span>
+			}
+			
+<span class="nc" id="L178">			Car car = db.find(Car.class, carPlate);</span>
+<span class="nc" id="L179">			Ride ride = driver.addRide(from, to, date, price, car);</span>
+			//next instruction can be obviated
+<span class="nc" id="L181">			db.persist(driver); </span>
+<span class="nc" id="L182">			db.getTransaction().commit();</span>
+
+<span class="nc" id="L184">			return ride;</span>
+<span class="nc" id="L185">		} catch (NullPointerException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L187">			db.getTransaction().commit();</span>
+<span class="nc" id="L188">			return null;</span>
+		}
+	}
+	
+	/**
+	 * This method retrieves the rides from two locations on a given date 
+	 * 
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @return collection of rides
+	 */
+	public List&lt;Ride&gt; getRides(String from, String to, Date date) {
+<span class="nc" id="L201">		System.out.println(&quot;&gt;&gt; DataAccess: getRides=&gt; from= &quot;+from+&quot; to= &quot;+to+&quot; date &quot;+date);</span>
+
+<span class="nc" id="L203">		TypedQuery&lt;Ride&gt; query = db.createQuery(&quot;SELECT r FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.date=?3&quot;,Ride.class);   </span>
+<span class="nc" id="L204">		query.setParameter(1, from);</span>
+<span class="nc" id="L205">		query.setParameter(2, to);</span>
+<span class="nc" id="L206">		query.setParameter(3, date);</span>
+<span class="nc" id="L207">		List&lt;Ride&gt; rides = query.getResultList();</span>
+<span class="nc" id="L208">	 	return rides;</span>
+	}
+	
+	/**
+	 * This method retrieves from the database the dates a month for which there are events
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride 
+	 * @param date of the month for which days with rides want to be retrieved 
+	 * @return collection of rides
+	 */
+	public List&lt;Date&gt; getThisMonthDatesWithRides(String from, String to, Date date) {
+<span class="nc" id="L219">		System.out.println(&quot;&gt;&gt; DataAccess: getEventsMonth&quot;);</span>
+<span class="nc" id="L220">		List&lt;Date&gt; res = new ArrayList&lt;&gt;();	</span>
+		
+<span class="nc" id="L222">		Date firstDayMonthDate= UtilDate.firstDayMonth(date);</span>
+<span class="nc" id="L223">		Date lastDayMonthDate= UtilDate.lastDayMonth(date);</span>
+				
+		
+<span class="nc" id="L226">		TypedQuery&lt;Date&gt; query = db.createQuery(&quot;SELECT DISTINCT r.date FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.date BETWEEN ?3 and ?4&quot;,Date.class);   </span>
+		
+<span class="nc" id="L228">		query.setParameter(1, from);</span>
+<span class="nc" id="L229">		query.setParameter(2, to);</span>
+<span class="nc" id="L230">		query.setParameter(3, firstDayMonthDate);</span>
+<span class="nc" id="L231">		query.setParameter(4, lastDayMonthDate);</span>
+<span class="nc" id="L232">		List&lt;Date&gt; dates = query.getResultList();</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">	 	 for (Date d:dates){</span>
+<span class="nc" id="L234">		   res.add(d);</span>
+		  }
+<span class="nc" id="L236">	 	return res;</span>
+	}
+	
+
+	public void open(){
+		
+<span class="fc" id="L242">		String fileName=c.getDbFilename();</span>
+<span class="pc bpc" id="L243" title="1 of 2 branches missed.">		if (c.isDatabaseLocal()) {</span>
+<span class="fc" id="L244">			emf = Persistence.createEntityManagerFactory(&quot;objectdb:&quot;+fileName);</span>
+<span class="fc" id="L245">			db = emf.createEntityManager();</span>
+<span class="fc" id="L246">		} else {</span>
+<span class="nc" id="L247">			Map&lt;String, String&gt; properties = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L248">			  properties.put(&quot;javax.persistence.jdbc.user&quot;, c.getUser());</span>
+<span class="nc" id="L249">			  properties.put(&quot;javax.persistence.jdbc.password&quot;, c.getPassword());</span>
+
+<span class="nc" id="L251">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb://&quot;+c.getDatabaseNode()+&quot;:&quot;+c.getDatabasePort()+&quot;/&quot;+fileName, properties);</span>
+<span class="nc" id="L252">			  db = emf.createEntityManager();</span>
+    	   }
+<span class="fc" id="L254">		System.out.println(&quot;DataAccess opened =&gt; isDatabaseLocal: &quot;+c.isDatabaseLocal());</span>
+
+		
+<span class="fc" id="L257">	}</span>
+
+	public void close(){
+<span class="fc" id="L260">		db.close();</span>
+<span class="fc" id="L261">		System.out.println(&quot;DataAcess closed&quot;);</span>
+<span class="fc" id="L262">	}</span>
+	
+	public Driver createDriver(String email, String name, String password) throws UserAlreadyExistException{
+<span class="nc" id="L265">		System.out.println(&quot;&gt;&gt; DataAccess: createDriver=&gt; email= &quot;+email+&quot; name= &quot;+name+&quot; password=&quot;+password);</span>
+		try {
+<span class="nc" id="L267">			db.getTransaction().begin();</span>
+			
+<span class="nc" id="L269">			Driver driver = db.find(Driver.class, email);</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">			if (driver!=null) {</span>
+<span class="nc" id="L271">				db.getTransaction().commit();</span>
+<span class="nc" id="L272">				throw new UserAlreadyExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.UserAlreadyExist&quot;));</span>
+			}
+<span class="nc" id="L274">			driver = new Driver (email, name, password);</span>
+<span class="nc" id="L275">			db.persist(driver); </span>
+<span class="nc" id="L276">			db.getTransaction().commit();</span>
+
+<span class="nc" id="L278">			return driver;</span>
+<span class="nc" id="L279">		} catch (NullPointerException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L281">			db.getTransaction().commit();</span>
+<span class="nc" id="L282">			return null;</span>
+		}
+	}
+	
+	public Traveler createTraveler(String email, String name, String password) throws UserAlreadyExistException{
+<span class="fc" id="L287">		System.out.println(&quot;&gt;&gt; DataAccess: createTraveler=&gt; email= &quot;+email+&quot; name= &quot;+name+&quot; password=&quot;+password);</span>
+		try {
+<span class="fc" id="L289">			db.getTransaction().begin();</span>
+			
+<span class="fc" id="L291">			Traveler traveler = db.find(Traveler.class, email);</span>
+<span class="pc bpc" id="L292" title="1 of 2 branches missed.">			if (traveler!=null) {</span>
+<span class="fc" id="L293">				db.getTransaction().commit();</span>
+<span class="fc" id="L294">				throw new UserAlreadyExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.UserAlreadyExist&quot;));</span>
+			}
+<span class="nc" id="L296">			traveler = new Traveler (email, name, password);</span>
+<span class="nc" id="L297">			db.persist(traveler); </span>
+<span class="nc" id="L298">			db.getTransaction().commit();</span>
+
+<span class="nc" id="L300">			return traveler;</span>
+<span class="nc" id="L301">		} catch (NullPointerException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L303">			db.getTransaction().commit();</span>
+<span class="nc" id="L304">			return null;</span>
+		}
+	}
+	
+	public Reservation createReservation(int hm, Integer rideNumber, String travelerEmail) throws ReservationAlreadyExistException, NotEnoughAvailableSeatsException{
+<span class="fc" id="L309">		System.out.println(&quot;&gt;&gt; DataAccess: createReservation=&gt; how many seats= &quot;+hm+&quot; ride number= &quot;+rideNumber+&quot; traveler=&quot;+travelerEmail);</span>
+		try {
+<span class="fc" id="L311">			db.getTransaction().begin();</span>
+<span class="fc" id="L312">			Ride r = db.find(Ride.class, rideNumber);</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">			if(r.getnPlaces()&lt;hm) {</span>
+<span class="fc" id="L314">				throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MakeReservationGUI.jButtonError2&quot;));</span>
+			}
+			
+<span class="fc" id="L317">			Traveler t = db.find(Traveler.class, travelerEmail);</span>
+<span class="fc" id="L318">		    Driver d = db.find(Driver.class, r.getDriver().getEmail());</span>
+			
+<span class="fc bfc" id="L320" title="All 2 branches covered.">			if (r.doesReservationExist(hm, t)) {</span>
+<span class="fc" id="L321">				db.getTransaction().commit();</span>
+<span class="fc" id="L322">				throw new ReservationAlreadyExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.ReservationAlreadyExist&quot;));</span>
+			}
+<span class="fc" id="L324">			Reservation res = t.makeReservation(r, hm);</span>
+			
+<span class="fc" id="L326">			d.addReservation(res);</span>
+<span class="fc" id="L327">			r.addReservation(res);</span>
+<span class="fc" id="L328">			db.persist(d); </span>
+<span class="fc" id="L329">			db.persist(t);</span>
+<span class="fc" id="L330">			db.persist(r);</span>
+<span class="fc" id="L331">			db.getTransaction().commit();</span>
+
+<span class="fc" id="L333">			return res;</span>
+<span class="fc" id="L334">		} catch (NullPointerException e) {</span>
+			// TODO Auto-generated catch block
+<span class="fc" id="L336">			db.getTransaction().commit();</span>
+<span class="fc" id="L337">			return null;</span>
+		}
+	}
+	
+	public Driver getDriverByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
+<span class="nc" id="L342">		db.getTransaction().begin();</span>
+<span class="nc" id="L343">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L344">		db.getTransaction().commit();</span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">		if(d==null) {</span>
+<span class="nc" id="L346">			this.close();</span>
+<span class="nc" id="L347">			throw new UserDoesNotExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.UserDoesNotExist&quot;));</span>
+		}
+<span class="nc bnc" id="L349" title="All 2 branches missed.">		if(!d.getPassword().equals(password)) {</span>
+<span class="nc" id="L350">			this.close();</span>
+<span class="nc" id="L351">			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.PasswordDoesNotMatch&quot;));</span>
+		}
+<span class="nc" id="L353">		return d;</span>
+	}
+	
+	public Traveler getTravelerByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
+<span class="nc" id="L357">		db.getTransaction().begin();</span>
+<span class="nc" id="L358">		Traveler t = db.find(Traveler.class, email);</span>
+<span class="nc" id="L359">		db.getTransaction().commit();</span>
+<span class="nc bnc" id="L360" title="All 2 branches missed.">		if(t==null) {</span>
+<span class="nc" id="L361">			this.close();</span>
+<span class="nc" id="L362">			throw new UserDoesNotExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.UserDoesNotExist&quot;));</span>
+		}
+<span class="nc bnc" id="L364" title="All 2 branches missed.">		if(!t.getPassword().equals(password)) {</span>
+<span class="nc" id="L365">			this.close();</span>
+<span class="nc" id="L366">			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.PasswordDoesNotMatch&quot;));</span>
+		}
+<span class="nc" id="L368">		return t;</span>
+	}
+	
+	public Admin getAdminByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
+<span class="nc" id="L372">		db.getTransaction().begin();</span>
+<span class="nc" id="L373">		Admin a = db.find(Admin.class, email);</span>
+<span class="nc" id="L374">		db.getTransaction().commit();</span>
+<span class="nc bnc" id="L375" title="All 2 branches missed.">		if(a==null) {</span>
+<span class="nc" id="L376">			this.close();</span>
+<span class="nc" id="L377">			throw new UserDoesNotExistException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.UserDoesNotExist&quot;));</span>
+		}
+<span class="nc bnc" id="L379" title="All 2 branches missed.">		if(!a.getPassword().equals(password)) {</span>
+<span class="nc" id="L380">			this.close();</span>
+<span class="nc" id="L381">			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DataAccess.PasswordDoesNotMatch&quot;));</span>
+		}
+<span class="nc" id="L383">		return a;</span>
+	}
+	
+	public void pay(Reservation res) throws NotEnoughMoneyException{
+<span class="nc" id="L387">		db.getTransaction().begin();</span>
+		try {
+<span class="nc" id="L389">			Traveler t = db.find(Traveler.class, res.getTraveler().getEmail());</span>
+<span class="nc" id="L390">			Driver d = db.find(Driver.class, res.getDriver().getEmail());</span>
+<span class="nc" id="L391">			float price = res.getHmTravelers()*res.getRide().getPrice();</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">			if(t.getMoney()-price&lt;0){</span>
+<span class="nc" id="L393">				db.getTransaction().commit();</span>
+<span class="nc" id="L394">				throw new NotEnoughMoneyException();</span>
+			}
+<span class="nc" id="L396">			Reservation r = db.find(Reservation.class, res.getReservationCode());</span>
+<span class="nc" id="L397">			r.setPayed(true);</span>
+<span class="nc" id="L398">			t.setMoney(t.getMoney()-price);</span>
+<span class="nc" id="L399">			d.setMoney(d.getMoney()+price);</span>
+<span class="nc" id="L400">			Transaction tr = new Transaction(price, d, t);</span>
+<span class="nc" id="L401">			d.addTransaction(tr);</span>
+<span class="nc" id="L402">			t.addTransaction(tr);</span>
+<span class="nc" id="L403">			db.persist(r);</span>
+<span class="nc" id="L404">			db.persist(tr);</span>
+<span class="nc" id="L405">			db.persist(d); </span>
+<span class="nc" id="L406">			db.persist(t);</span>
+<span class="nc" id="L407">			db.getTransaction().commit();</span>
+<span class="nc" id="L408">		}catch(NullPointerException e) {</span>
+<span class="nc" id="L409">			db.getTransaction().commit();</span>
+		}	
+<span class="nc" id="L411">	}</span>
+	
+	public List&lt;Reservation&gt; getDriverReservations(String email){
+<span class="nc" id="L414">		db.getTransaction().begin();</span>
+<span class="nc" id="L415">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L416">		db.getTransaction().commit();</span>
+<span class="nc" id="L417">		return d.getReservations();</span>
+	}
+	
+	public List&lt;Reservation&gt; getTravelerReservations(String email){
+<span class="nc" id="L421">		db.getTransaction().begin();</span>
+<span class="nc" id="L422">		Traveler t = db.find(Traveler.class, email);</span>
+<span class="nc" id="L423">		db.getTransaction().commit();</span>
+<span class="nc" id="L424">		return t.getReservations();</span>
+	}
+	
+	public void takeMoneyDriver(String email, int hm) throws NotEnoughMoneyException{
+<span class="nc" id="L428">		db.getTransaction().begin();</span>
+<span class="nc" id="L429">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">		if(d.getMoney()&lt;hm) {</span>
+<span class="nc" id="L431">			db.getTransaction().commit();</span>
+<span class="nc" id="L432">			throw new NotEnoughMoneyException();</span>
+		}
+<span class="nc" id="L434">		Transaction tr = new Transaction(hm, d);</span>
+<span class="nc" id="L435">		d.addTransaction(tr);</span>
+<span class="nc" id="L436">		d.setMoney(d.getMoney()-hm);</span>
+<span class="nc" id="L437">		db.persist(tr);</span>
+<span class="nc" id="L438">		db.persist(d);</span>
+<span class="nc" id="L439">		db.getTransaction().commit();</span>
+<span class="nc" id="L440">	}</span>
+	
+	public void putMoneyTraveler(String email, int hm) {
+<span class="nc" id="L443">		db.getTransaction().begin();</span>
+<span class="nc" id="L444">		Traveler t = db.find(Traveler.class, email);</span>
+<span class="nc" id="L445">		t.setMoney(t.getMoney()+hm);</span>
+<span class="nc" id="L446">		Transaction tr = new Transaction (hm, t);</span>
+<span class="nc" id="L447">		tr.setT(t);</span>
+<span class="nc" id="L448">		t.addTransaction(tr);</span>
+<span class="nc" id="L449">		db.persist(t);</span>
+<span class="nc" id="L450">		db.persist(tr);</span>
+<span class="nc" id="L451">		db.getTransaction().commit();</span>
+<span class="nc" id="L452">	}</span>
+	
+	public void updateReservation(Reservation res) {
+<span class="nc" id="L455">		db.getTransaction().begin();</span>
+<span class="nc" id="L456">		Traveler t = db.find(Traveler.class, res.getTraveler().getEmail());</span>
+<span class="nc" id="L457">		Driver d = db.find(Driver.class, res.getDriver().getEmail());</span>
+<span class="nc" id="L458">		Ride r = db.find(Ride.class, res.getRide().getRideNumber());</span>
+<span class="nc" id="L459">		t.updateReservation(res.getReservationCode());</span>
+<span class="nc" id="L460">		d.updateReservation(res.getReservationCode());</span>
+<span class="nc" id="L461">		r.updateReservation(res.getReservationCode());</span>
+		
+<span class="nc" id="L463">		db.persist(d);</span>
+<span class="nc" id="L464">		db.persist(t);</span>
+<span class="nc" id="L465">		db.persist(r);</span>
+<span class="nc" id="L466">		db.getTransaction().commit();</span>
+<span class="nc" id="L467">	}</span>
+	
+	public void cancelReservation (Reservation res) {
+<span class="nc" id="L470">		db.getTransaction().begin();</span>
+<span class="nc" id="L471">		Traveler t = db.find(Traveler.class, res.getTraveler().getEmail());</span>
+<span class="nc" id="L472">		Driver d = db.find(Driver.class, res.getDriver().getEmail());</span>
+<span class="nc" id="L473">		Ride r = db.find(Ride.class, res.getRide().getRideNumber());</span>
+<span class="nc" id="L474">		t.cancelReservation(res);</span>
+<span class="nc" id="L475">		d.cancelReservation(res);</span>
+<span class="nc" id="L476">		r.cancelReservation(res);</span>
+<span class="nc" id="L477">		db.remove(db.find(Reservation.class, res.getReservationCode()));</span>
+<span class="nc" id="L478">		db.persist(d);</span>
+<span class="nc" id="L479">		db.persist(t);</span>
+<span class="nc" id="L480">		db.persist(r);</span>
+<span class="nc" id="L481">		db.getTransaction().commit();</span>
+<span class="nc" id="L482">	}</span>
+	
+	public void addCarToDriver(String driverEmail, String carPlate, int nPlaces, boolean dis) throws CarAlreadyExistsException{
+<span class="nc" id="L485">		db.getTransaction().begin();</span>
+<span class="nc" id="L486">		Driver d = db.find(Driver.class, driverEmail);</span>
+<span class="nc" id="L487">		Car c = db.find(Car.class, carPlate);</span>
+<span class="nc bnc" id="L488" title="All 2 branches missed.">		if(c != null) {</span>
+<span class="nc" id="L489">			db.getTransaction().commit();</span>
+<span class="nc" id="L490">			throw new CarAlreadyExistsException();</span>
+		}
+<span class="nc" id="L492">		Car car = new Car (carPlate, nPlaces, d, dis);</span>
+<span class="nc" id="L493">		d.addCar(car);</span>
+<span class="nc" id="L494">		db.persist(car);</span>
+<span class="nc" id="L495">		db.persist(d);</span>
+<span class="nc" id="L496">		db.getTransaction().commit();</span>
+<span class="nc" id="L497">	}</span>
+	
+	public List&lt;Car&gt; getDriverCars(String email){
+<span class="nc" id="L500">		db.getTransaction().begin();</span>
+<span class="nc" id="L501">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L502">		db.getTransaction().commit();</span>
+<span class="nc" id="L503">		return d.getCars();</span>
+	}
+	
+	public List&lt;Transaction&gt; getTravelerTransactions(String email){
+<span class="nc" id="L507">		db.getTransaction().begin();</span>
+<span class="nc" id="L508">		Traveler t = db.find(Traveler.class, email);</span>
+<span class="nc" id="L509">		db.getTransaction().commit();</span>
+<span class="nc" id="L510">		return t.getTransactions();</span>
+	}
+	
+	public List&lt;Transaction&gt; getDriverTransactions(String email){
+<span class="nc" id="L514">		db.getTransaction().begin();</span>
+<span class="nc" id="L515">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L516">		db.getTransaction().commit();</span>
+<span class="nc" id="L517">		return d.getTransactions();</span>
+	}
+	
+	public void removeRideDriver(Integer rideNumber, String email) {
+<span class="nc" id="L521">		System.out.println(&quot;&gt;&gt; DataAccess: removeRideDriver=&gt; ride number= &quot;+rideNumber+&quot; Driver=&quot;+email);</span>
+		try {
+<span class="nc" id="L523">			db.getTransaction().begin();</span>
+<span class="nc" id="L524">			Ride r = db.find(Ride.class, rideNumber);</span>
+<span class="nc" id="L525">			List&lt;Reservation&gt;resList=r.getReservations();</span>
+<span class="nc" id="L526">			this.returnMoneyTravelers(resList, email);</span>
+<span class="nc" id="L527">		    Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L528">		    d.removeRide(r.getFrom(), r.getTo(), r.getDate());</span>
+<span class="nc" id="L529">		    db.remove(r);</span>
+<span class="nc" id="L530">			db.persist(d); </span>
+<span class="nc" id="L531">			db.getTransaction().commit();</span>
+<span class="nc" id="L532">		} catch (NullPointerException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L534">			db.getTransaction().commit();</span>
+		}
+<span class="nc" id="L536">	}</span>
+	
+	private void returnMoneyTravelers(List&lt;Reservation&gt;resList, String email) {
+		try {
+			Traveler t;
+			Transaction trans;
+<span class="nc" id="L542">			Driver d = db.find(Driver.class, email);</span>
+<span class="nc bnc" id="L543" title="All 2 branches missed.">			for(Reservation res : resList) {</span>
+<span class="nc bnc" id="L544" title="All 2 branches missed.">				if(res.isPayed()) {</span>
+<span class="nc" id="L545">					t = db.find(Traveler.class, res.getTraveler().getEmail());</span>
+<span class="nc" id="L546">					t.setMoney(t.getMoney()+res.getCost());</span>
+<span class="nc" id="L547">					trans = new Transaction(res.getCost(), res.getDriver(), res.getTraveler());</span>
+<span class="nc" id="L548">					t.addTransaction(trans);</span>
+<span class="nc" id="L549">					d.addTransaction(trans);</span>
+<span class="nc" id="L550">					d.setMoney(d.getMoney()-res.getCost());</span>
+<span class="nc" id="L551">					db.persist(t);</span>
+<span class="nc" id="L552">					db.persist(d);</span>
+<span class="nc" id="L553">					db.persist(trans);</span>
+				}
+			}
+<span class="nc" id="L556">		}catch(NullPointerException e) {</span>
+<span class="nc" id="L557">			db.getTransaction().commit();</span>
+		}
+<span class="nc" id="L559">	}</span>
+	
+	public List&lt;Ride&gt; getDriverRides(String email){
+<span class="nc" id="L562">		db.getTransaction().begin();</span>
+<span class="nc" id="L563">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L564">		db.getTransaction().commit();</span>
+<span class="nc" id="L565">		return d.getRides();</span>
+	}
+	
+	public void deleteAccountDriver(String email) {
+<span class="nc" id="L569">		db.getTransaction().begin();</span>
+<span class="nc" id="L570">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L571">		db.remove(d);</span>
+<span class="nc" id="L572">		db.getTransaction().commit();</span>
+<span class="nc" id="L573">	}</span>
+	
+	public void deleteAccountTraveler(String email) {
+<span class="nc" id="L576">		db.getTransaction().begin();</span>
+<span class="nc" id="L577">		Traveler t = db.find(Traveler.class, email);</span>
+<span class="nc" id="L578">		db.remove(t);</span>
+<span class="nc" id="L579">		db.getTransaction().commit();</span>
+<span class="nc" id="L580">	}</span>
+	
+	public List&lt;Complaint&gt; getDriverComplaint(String email){
+<span class="nc" id="L583">		db.getTransaction().begin();</span>
+<span class="nc" id="L584">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L585">		db.getTransaction().commit();</span>
+<span class="nc" id="L586">		return d.getComplaints();</span>
+	}
+	
+	public void createComplaintToDriver(String c, Reservation res) {
+<span class="nc" id="L590">		db.getTransaction().begin();</span>
+<span class="nc" id="L591">		String driverEmail = res.getDriver().getEmail();</span>
+<span class="nc" id="L592">		String travelerEmail = res.getTraveler().getEmail();</span>
+<span class="nc" id="L593">		Integer rideId = res.getRide().getRideNumber();</span>
+<span class="nc" id="L594">		Driver d = db.find(Driver.class, driverEmail);</span>
+<span class="nc" id="L595">		Traveler t = db.find(Traveler.class, travelerEmail);</span>
+<span class="nc" id="L596">		Reservation r = db.find(Reservation.class, res.getReservationCode());</span>
+<span class="nc" id="L597">		r.setComplained(true);</span>
+<span class="nc" id="L598">		Complaint complaint = new Complaint(c, r);</span>
+<span class="nc" id="L599">		d.addComplaint(complaint);</span>
+<span class="nc" id="L600">		t.addComplaint(complaint);</span>
+<span class="nc" id="L601">		db.persist(r);</span>
+<span class="nc" id="L602">		db.persist(t);</span>
+<span class="nc" id="L603">		db.persist(d);</span>
+<span class="nc" id="L604">		db.persist(complaint);</span>
+<span class="nc" id="L605">		db.getTransaction().commit();</span>
+<span class="nc" id="L606">	}</span>
+	
+	public void addRatingToTraveler(String e, int z, Integer resCode) {
+<span class="nc" id="L609">		db.getTransaction().begin();</span>
+<span class="nc" id="L610">		Reservation r = db.find(Reservation.class, resCode);</span>
+<span class="nc" id="L611">		Traveler t = db.find(Traveler.class, e);</span>
+<span class="nc" id="L612">		r.setRatedD(true);</span>
+<span class="nc" id="L613">		t.addRating(z);</span>
+<span class="nc" id="L614">		db.persist(t);</span>
+<span class="nc" id="L615">		db.persist(r);</span>
+<span class="nc" id="L616">		db.getTransaction().commit();</span>
+<span class="nc" id="L617">	}</span>
+	
+	public void addRatingToDriver(String email, int z, Integer resCode){
+<span class="nc" id="L620">		db.getTransaction().begin();</span>
+<span class="nc" id="L621">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L622">		Reservation r = db.find(Reservation.class, resCode);</span>
+<span class="nc" id="L623">		d.addRating(z);</span>
+<span class="nc" id="L624">		r.setRatedT(true);</span>
+<span class="nc" id="L625">		db.persist(d);</span>
+<span class="nc" id="L626">		db.persist(r);</span>
+<span class="nc" id="L627">		db.getTransaction().commit();</span>
+<span class="nc" id="L628">	}</span>
+	public void createAlert(Traveler t, String jatorria, String helmuga) throws AlertAlreadyExistsException{
+<span class="nc" id="L630">		db.getTransaction().begin();</span>
+<span class="nc bnc" id="L631" title="All 2 branches missed.">		if(!this.doesAlertExist(t, jatorria, helmuga)) {</span>
+<span class="nc" id="L632">			Traveler traveler = db.find(Traveler.class, t.getEmail());</span>
+<span class="nc" id="L633">			Alert a = new Alert(jatorria, helmuga, t);</span>
+<span class="nc" id="L634">			traveler.addAlert(a);</span>
+<span class="nc" id="L635">			db.persist(traveler);</span>
+<span class="nc" id="L636">			db.persist(a);</span>
+<span class="nc" id="L637">		}else {</span>
+<span class="nc" id="L638">			db.getTransaction().commit();</span>
+<span class="nc" id="L639">			throw new AlertAlreadyExistsException();</span>
+		}
+<span class="nc" id="L641">		db.getTransaction().commit();</span>
+<span class="nc" id="L642">	}</span>
+	
+	private boolean doesAlertExist(Traveler tra, String jatorria, String helmuga) {
+<span class="nc" id="L645">		Traveler t = db.find(Traveler.class, tra.getEmail());</span>
+<span class="nc" id="L646">		Alert momentukoa = new Alert(jatorria, helmuga, t);</span>
+<span class="nc" id="L647">		List&lt;Alert&gt;alertList = t.getAlerts();</span>
+<span class="nc" id="L648">		System.out.println(alertList.size());</span>
+<span class="nc" id="L649">		boolean found = false;</span>
+<span class="nc" id="L650">		int i = 0;</span>
+<span class="nc bnc" id="L651" title="All 4 branches missed.">		while(!found &amp;&amp; i&lt;alertList.size()) {</span>
+<span class="nc bnc" id="L652" title="All 2 branches missed.">			if(alertList.get(i).equals(momentukoa)) {</span>
+<span class="nc" id="L653">				found = true;</span>
+			}
+<span class="nc" id="L655">			i++;</span>
+		}
+<span class="nc" id="L657">		return found;</span>
+	}
+	
+	public List&lt;Ride&gt; isRideBeenCreated(Alert alert) {
+<span class="nc" id="L661">		db.getTransaction().begin();</span>
+<span class="nc" id="L662">		String jatorria = alert.getJatorria();</span>
+<span class="nc" id="L663">		String helburua = alert.getHelburua();</span>
+<span class="nc" id="L664">		TypedQuery&lt;Ride&gt; query = db.createQuery(&quot;SELECT r FROM Ride r WHERE r.from=?1 AND r.to=?2&quot;, Ride.class);</span>
+<span class="nc" id="L665">		query.setParameter(1, jatorria);</span>
+<span class="nc" id="L666">		query.setParameter(2, helburua);</span>
+<span class="nc" id="L667">		db.getTransaction().commit();</span>
+<span class="nc bnc" id="L668" title="All 2 branches missed.">		if(!query.getResultList().isEmpty()) return query.getResultList();</span>
+<span class="nc" id="L669">		else return null;</span>
+	}
+	
+	public List&lt;Alert&gt; getTravelerAlert(String email){
+<span class="nc" id="L673">		db.getTransaction().begin();</span>
+<span class="nc" id="L674">		Traveler t = db.find(Traveler.class, email);</span>
+<span class="nc" id="L675">		db.getTransaction().commit();</span>
+<span class="nc" id="L676">		return t.getAlerts();</span>
+	}
+	
+	public void removeAlert(Integer z) {
+<span class="nc" id="L680">		db.getTransaction().begin();</span>
+<span class="nc" id="L681">		Alert a = db.find(Alert.class, z);</span>
+<span class="nc" id="L682">		db.remove(a);</span>
+<span class="nc" id="L683">		db.getTransaction().commit();</span>
+<span class="nc" id="L684">	}</span>
+	
+	public float getDriverRatings(String email) {
+<span class="nc" id="L687">		db.getTransaction().begin();</span>
+<span class="nc" id="L688">		Driver d = db.find(Driver.class, email);</span>
+<span class="nc" id="L689">		db.getTransaction().commit();</span>
+<span class="nc" id="L690">		return d.calculateRating();</span>
+	}
+	
+	public float getTravelerRatings(String email) {
+<span class="nc" id="L694">		db.getTransaction().begin();</span>
+<span class="nc" id="L695">		Traveler d = db.find(Traveler.class, email);</span>
+<span class="nc" id="L696">		db.getTransaction().commit();</span>
+<span class="nc" id="L697">		return d.calculateRating();</span>
+	}
+	
+	public List&lt;Complaint&gt; getAllComplaint(){
+<span class="nc" id="L701">		db.getTransaction().begin();</span>
+<span class="nc" id="L702">		TypedQuery&lt;Complaint&gt; query = db.createQuery(&quot;SELECT c FROM Complaint c&quot;,Complaint.class);</span>
+<span class="nc" id="L703">		db.getTransaction().commit();</span>
+<span class="nc" id="L704">		return query.getResultList();</span>
+	}
+	
+	public void denyComplaint(Complaint co) {
+<span class="nc" id="L708">		db.getTransaction().begin();</span>
+<span class="nc" id="L709">		Complaint c = db.find(Complaint.class, co.getId());</span>
+<span class="nc" id="L710">		c.setDenied(true);</span>
+<span class="nc" id="L711">		db.persist(c);</span>
+<span class="nc" id="L712">		db.getTransaction().commit();</span>
+<span class="nc" id="L713">	}</span>
+	
+	public void acceptComplaint(Complaint co) {
+<span class="nc" id="L716">		db.getTransaction().begin();</span>
+<span class="nc" id="L717">		Complaint c = db.find(Complaint.class, co.getId());</span>
+<span class="nc" id="L718">		Driver d = db.find(Driver.class, c.getDriverEmail());</span>
+<span class="nc" id="L719">		Traveler t = db.find(Traveler.class, c.getTravelerEmail());</span>
+<span class="nc" id="L720">		Reservation res = db.find(Reservation.class, co.getRes().getReservationCode());</span>
+<span class="nc" id="L721">		float price = res.getHmTravelers()*res.getRide().getPrice();</span>
+<span class="nc" id="L722">		d.setMoney(d.getMoney()-price);</span>
+<span class="nc" id="L723">		t.setMoney(t.getMoney()+price);</span>
+<span class="nc" id="L724">		d.removeComplaint(c);</span>
+<span class="nc" id="L725">		t.removeComplaint(c);</span>
+<span class="nc" id="L726">		Transaction tra = new Transaction(price, t, d);</span>
+<span class="nc" id="L727">		d.addTransaction(tra);</span>
+<span class="nc" id="L728">		t.addTransaction(tra);</span>
+<span class="nc" id="L729">		db.persist(tra);</span>
+<span class="nc" id="L730">		db.persist(t);</span>
+<span class="nc" id="L731">		db.persist(d);</span>
+<span class="nc" id="L732">		db.remove(c);</span>
+<span class="nc" id="L733">		db.getTransaction().commit();</span>
+<span class="nc" id="L734">	}</span>
+	
+	public void denyComplaintAdmin(Complaint co) {
+<span class="nc" id="L737">		db.getTransaction().begin();</span>
+<span class="nc" id="L738">		Complaint c = db.find(Complaint.class, co.getId());</span>
+<span class="nc" id="L739">		c.setDenied(true);</span>
+<span class="nc" id="L740">		Driver d = db.find(Driver.class, c.getDriverEmail());</span>
+<span class="nc" id="L741">		Traveler t = db.find(Traveler.class, c.getTravelerEmail());</span>
+<span class="nc" id="L742">		d.removeComplaint(c);</span>
+<span class="nc" id="L743">		t.removeComplaint(c);</span>
+<span class="nc" id="L744">		db.remove(c);</span>
+<span class="nc" id="L745">		db.persist(t);</span>
+<span class="nc" id="L746">		db.persist(d);</span>
+<span class="nc" id="L747">		db.getTransaction().commit();</span>
+<span class="nc" id="L748">	}</span>
+	
+	public void updateAlerts(String jatorria, String helburua) {
+<span class="nc" id="L751">		db.getTransaction().begin();</span>
+<span class="nc" id="L752">		TypedQuery&lt;Alert&gt; query = db.createQuery(&quot;SELECT a FROM Alert a WHERE a.jatorria=?1 AND a.helburua=?2&quot;, Alert.class);</span>
+<span class="nc" id="L753">		query.setParameter(1, jatorria);</span>
+<span class="nc" id="L754">		query.setParameter(2, helburua);</span>
+<span class="nc" id="L755">		List&lt;Alert&gt; aList = query.getResultList();</span>
+<span class="nc bnc" id="L756" title="All 2 branches missed.">		if(!aList.isEmpty()) {</span>
+<span class="nc bnc" id="L757" title="All 2 branches missed.">			for(Alert a: aList) {</span>
+<span class="nc" id="L758">				a.setSortuta(true);</span>
+			}
+		}
+<span class="nc" id="L761">		db.getTransaction().commit();</span>
+<span class="nc" id="L762">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

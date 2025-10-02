@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ObjectdbManagerServer.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">dataAccess</a> &gt; <span class="el_source">ObjectdbManagerServer.java</span></div><h1>ObjectdbManagerServer.java</h1><pre class="source lang-java linenums">package dataAccess;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import configuration.ConfigXML;
+
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+ * It runs the database server as a separate process.
+ */
+public class ObjectdbManagerServer extends JDialog {
+
+
+	private static final long serialVersionUID = 1L;
+<span class="nc" id="L26">	private final JPanel contentPanel = new JPanel();</span>
+	JTextArea textArea;
+	ConfigXML c;
+	
+	//For windows
+<span class="nc" id="L31">    private String objectDbpath=&quot;src\\main\\resources\\objectdb.jar&quot;;</span>
+    
+    //For mac 
+    //private String objectDbpath=&quot;src//main//resources//objectdb.jar&quot;;
+
+ 	
+
+
+	public static void main(String[] args) {
+		try {
+<span class="nc" id="L41">			ObjectdbManagerServer dialog = new ObjectdbManagerServer();</span>
+<span class="nc" id="L42">			dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L43">			dialog.setVisible(true);</span>
+<span class="nc" id="L44">		} catch (Exception e) {</span>
+<span class="nc" id="L45">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L47">	}</span>
+
+
+<span class="nc" id="L50">	public ObjectdbManagerServer() {</span>
+	    
+<span class="nc" id="L52">		setTitle(&quot;objectDBManagerServer: running the database server&quot;);</span>
+<span class="nc" id="L53">		setBounds(100, 100, 486, 180);</span>
+<span class="nc" id="L54">		getContentPane().setLayout(new BorderLayout());</span>
+<span class="nc" id="L55">		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L56">		getContentPane().add(contentPanel, BorderLayout.CENTER);</span>
+<span class="nc" id="L57">		contentPanel.setLayout(new BorderLayout(0, 0));</span>
+		{
+<span class="nc" id="L59">			textArea = new JTextArea();</span>
+<span class="nc" id="L60">			contentPanel.add(textArea);</span>
+		}
+		{
+<span class="nc" id="L63">			JPanel buttonPane = new JPanel();</span>
+<span class="nc" id="L64">			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));</span>
+<span class="nc" id="L65">			getContentPane().add(buttonPane, BorderLayout.SOUTH);</span>
+			{
+<span class="nc" id="L67">				JButton okButton = new JButton(&quot;OK&quot;);</span>
+<span class="nc" id="L68">				okButton.addActionListener(new ActionListener() {</span>
+					public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L70">						textArea.append(&quot;\n\n\nClosing the database... &quot;);</span>
+					    try {
+<span class="nc" id="L72">					    	System.out.println(&quot;Server close&quot;);</span>
+					    	 try {
+					    		    
+					    		    
+<span class="nc" id="L76">							    	Runtime.getRuntime().exec(&quot;java -cp &quot;+objectDbpath+&quot; com.objectdb.Server -port &quot;+ c.getDatabasePort()+&quot; stop&quot;);</span>
+							    	
+<span class="nc" id="L78">							    } catch (Exception ioe) {</span>
+<span class="nc" id="L79">							    	System.out.println (ioe);</span>
+							    }
+
+<span class="nc" id="L82">								System.exit(1);</span>
+							
+<span class="nc" id="L84">						} catch (Exception e1) {</span>
+						}
+<span class="nc" id="L86">						System.exit(1);</span>
+<span class="nc" id="L87">					}</span>
+				});
+<span class="nc" id="L89">				okButton.setActionCommand(&quot;OK&quot;);</span>
+<span class="nc" id="L90">				buttonPane.add(okButton);</span>
+<span class="nc" id="L91">				getRootPane().setDefaultButton(okButton);</span>
+			}
+			{
+<span class="nc" id="L94">				JButton cancelButton = new JButton(&quot;Cancel&quot;);</span>
+<span class="nc" id="L95">				cancelButton.setActionCommand(&quot;Cancel&quot;);</span>
+<span class="nc" id="L96">				buttonPane.add(cancelButton);</span>
+			}
+		}
+		
+<span class="nc" id="L100">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="nc bnc" id="L102" title="All 2 branches missed.">		if (c.isDatabaseLocal()) {</span>
+<span class="nc" id="L103">			textArea.append(&quot;\nERROR, the database is configured as local&quot;);</span>
+<span class="nc" id="L104">		}</span>
+		else {
+		try{
+<span class="nc" id="L107">			System.out.println(&quot;Lauching objectdb server&quot;);</span>
+
+			
+			try {
+<span class="nc" id="L111">		    	Runtime.getRuntime().exec(&quot;java -cp &quot;+objectDbpath+&quot; com.objectdb.Server -port &quot;+ c.getDatabasePort()+&quot; start&quot;);</span>
+<span class="nc" id="L112">		    } catch (Exception ioe) {</span>
+<span class="nc" id="L113">		    	System.out.println (ioe);</span>
+		    }
+
+<span class="nc" id="L116">		    textArea.append(&quot;\nAccess granted to: &quot;+c.getUser());</span>
+		    
+<span class="nc" id="L118">			textArea.append(&quot;\nPress button to exit this database server... &quot;);</span>
+			
+<span class="nc" id="L120">		} catch (Exception e) {</span>
+<span class="nc" id="L121">			textArea.append(&quot;Something has happened in ObjectDbManagerServer: &quot;+e.toString());</span>
+
+		}
+		
+		}
+<span class="nc" id="L126">	}</span>
+
+}
+	
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Driver.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Driver.java</span></div><h1>Driver.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class Driver implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@XmlID
+	@Id 
+	private String email;
+	private String password;
+	private String name; 
+<span class="fc" id="L28">	private int[] ratings = new int[5];</span>
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L31">	private List&lt;Ride&gt; rides=new Vector&lt;Ride&gt;();</span>
+	private float money;
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L35">	private List&lt;Reservation&gt; reservations = new Vector &lt;Reservation&gt;();</span>
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L38">	private List&lt;Car&gt; cars = new Vector &lt;Car&gt;();</span>
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L41">	private List&lt;Transaction&gt; transactions = new Vector &lt;Transaction&gt;();</span>
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L44">	private List&lt;Complaint&gt; complaints=new Vector&lt;Complaint&gt;();</span>
+
+	public Driver() {
+<span class="fc" id="L47">		super();</span>
+<span class="fc" id="L48">	}</span>
+
+<span class="fc" id="L50">	public Driver(String email, String name, String password) {</span>
+<span class="fc" id="L51">		this.email = email;</span>
+<span class="fc" id="L52">		this.name = name;</span>
+<span class="fc" id="L53">		this.password = password;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		for(int i = 0; i&lt;5; i++) {</span>
+<span class="fc" id="L55">			ratings[i]=0;</span>
+		}
+<span class="fc" id="L57">	}</span>
+	
+	
+	public String getEmail() {
+<span class="fc" id="L61">		return email;</span>
+	}
+
+	public void setEmail(String email) {
+<span class="nc" id="L65">		this.email = email;</span>
+<span class="nc" id="L66">	}</span>
+
+	public int[] getRatings() {
+<span class="nc" id="L69">		return ratings;</span>
+	}
+
+	public void setRatings(int[] ratings) {
+<span class="nc" id="L73">		this.ratings = ratings;</span>
+<span class="nc" id="L74">	}</span>
+
+	public static long getSerialversionuid() {
+<span class="nc" id="L77">		return serialVersionUID;</span>
+	}
+
+	public String getPassword() {
+<span class="nc" id="L81">		return password;</span>
+	}
+
+	public void setPassword(String password) {
+<span class="nc" id="L85">		this.password = password;</span>
+<span class="nc" id="L86">	}</span>
+
+	public String getName() {
+<span class="nc" id="L89">		return name;</span>
+	}
+
+	public void setName(String name) {
+<span class="nc" id="L93">		this.name = name;</span>
+<span class="nc" id="L94">	}</span>
+
+	public float getMoney() {
+<span class="nc" id="L97">		return money;</span>
+	}
+
+	public void setMoney(float money) {
+<span class="nc" id="L101">		this.money = money;</span>
+<span class="nc" id="L102">	}</span>
+
+	public List&lt;Car&gt; getCars() {
+<span class="nc" id="L105">		return cars;</span>
+	}
+
+	public void setCars(List&lt;Car&gt; cars) {
+<span class="nc" id="L109">		this.cars = cars;</span>
+<span class="nc" id="L110">	}</span>
+
+	public String toString(){
+<span class="nc" id="L113">		return email+&quot;;&quot;+name+rides;</span>
+	}
+	
+	public List&lt;Reservation&gt; getReservations() {
+<span class="nc" id="L117">		return reservations;</span>
+	}
+
+	public List&lt;Ride&gt; getRides() {
+<span class="fc" id="L121">		return rides;</span>
+	}
+
+	public void setRides(List&lt;Ride&gt; rides) {
+<span class="nc" id="L125">		this.rides = rides;</span>
+<span class="nc" id="L126">	}</span>
+
+	public void setReservations(List&lt;Reservation&gt; reservations) {
+<span class="nc" id="L129">		this.reservations = reservations;</span>
+<span class="nc" id="L130">	}</span>
+
+	public List&lt;Transaction&gt; getTransactions() {
+<span class="nc" id="L133">		return transactions;</span>
+	}
+
+	public void setTransactions(List&lt;Transaction&gt; transactions) {
+<span class="nc" id="L137">		this.transactions = transactions;</span>
+<span class="nc" id="L138">	}</span>
+	
+	public List&lt;Complaint&gt; getComplaints() {
+<span class="nc" id="L141">		return complaints;</span>
+	}
+
+	public void setComplaints(List&lt;Complaint&gt; complaints) {
+<span class="nc" id="L145">		this.complaints = complaints;</span>
+<span class="nc" id="L146">	}</span>
+
+	/**
+	 * This method creates a bet with a question, minimum bet ammount and percentual profit
+	 * 
+	 * @param question to be added to the event
+	 * @param betMinimum of that question
+	 * @return Bet
+	 */
+	public Ride addRide(String from, String to, Date date, float price, Car car)  {
+<span class="fc" id="L156">        Ride ride=new Ride(from,to,date,price, this, car);</span>
+<span class="fc" id="L157">        rides.add(ride);</span>
+<span class="fc" id="L158">        return ride;</span>
+	}
+
+	/**
+	 * This method checks if the ride already exists for that driver
+	 * 
+	 * @param from the origin location 
+	 * @param to the destination location 
+	 * @param date the date of the ride 
+	 * @return true if the ride exists and false in other case
+	 */
+	public boolean doesRideExists(String from, String to, Date date)  {	
+<span class="nc bnc" id="L170" title="All 2 branches missed.">		for (Ride r:rides)</span>
+<span class="nc bnc" id="L171" title="All 6 branches missed.">			if ( (java.util.Objects.equals(r.getFrom(),from)) &amp;&amp; (java.util.Objects.equals(r.getTo(),to)) &amp;&amp; (java.util.Objects.equals(r.getDate(),date)) )</span>
+<span class="nc" id="L172">			 return true;</span>
+		
+<span class="nc" id="L174">		return false;</span>
+	}
+		
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L179" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L180">			return true;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L182">			return false;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L184">			return false;</span>
+<span class="nc" id="L185">		Driver other = (Driver) obj;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">		if (email != other.email)</span>
+<span class="nc" id="L187">			return false;</span>
+<span class="nc" id="L188">		return true;</span>
+	}
+
+	public void removeRide(String from, String to, Date date) {
+<span class="nc" id="L192">		int i =0;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">		for(Ride r: this.rides) {</span>
+<span class="nc bnc" id="L194" title="All 6 branches missed.">			if(r.getFrom().equals(from)&amp;&amp;r.getTo()==to&amp;&amp;r.getDate()==date) {</span>
+<span class="nc" id="L195">				this.rides.remove(i);</span>
+<span class="nc" id="L196">				break;</span>
+			}
+<span class="nc" id="L198">			i++;</span>
+		}
+<span class="nc" id="L200">	}</span>
+	
+	public boolean takeMoney(float amount) {
+<span class="nc bnc" id="L203" title="All 2 branches missed.">		if(amount&lt;this.getMoney()) {</span>
+<span class="nc" id="L204">			this.setMoney(this.getMoney()-amount);</span>
+<span class="nc" id="L205">			return true;</span>
+		}else {
+<span class="nc" id="L207">			return false;</span>
+		}
+	}
+	
+	public boolean addReservation (Reservation res){
+<span class="fc" id="L212">		return reservations.add(res);</span>
+	}
+	
+	public void updateReservation(Integer resCode) {
+<span class="nc" id="L216">		int ind = this.findRes(resCode);</span>
+<span class="nc" id="L217">		Reservation res = this.reservations.get(ind);</span>
+<span class="nc" id="L218">		this.reservations.remove(ind);</span>
+<span class="nc" id="L219">		res.setAccepted(true);</span>
+<span class="nc" id="L220">		this.reservations.add(res);</span>
+<span class="nc" id="L221">	}</span>
+	
+	private int findRes(Integer resCode) {
+<span class="nc" id="L224">		int kont = 0;</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">		for(Reservation res : this.reservations) {</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">			if(res.getReservationCode().equals(resCode)) {</span>
+<span class="nc" id="L227">				return kont;</span>
+			}
+<span class="nc" id="L229">			kont ++;</span>
+		}
+<span class="nc" id="L231">		return -1;</span>
+	}
+	
+	public void cancelReservation(Reservation res) {
+<span class="nc" id="L235">		this.reservations.remove(this.findRes(res.getReservationCode()));</span>
+<span class="nc" id="L236">	}</span>
+	
+	public boolean addCar(Car car) {
+<span class="fc" id="L239">		return this.cars.add(car);</span>
+	}
+	
+	public boolean addTransaction(Transaction t) {
+<span class="nc" id="L243">		return this.transactions.add(t);</span>
+	}
+	
+	public boolean hasCars() {
+<span class="nc bnc" id="L247" title="All 2 branches missed.">		return !this.cars.isEmpty();</span>
+	}
+	
+	public boolean addComplaint(Complaint c) {
+<span class="nc" id="L251">		return this.complaints.add(c);</span>
+	}
+	
+	public void addRating(int z) {
+<span class="nc bnc" id="L255" title="All 6 branches missed.">		switch (z) {</span>
+<span class="nc" id="L256">		case 1: this.ratings[0]+=1; break;</span>
+<span class="nc" id="L257">		case 2: this.ratings[1]+=1; break;</span>
+<span class="nc" id="L258">		case 3: this.ratings[2]+=1; break;</span>
+<span class="nc" id="L259">		case 4: this.ratings[3]+=1; break;</span>
+<span class="nc" id="L260">		case 5: this.ratings[4]+=1; break;</span>
+		}	
+<span class="nc" id="L262">	}</span>
+	
+	public float calculateRating() {
+<span class="nc" id="L265">		float r = 0;</span>
+<span class="nc" id="L266">		int kop = 0;</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">		for(int i=1; i&lt;=5; i++) {</span>
+<span class="nc" id="L268">			r=r+i*ratings[i-1];</span>
+<span class="nc" id="L269">			kop+=ratings[i-1];</span>
+		}
+<span class="nc" id="L271">		return r/kop;</span>
+	}
+	
+	public void removeComplaint(Complaint c) {
+<span class="nc" id="L275">		complaints.remove(this.findCom(c.getId()));</span>
+<span class="nc" id="L276">	}</span>
+	
+	private int findCom(Integer resCode) {
+<span class="nc" id="L279">		int kont = 0;</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">		for(Complaint c : this.complaints) {</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">			if(c.getId().equals(resCode)) {</span>
+<span class="nc" id="L282">				return kont;</span>
+			}
+<span class="nc" id="L284">			kont ++;</span>
+		}
+<span class="nc" id="L286">		return -1;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

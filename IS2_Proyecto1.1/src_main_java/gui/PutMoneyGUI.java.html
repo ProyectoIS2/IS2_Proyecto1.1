@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PutMoneyGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">PutMoneyGUI.java</span></div><h1>PutMoneyGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+/**
+ * @author Software Engineering teachers
+ */
+
+
+import javax.swing.*;
+
+import businesslogic.BLFacade;
+import domain.*;
+import exceptions.*;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class PutMoneyGUI extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+
+	private Traveler traveler;
+	
+<span class="nc" id="L32">	private JPanel jContentPane = null;</span>
+<span class="nc" id="L33">	private JButton jButtonCreateQuery = null;</span>
+<span class="nc" id="L34">	private JButton jButtonQueryQueries = null;</span>
+
+    private static BLFacade appFacadeInterface;
+	
+	protected JLabel jLabelPutMoney;
+<span class="nc" id="L39">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+	private JButton jButtonPut;
+	private JLabel jLabelExpireDate;
+	private JLabel jLabelCVC;
+	private JTextField textFieldExpireDate;
+	private JLabel jLabelError;
+	private JButton jButtonBack;
+	private JLabel jLabelCardNumber;
+	private JTextField textFieldCardNumber;
+	private JLabel jLabelName;
+	private JTextField jTextFieldCVC;
+	private JTextField jTextFieldName;
+	private JLabel jLabelMoneyAmount;
+	private JTextField jTextFieldMoneyAmount;
+	
+	/**
+	 * This is the default constructor
+	 */
+	public PutMoneyGUI(Traveler t) {
+<span class="nc" id="L58">		super();</span>
+<span class="nc" id="L59">		BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L60">		traveler=t;</span>
+		Traveler tra;
+		try {
+<span class="nc" id="L63">			tra = facade.getTravelerByEmail(t.getEmail(), t.getPassword());</span>
+<span class="nc" id="L64">		}catch(Exception e) {</span>
+<span class="nc" id="L65">			tra = t;</span>
+		}
+		// this.setSize(271, 295);
+<span class="nc" id="L68">		this.setSize(495, 290);</span>
+<span class="nc" id="L69">		jLabelPutMoney = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI.MainTitle&quot;)+tra.getMoney()+&quot; €&quot;);</span>
+<span class="nc" id="L70">		jLabelPutMoney.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 13));</span>
+<span class="nc" id="L71">		jLabelPutMoney.setForeground(Color.BLACK);</span>
+<span class="nc" id="L72">		jLabelPutMoney.setHorizontalAlignment(SwingConstants.CENTER);</span>
+		
+<span class="nc" id="L74">		jContentPane = new JPanel();</span>
+<span class="nc" id="L75">		jContentPane.setLayout(new GridLayout(7, 2, 0, 0));</span>
+<span class="nc" id="L76">		jContentPane.add(jLabelPutMoney);</span>
+		
+<span class="nc" id="L78">		jButtonBack = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;LoginAndRegisterGUI.jButtonBack&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L79">		jButtonBack.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L81">				dispose();</span>
+<span class="nc" id="L82">			}</span>
+		});
+<span class="nc" id="L84">		jContentPane.add(jButtonBack);</span>
+		
+<span class="nc" id="L86">		jLabelCardNumber = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI.jLabelCardNumber&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L87">		jLabelCardNumber.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L88">		jContentPane.add(jLabelCardNumber);</span>
+		
+<span class="nc" id="L90">		textFieldCardNumber = new JTextField();</span>
+<span class="nc" id="L91">		textFieldCardNumber.setText(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L92">		jContentPane.add(textFieldCardNumber);</span>
+<span class="nc" id="L93">		textFieldCardNumber.setColumns(10);</span>
+		
+<span class="nc" id="L95">		jLabelExpireDate = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI.ExpireDate&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L96">		jContentPane.add(jLabelExpireDate);</span>
+<span class="nc" id="L97">		jLabelExpireDate.setHorizontalAlignment(SwingConstants.CENTER);</span>
+		
+<span class="nc" id="L99">		textFieldExpireDate = new JTextField();</span>
+<span class="nc" id="L100">		textFieldExpireDate.setText(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L101">		jContentPane.add(textFieldExpireDate);</span>
+<span class="nc" id="L102">		textFieldExpireDate.setColumns(10);</span>
+		
+<span class="nc" id="L104">		jLabelCVC = new JLabel(&quot;CVC&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L105">		jLabelCVC.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L106">		jContentPane.add(jLabelCVC);</span>
+		
+<span class="nc" id="L108">		jTextFieldCVC = new JTextField();</span>
+<span class="nc" id="L109">		jTextFieldCVC.setText(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L110">		jContentPane.add(jTextFieldCVC);</span>
+<span class="nc" id="L111">		jTextFieldCVC.setColumns(10);</span>
+		
+<span class="nc" id="L113">		jLabelName = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RegisterGUI.jLabelName&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L114">		jLabelName.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L115">		jContentPane.add(jLabelName);</span>
+		
+<span class="nc" id="L117">		jTextFieldName = new JTextField();</span>
+<span class="nc" id="L118">		jTextFieldName.setText(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L119">		jContentPane.add(jTextFieldName);</span>
+<span class="nc" id="L120">		jTextFieldName.setColumns(10);</span>
+		
+		
+<span class="nc" id="L123">		setContentPane(jContentPane);</span>
+		
+<span class="nc" id="L125">		jLabelMoneyAmount = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI.jLabelMoneyAmount&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L126">		jLabelMoneyAmount.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L127">		jContentPane.add(jLabelMoneyAmount);</span>
+		
+<span class="nc" id="L129">		jTextFieldMoneyAmount = new JTextField();</span>
+<span class="nc" id="L130">		jTextFieldMoneyAmount.setText(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L131">		jContentPane.add(jTextFieldMoneyAmount);</span>
+<span class="nc" id="L132">		jTextFieldMoneyAmount.setColumns(10);</span>
+		
+<span class="nc" id="L134">		jLabelError = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L135">		jContentPane.add(jLabelError);</span>
+<span class="nc" id="L136">		jLabelError.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L137">		setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI.MainTitle&quot;));</span>
+		
+<span class="nc" id="L139">		jButtonPut = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI.put&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L140">		jButtonPut.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				try {
+<span class="nc" id="L143">					String kop = textFieldCardNumber.getText();</span>
+<span class="nc" id="L144">					int proba = Integer.parseInt(kop);</span>
+<span class="nc" id="L145">					kop = textFieldExpireDate.getText();</span>
+<span class="nc" id="L146">					proba = Integer.parseInt(kop);</span>
+<span class="nc" id="L147">					kop = jTextFieldCVC.getText();</span>
+<span class="nc" id="L148">					proba = Integer.parseInt(kop);</span>
+<span class="nc" id="L149">					kop = jTextFieldMoneyAmount.getText();</span>
+<span class="nc bnc" id="L150" title="All 4 branches missed.">					if (kop == null || kop.isEmpty()) {</span>
+<span class="nc" id="L151">			            jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TakeMoneyGUI.jButtonError2&quot;));</span>
+<span class="nc" id="L152">			        }else {</span>
+<span class="nc" id="L153">			        	int hm = Integer.parseInt(kop);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">			        	if(hm&gt;0) {</span>
+<span class="nc" id="L155">			            	facade.putMoneyTraveler(traveler.getEmail(), hm);</span>
+<span class="nc" id="L156">				            dispose();</span>
+<span class="nc" id="L157">			            }else {</span>
+<span class="nc" id="L158">			            	jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TakeMoneyGUI.jButtonError2&quot;));</span>
+			            }
+			        }
+<span class="nc" id="L161">				}catch (NumberFormatException error) {</span>
+<span class="nc" id="L162">		        	jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TakeMoneyGUI.jButtonError2&quot;));</span>
+				}
+<span class="nc" id="L164">			}</span>
+		});
+<span class="nc" id="L166">		jContentPane.add(jButtonPut);</span>
+		
+<span class="nc" id="L168">		addWindowListener(new WindowAdapter() {</span>
+			@Override
+			public void windowClosing(WindowEvent e) {
+<span class="nc" id="L171">				System.exit(1);</span>
+<span class="nc" id="L172">			}</span>
+		});
+<span class="nc" id="L174">	}</span>
+	
+	private void paintAgain() {
+<span class="nc" id="L177">		jLabelPutMoney.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RegisterGUI.Register&quot;));</span>
+<span class="nc" id="L178">		jLabelExpireDate.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;LoginAndRegisterGUI.jLabelEmail&quot;));</span>
+<span class="nc" id="L179">		jLabelCVC.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;LoginAndRegisterGUI.jLabelPassword&quot;));</span>
+<span class="nc" id="L180">		jButtonPut.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RegisterGUI.BRegister&quot;));</span>
+<span class="nc" id="L181">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;LoginAndRegisterGUI.MainTitle&quot;));</span>
+<span class="nc" id="L182">	}</span>
+	
+} // @jve:decl-index=0:visual-constraint=&quot;0,0&quot;
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

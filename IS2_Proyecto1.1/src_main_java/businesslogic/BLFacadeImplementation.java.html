@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BLFacadeImplementation.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">businesslogic</a> &gt; <span class="el_source">BLFacadeImplementation.java</span></div><h1>BLFacadeImplementation.java</h1><pre class="source lang-java linenums">package businesslogic;
+import java.util.logging.Logger;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import configuration.ConfigXML;
+import dataAccess.DataAccess;
+import domain.*;
+import exceptions.*;
+
+/**
+ * It implements the business logic as a web service.
+ */
+@WebService(endpointInterface = &quot;businessLogic.BLFacade&quot;)
+public class BLFacadeImplementation  implements BLFacade {
+	DataAccess dbManager;
+<span class="nc" id="L21">	Logger logger = Logger.getLogger(getClass().getName());</span>
+
+<span class="nc" id="L23">	public BLFacadeImplementation()  {		</span>
+<span class="nc" id="L24">		logger.info(&quot;Creating BLFacadeImplementation instance&quot;);</span>
+<span class="nc" id="L25">		dbManager=new DataAccess();</span>
+		
+<span class="nc" id="L27">	}</span>
+	
+<span class="nc" id="L29">    public BLFacadeImplementation(DataAccess da)  {</span>
+		
+<span class="nc" id="L31">		System.out.println(&quot;Creating BLFacadeImplementation instance with DataAccess parameter&quot;);</span>
+<span class="nc" id="L32">		ConfigXML.getInstance();</span>
+		
+<span class="nc" id="L34">		dbManager=da;		</span>
+<span class="nc" id="L35">	}</span>
+    
+    
+    /**
+     * {@inheritDoc}
+     */
+    @WebMethod public List&lt;String&gt; getDepartCities(){
+<span class="nc" id="L42">    	dbManager.open();	</span>
+		
+<span class="nc" id="L44">		 List&lt;String&gt; departLocations=dbManager.getDepartCities();		</span>
+
+<span class="nc" id="L46">		dbManager.close();</span>
+		
+<span class="nc" id="L48">		return departLocations;</span>
+    	
+    }
+    /**
+     * {@inheritDoc}
+     */
+	@WebMethod public List&lt;String&gt; getDestinationCities(String from){
+<span class="nc" id="L55">		dbManager.open();	</span>
+<span class="nc" id="L56">		List&lt;String&gt; targetCities=dbManager.getArrivalCities(from);		</span>
+<span class="nc" id="L57">		dbManager.close();</span>
+		
+<span class="nc" id="L59">		return targetCities;</span>
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+   @WebMethod
+   public Ride createRide( String from, String to, Date date,float price, String driverEmail, String carPlaces ) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
+	   
+<span class="nc" id="L68">		dbManager.open();</span>
+<span class="nc" id="L69">		Ride ride=dbManager.createRide(from, to, date, price, driverEmail, carPlaces);		</span>
+<span class="nc" id="L70">		dbManager.close();</span>
+<span class="nc" id="L71">		return ride;</span>
+   }
+	
+   /**
+    * {@inheritDoc}
+    */
+	@WebMethod 
+	public List&lt;Ride&gt; getRides(String from, String to, Date date){
+<span class="nc" id="L79">		dbManager.open();</span>
+<span class="nc" id="L80">		List&lt;Ride&gt;  rides=dbManager.getRides(from, to, date);</span>
+<span class="nc" id="L81">		dbManager.close();</span>
+<span class="nc" id="L82">		return rides;</span>
+	}
+
+    
+	/**
+	 * {@inheritDoc}
+	 */
+	@WebMethod 
+	public List&lt;Date&gt; getThisMonthDatesWithRides(String from, String to, Date date){
+<span class="nc" id="L91">		dbManager.open();</span>
+<span class="nc" id="L92">		List&lt;Date&gt;  dates=dbManager.getThisMonthDatesWithRides(from, to, date);</span>
+<span class="nc" id="L93">		dbManager.close();</span>
+<span class="nc" id="L94">		return dates;</span>
+	}
+	
+	@WebMethod
+	public void close() {
+<span class="nc" id="L99">		DataAccess dB4oManager=new DataAccess();</span>
+
+<span class="nc" id="L101">		dB4oManager.close();</span>
+
+<span class="nc" id="L103">	}</span>
+
+	/**
+	 * {@inheritDoc}
+	 */
+    @WebMethod	
+	 public void initializeBD(){
+<span class="nc" id="L110">    	dbManager.open();</span>
+<span class="nc" id="L111">		dbManager.initializeDB();</span>
+<span class="nc" id="L112">		dbManager.close();</span>
+<span class="nc" id="L113">	}</span>
+    
+    @WebMethod
+    public Driver createDriver(String email, String name, String password) throws UserAlreadyExistException{
+<span class="nc" id="L117">    	dbManager.open();</span>
+<span class="nc" id="L118">    	Driver d = dbManager.createDriver(email, name, password);</span>
+<span class="nc" id="L119">    	dbManager.close();</span>
+<span class="nc" id="L120">    	return d;</span>
+    }
+    
+    @WebMethod
+    public Traveler createTraveler(String email, String name, String password)throws UserAlreadyExistException{
+<span class="nc" id="L125">    	dbManager.open();</span>
+<span class="nc" id="L126">    	Traveler t = dbManager.createTraveler(email, name, password);</span>
+<span class="nc" id="L127">    	dbManager.close();</span>
+<span class="nc" id="L128">    	return t;</span>
+    }
+    
+    @WebMethod
+    public Reservation createReservation(int hm, Integer rideNumber, String travelerEmail) throws ReservationAlreadyExistException, NotEnoughAvailableSeatsException{
+<span class="nc" id="L133">    	dbManager.open();</span>
+<span class="nc" id="L134">    	Reservation res = dbManager.createReservation(hm, rideNumber, travelerEmail);</span>
+<span class="nc" id="L135">    	dbManager.close();</span>
+<span class="nc" id="L136">    	return res;</span>
+    }
+    
+    @WebMethod
+    public Driver getDriverByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
+<span class="nc" id="L141">    	dbManager.open();</span>
+<span class="nc" id="L142">    	Driver d = dbManager.getDriverByEmail(email, password);</span>
+<span class="nc" id="L143">    	dbManager.close();</span>
+<span class="nc" id="L144">    	return d;</span>
+    }
+    
+    @WebMethod
+    public Traveler getTravelerByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
+<span class="nc" id="L149">    	dbManager.open();</span>
+<span class="nc" id="L150">    	Traveler t = dbManager.getTravelerByEmail(email, password);</span>
+<span class="nc" id="L151">    	dbManager.close();</span>
+<span class="nc" id="L152">    	return t;</span>
+    }
+    
+    @WebMethod
+    public void pay(Reservation res) throws NotEnoughMoneyException{
+<span class="nc" id="L157">    	dbManager.open();</span>
+<span class="nc" id="L158">    	dbManager.pay(res);</span>
+<span class="nc" id="L159">    	dbManager.close();</span>
+<span class="nc" id="L160">    }</span>
+    
+    @WebMethod
+    public List&lt;Reservation&gt; getDriverReservations(String email){
+<span class="nc" id="L164">    	dbManager.open();</span>
+<span class="nc" id="L165">    	List&lt;Reservation&gt; l = dbManager.getDriverReservations(email);</span>
+<span class="nc" id="L166">    	dbManager.close();</span>
+<span class="nc" id="L167">    	return l;</span>
+    }
+	
+    @WebMethod
+	public List&lt;Reservation&gt; getTravelerReservations(String email){
+<span class="nc" id="L172">		dbManager.open();</span>
+<span class="nc" id="L173">		List&lt;Reservation&gt; l = dbManager.getTravelerReservations(email);</span>
+<span class="nc" id="L174">    	dbManager.close();</span>
+<span class="nc" id="L175">    	return l;</span>
+	}
+	
+    @WebMethod
+	public void takeMoneyDriver(String email, int hm) throws NotEnoughMoneyException{
+<span class="nc" id="L180">		dbManager.open();</span>
+<span class="nc" id="L181">		dbManager.takeMoneyDriver(email, hm);</span>
+<span class="nc" id="L182">    	dbManager.close();</span>
+<span class="nc" id="L183">	}</span>
+	
+    @WebMethod
+	public void putMoneyTraveler(String email, int hm) {
+<span class="nc" id="L187">		dbManager.open();</span>
+<span class="nc" id="L188">    	dbManager.putMoneyTraveler(email, hm);</span>
+<span class="nc" id="L189">    	dbManager.close();</span>
+<span class="nc" id="L190">	}</span>
+	
+    @WebMethod
+	public void updateReservation(Reservation res) {
+<span class="nc" id="L194">		dbManager.open();</span>
+<span class="nc" id="L195">    	dbManager.updateReservation(res);</span>
+<span class="nc" id="L196">    	dbManager.close();</span>
+<span class="nc" id="L197">	}</span>
+	
+    @WebMethod
+	public void cancelReservation (Reservation res) {
+<span class="nc" id="L201">		dbManager.open();</span>
+<span class="nc" id="L202">    	dbManager.cancelReservation(res);</span>
+<span class="nc" id="L203">    	dbManager.close();</span>
+<span class="nc" id="L204">	}</span>
+	
+    @WebMethod
+	public void addCarToDriver(String driverEmail, String carPlate, int nPlaces, boolean dis) throws CarAlreadyExistsException{
+<span class="nc" id="L208">		dbManager.open();</span>
+<span class="nc" id="L209">		dbManager.addCarToDriver(driverEmail, carPlate, nPlaces, dis);</span>
+<span class="nc" id="L210">		dbManager.close();</span>
+<span class="nc" id="L211">	}</span>
+	
+    @WebMethod
+	public List&lt;Transaction&gt; getTravelerTransactions(String email){
+<span class="nc" id="L215">		dbManager.open();</span>
+<span class="nc" id="L216">		List&lt;Transaction&gt; l=dbManager.getTravelerTransactions(email);</span>
+<span class="nc" id="L217">		dbManager.close();</span>
+<span class="nc" id="L218">		return l;</span>
+	}
+	
+    @WebMethod
+	public List&lt;Transaction&gt; getDriverTransactions(String email){
+<span class="nc" id="L223">		dbManager.open();</span>
+<span class="nc" id="L224">		List&lt;Transaction&gt; l=dbManager.getDriverTransactions(email);</span>
+<span class="nc" id="L225">		dbManager.close();</span>
+<span class="nc" id="L226">		return l;</span>
+	}
+	
+    @WebMethod
+	public List&lt;Car&gt; getDriverCars(String email){
+<span class="nc" id="L231">		dbManager.open();</span>
+<span class="nc" id="L232">		List&lt;Car&gt; l=dbManager.getDriverCars(email);</span>
+<span class="nc" id="L233">		dbManager.close();</span>
+<span class="nc" id="L234">		return l;</span>
+	}
+	
+    @WebMethod
+	public void removeRideDriver(Integer rideNumber, String email) {
+<span class="nc" id="L239">		dbManager.open();</span>
+<span class="nc" id="L240">		dbManager.removeRideDriver(rideNumber, email);</span>
+<span class="nc" id="L241">		dbManager.close();</span>
+<span class="nc" id="L242">	}</span>
+	
+    @WebMethod
+	public List&lt;Ride&gt; getDriverRides(String email){
+<span class="nc" id="L246">		dbManager.open();</span>
+<span class="nc" id="L247">		List&lt;Ride&gt; l=dbManager.getDriverRides(email);</span>
+<span class="nc" id="L248">		dbManager.close();</span>
+<span class="nc" id="L249">		return l;</span>
+	}
+    
+    @WebMethod
+    public void deleteAccountDriver(String email) {
+<span class="nc" id="L254">    	dbManager.open();</span>
+<span class="nc" id="L255">    	dbManager.deleteAccountDriver(email);</span>
+<span class="nc" id="L256">    	dbManager.close();</span>
+<span class="nc" id="L257">    }</span>
+    
+    @WebMethod
+    public void deleteAccountTraveler(String email) {
+<span class="nc" id="L261">    	dbManager.open();</span>
+<span class="nc" id="L262">    	dbManager.deleteAccountTraveler(email);</span>
+<span class="nc" id="L263">    	dbManager.close();</span>
+<span class="nc" id="L264">    }</span>
+    
+    @WebMethod
+    public List&lt;Complaint&gt; getDriverComplaint(String email){
+<span class="nc" id="L268">    	dbManager.open();</span>
+<span class="nc" id="L269">    	List&lt;Complaint&gt; l = dbManager.getDriverComplaint(email);</span>
+<span class="nc" id="L270">    	dbManager.close();</span>
+<span class="nc" id="L271">    	return l;</span>
+    }
+    
+    @WebMethod
+    public void createComplaintToDriver(String c, Reservation res) {
+<span class="nc" id="L276">    	dbManager.open();</span>
+<span class="nc" id="L277">    	dbManager.createComplaintToDriver(c, res);</span>
+<span class="nc" id="L278">    	dbManager.close();</span>
+<span class="nc" id="L279">    }</span>
+    
+    @WebMethod
+    public void addRatingToTraveler(String e, int z, Integer resCode) {
+<span class="nc" id="L283">    	dbManager.open();</span>
+<span class="nc" id="L284">    	dbManager.addRatingToTraveler(e, z, resCode);</span>
+<span class="nc" id="L285">    	dbManager.close();</span>
+<span class="nc" id="L286">    }</span>
+    
+    @WebMethod
+    public void addRatingToDriver(String e, int z, Integer resCode) {
+<span class="nc" id="L290">    	dbManager.open();</span>
+<span class="nc" id="L291">    	dbManager.addRatingToDriver(e, z, resCode);</span>
+<span class="nc" id="L292">    	dbManager.close();</span>
+<span class="nc" id="L293">    }</span>
+    
+    @WebMethod
+    public void createAlert(Traveler t, String jatorria, String helmuga) throws AlertAlreadyExistsException{
+<span class="nc" id="L297">    	dbManager.open();</span>
+<span class="nc" id="L298">    	dbManager.createAlert(t, jatorria, helmuga);</span>
+<span class="nc" id="L299">    	dbManager.close();</span>
+<span class="nc" id="L300">    }</span>
+    
+    @WebMethod
+    public List&lt;Ride&gt; isRideBeenCreated(Alert alert) {
+<span class="nc" id="L304">    	dbManager.open();</span>
+<span class="nc" id="L305">    	List&lt;Ride&gt; r = dbManager.isRideBeenCreated(alert);</span>
+<span class="nc" id="L306">    	dbManager.close();</span>
+<span class="nc" id="L307">    	return r;</span>
+    }
+    
+    @WebMethod
+    public List&lt;Alert&gt; getTravelerAlert(String email){
+<span class="nc" id="L312">    	dbManager.open();</span>
+<span class="nc" id="L313">    	List&lt;Alert&gt; l = dbManager.getTravelerAlert(email);</span>
+<span class="nc" id="L314">    	dbManager.close();</span>
+<span class="nc" id="L315">    	return l;</span>
+    }
+    
+    @WebMethod
+    public void removeAlert(Integer z) {
+<span class="nc" id="L320">    	dbManager.open();</span>
+<span class="nc" id="L321">    	dbManager.removeAlert(z);</span>
+<span class="nc" id="L322">    	dbManager.close();</span>
+<span class="nc" id="L323">    }</span>
+    
+    @WebMethod
+    public float getDriverRatings(String email) {
+<span class="nc" id="L327">    	dbManager.open();</span>
+<span class="nc" id="L328">    	float l = dbManager.getDriverRatings(email);</span>
+<span class="nc" id="L329">    	dbManager.close();</span>
+<span class="nc" id="L330">    	return l;</span>
+    }
+    
+    @WebMethod
+    public float getTravelerRatings(String email) {
+<span class="nc" id="L335">    	dbManager.open();</span>
+<span class="nc" id="L336">    	float l = dbManager.getTravelerRatings(email);</span>
+<span class="nc" id="L337">    	dbManager.close();</span>
+<span class="nc" id="L338">    	return l;</span>
+    }
+    
+    @WebMethod
+    public Admin getAdminByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
+<span class="nc" id="L343">    	dbManager.open();</span>
+<span class="nc" id="L344">    	Admin a = dbManager.getAdminByEmail(email, password);</span>
+<span class="nc" id="L345">    	dbManager.close();</span>
+<span class="nc" id="L346">    	return a;</span>
+    }
+    
+    @WebMethod
+    public List&lt;Complaint&gt; getAllComplaint(){
+<span class="nc" id="L351">    	dbManager.open();</span>
+<span class="nc" id="L352">    	List&lt;Complaint&gt; c = dbManager.getAllComplaint();</span>
+<span class="nc" id="L353">    	dbManager.close();</span>
+<span class="nc" id="L354">    	return c;</span>
+    }
+    
+    @WebMethod
+    public void denyComplaint(Complaint co) {
+<span class="nc" id="L359">    	dbManager.open();</span>
+<span class="nc" id="L360">    	dbManager.denyComplaint(co);</span>
+<span class="nc" id="L361">    	dbManager.close();</span>
+<span class="nc" id="L362">    }</span>
+    
+    @WebMethod
+    public void acceptComplaint(Complaint co) {
+<span class="nc" id="L366">    	dbManager.open();</span>
+<span class="nc" id="L367">    	dbManager.acceptComplaint(co);</span>
+<span class="nc" id="L368">    	dbManager.close();</span>
+<span class="nc" id="L369">    }</span>
+    
+    @WebMethod
+    public void denyComplaintAdmin(Complaint co) {
+<span class="nc" id="L373">    	dbManager.open();</span>
+<span class="nc" id="L374">    	dbManager.denyComplaintAdmin(co);</span>
+<span class="nc" id="L375">    	dbManager.close();</span>
+<span class="nc" id="L376">    }</span>
+    
+    @WebMethod
+    public void updateAlerts(String jatorria, String helburua) {
+<span class="nc" id="L380">    	dbManager.open();</span>
+<span class="nc" id="L381">    	dbManager.updateAlerts(jatorria, helburua);</span>
+<span class="nc" id="L382">    	dbManager.close();</span>
+<span class="nc" id="L383">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

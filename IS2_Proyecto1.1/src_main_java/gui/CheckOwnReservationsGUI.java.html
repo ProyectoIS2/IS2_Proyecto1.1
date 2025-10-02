@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CheckOwnReservationsGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">CheckOwnReservationsGUI.java</span></div><h1>CheckOwnReservationsGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import configuration.UtilDate;
+
+import com.toedter.calendar.JCalendar;
+
+import businesslogic.BLFacade;
+import domain.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.List;
+import exceptions.*;
+
+import javax.swing.table.DefaultTableModel;
+
+import java.time.LocalDate;
+
+
+public class CheckOwnReservationsGUI extends JFrame {
+	private Traveler traveler;
+	private static final long serialVersionUID = 1L;
+<span class="nc" id="L27">	DefaultComboBoxModel&lt;String&gt; originLocations = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L28">	DefaultComboBoxModel&lt;String&gt; destinationCities = new DefaultComboBoxModel&lt;String&gt;();</span>
+<span class="nc" id="L29">	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateRideGUI.Rides&quot;)); </span>
+<span class="nc" id="L30">	private JLabel jLabelError = new JLabel(&quot;&quot;);</span>
+
+<span class="nc" id="L32">	private JButton jButtonClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;));</span>
+	private JButton jButtonDeny;
+	private JButton jButtonPay;
+	
+<span class="nc" id="L36">	private JScrollPane scrollPaneEvents = new JScrollPane();</span>
+
+<span class="nc" id="L38">	private JTable tableReservations= new JTable();</span>
+
+	private DefaultTableModel tableModelReservations;
+
+	private BLFacade facade;
+
+<span class="nc" id="L44">	private String[] columnNamesRides = new String[] {</span>
+<span class="nc" id="L45">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationGUI.Traveler&quot;), </span>
+<span class="nc" id="L46">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationGUI.NPlaces&quot;), </span>
+<span class="nc" id="L47">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationGUI.Ride&quot;),</span>
+<span class="nc" id="L48">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationGUI.Status&quot;)</span>
+	};
+	
+	private void updateReservations(List&lt;Reservation&gt; resList) {
+<span class="nc" id="L52">		tableModelReservations = new DefaultTableModel(null, columnNamesRides) {</span>
+			@Override
+            public boolean isCellEditable(int row, int column) {
+<span class="nc" id="L55">                return false;</span>
+            }
+		};
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if(resList.size()==0) {</span>
+<span class="nc" id="L59">			jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ChechReservationsGUI.jLabelError&quot;));</span>
+<span class="nc" id="L60">		}else {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">			for (Reservation res: resList){</span>
+<span class="nc" id="L62">				Vector&lt;Object&gt; row = new Vector&lt;Object&gt;();</span>
+<span class="nc" id="L63">				row.add(res.getTraveler().getName());</span>
+<span class="nc" id="L64">				row.add(res.getHmTravelers());</span>
+<span class="nc" id="L65">				row.add(res.getRide().getFrom()+&quot;-&quot;+res.getRide().getTo());</span>
+<span class="nc" id="L66">				row.add(res.isAccepted());</span>
+<span class="nc" id="L67">				row.add(res); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)</span>
+<span class="nc" id="L68">				tableModelReservations.addRow(row);		</span>
+			}
+		}
+<span class="nc" id="L71">		tableReservations.setModel(tableModelReservations);</span>
+<span class="nc" id="L72">	}</span>
+
+
+<span class="nc" id="L75">	public CheckOwnReservationsGUI(Traveler t)</span>
+	{
+<span class="nc" id="L77">		traveler=t;</span>
+		
+<span class="nc" id="L79">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L80">		this.setSize(new Dimension(700, 500));</span>
+<span class="nc" id="L81">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationGUI.MainTitle&quot;));</span>
+<span class="nc" id="L82">		jLabelEvents.setBounds(210, 62, 259, 16);</span>
+<span class="nc" id="L83">		this.getContentPane().add(jLabelEvents);</span>
+<span class="nc" id="L84">		jLabelEvents.setHorizontalAlignment(SwingConstants.CENTER);</span>
+
+<span class="nc" id="L86">		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));</span>
+
+<span class="nc" id="L88">		jButtonClose.addActionListener(new ActionListener()</span>
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L92">				dispose();</span>
+<span class="nc" id="L93">			}</span>
+		});
+<span class="nc" id="L95">		facade = MainGUI.getBusinessLogic();</span>
+
+<span class="nc" id="L97">		this.getContentPane().add(jButtonClose, null);</span>
+
+<span class="nc" id="L99">		scrollPaneEvents.setBounds(new Rectangle(139, 119, 398, 195));</span>
+
+<span class="nc" id="L101">		scrollPaneEvents.setViewportView(tableReservations);</span>
+<span class="nc" id="L102">		tableModelReservations = new DefaultTableModel(null, columnNamesRides);</span>
+
+<span class="nc" id="L104">		tableReservations.setModel(tableModelReservations);</span>
+
+<span class="nc" id="L106">		tableModelReservations.setDataVector(null, columnNamesRides);</span>
+<span class="nc" id="L107">		tableModelReservations.setColumnCount(5); // another column added to allocate ride objects</span>
+
+<span class="nc" id="L109">		tableReservations.getColumnModel().getColumn(0).setPreferredWidth(170);</span>
+<span class="nc" id="L110">		tableReservations.getColumnModel().getColumn(1).setPreferredWidth(30);</span>
+<span class="nc" id="L111">		tableReservations.getColumnModel().getColumn(1).setPreferredWidth(170);</span>
+
+<span class="nc" id="L113">		tableReservations.getColumnModel().removeColumn(tableReservations.getColumnModel().getColumn(3)); // not shown in JTable</span>
+
+<span class="nc" id="L115">		this.getContentPane().add(scrollPaneEvents, null);</span>
+
+<span class="nc" id="L117">		jLabelError = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L118">		jLabelError.setBounds(210, 77, 324, 30);</span>
+<span class="nc" id="L119">		getContentPane().add(jLabelError);</span>
+<span class="nc" id="L120">		jLabelError.setHorizontalAlignment(SwingConstants.CENTER);</span>
+		
+<span class="nc" id="L122">		List&lt;Reservation&gt; resList = facade.getTravelerReservations(traveler.getEmail());</span>
+<span class="nc" id="L123">		this.updateReservations(resList);</span>
+		
+<span class="nc" id="L125">		jButtonPay = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jButtonPay&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L126">		jButtonPay.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">				if(!(tableReservations.getSelectedRow()==-1)) {</span>
+					try {
+<span class="nc" id="L130">						List&lt;Reservation&gt;  resList=facade.getTravelerReservations(traveler.getEmail());</span>
+<span class="nc" id="L131">						Reservation r = resList.get(tableReservations.getSelectedRow());</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">						if(r.isAccepted()){</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">							if(!r.isPayed()) {</span>
+<span class="nc" id="L134">								facade.pay(resList.get(tableReservations.getSelectedRow()));</span>
+<span class="nc" id="L135">								resList = facade.getTravelerReservations(traveler.getEmail());</span>
+<span class="nc" id="L136">								updateReservations(resList);</span>
+<span class="nc" id="L137">							}else {</span>
+<span class="nc" id="L138">								jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError5&quot;));</span>
+							}
+<span class="nc" id="L140">						}else {</span>
+<span class="nc" id="L141">							jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError3&quot;));</span>
+						}
+<span class="nc" id="L143">					}catch(NotEnoughMoneyException error) {</span>
+<span class="nc" id="L144">						jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError2&quot;));</span>
+					}
+					
+<span class="nc" id="L147">				}else {</span>
+<span class="nc" id="L148">					jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationsGUI.jLabelError1&quot;));</span>
+				}
+<span class="nc" id="L150">			}</span>
+		});
+<span class="nc" id="L152">		jButtonPay.setBounds(42, 345, 100, 44);</span>
+<span class="nc" id="L153">		getContentPane().add(jButtonPay);</span>
+		
+<span class="nc" id="L155">		jButtonDeny = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationsGUI.jButtonCancel&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L156">		jButtonDeny.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L158" title="All 2 branches missed.">				if(!(tableReservations.getSelectedRow()==-1)) {</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">					if(!(resList.get(tableReservations.getSelectedRow()).isAccepted())) {</span>
+<span class="nc" id="L160">						tableReservations.setEnabled(false);</span>
+<span class="nc" id="L161">						facade.cancelReservation(resList.get(tableReservations.getSelectedRow()));</span>
+<span class="nc" id="L162">						List&lt;Reservation&gt; resList = facade.getTravelerReservations(traveler.getEmail());</span>
+<span class="nc" id="L163">						updateReservations(resList);</span>
+<span class="nc" id="L164">						tableReservations.setEnabled(true);</span>
+<span class="nc" id="L165">					}else {</span>
+<span class="nc" id="L166">						jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationsGUI.jLabelError2&quot;));</span>
+					}
+<span class="nc" id="L168">				}else {</span>
+<span class="nc" id="L169">					jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckReservationsGUI.jLabelError1&quot;));</span>
+				}
+<span class="nc" id="L171">			}</span>
+		});
+<span class="nc" id="L173">		jButtonDeny.setBounds(167, 345, 100, 44);</span>
+<span class="nc" id="L174">		getContentPane().add(jButtonDeny);</span>
+		
+<span class="nc" id="L176">		JButton jButtonConfirm = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jButtonConfirm&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L177">		jButtonConfirm.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L179">				Reservation r = resList.get(tableReservations.getSelectedRow());</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">				if(!r.isAccepted()) {</span>
+<span class="nc" id="L181">					jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError3&quot;));</span>
+<span class="nc" id="L182">				}else {</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">					if(r.getRide().getDate().compareTo(new Date())&lt;0) {</span>
+<span class="nc" id="L184">						facade.cancelReservation(r);</span>
+<span class="nc" id="L185">						jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.Confirmed&quot;));</span>
+<span class="nc" id="L186">					}else {</span>
+<span class="nc" id="L187">						jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError6&quot;));</span>
+					}
+				}
+<span class="nc" id="L190">			}</span>
+		});
+<span class="nc" id="L192">		jButtonConfirm.setBounds(290, 345, 100, 44);</span>
+<span class="nc" id="L193">		getContentPane().add(jButtonConfirm);</span>
+		
+<span class="nc" id="L195">		JButton jButtonComplaint = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jButtonComplaint&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L196">		jButtonComplaint.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L198">				Reservation r = resList.get(tableReservations.getSelectedRow());</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">				if(r.isAccepted()) {</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">					if(r.isComplained()) {</span>
+<span class="nc" id="L201">						jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError7&quot;));</span>
+<span class="nc" id="L202">					}else {</span>
+<span class="nc" id="L203">						JFrame a = new MakeComplaintGUI(r);</span>
+<span class="nc" id="L204">						a.setVisible(true);</span>
+<span class="nc" id="L205">						dispose();</span>
+					}
+<span class="nc" id="L207">				}else {</span>
+<span class="nc" id="L208">					jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError3&quot;));</span>
+				}
+<span class="nc" id="L210">			}</span>
+		});
+<span class="nc" id="L212">		jButtonComplaint.setBounds(400, 345, 105, 44);</span>
+<span class="nc" id="L213">		getContentPane().add(jButtonComplaint);</span>
+		
+<span class="nc" id="L215">		JButton jButtonRate = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RateGUI.jButtonRate&quot;));</span>
+<span class="nc" id="L216">		jButtonRate.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L218">				Reservation r = resList.get(tableReservations.getSelectedRow());</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">				if(r.isAccepted()) {</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">					if(!r.isRatedT()) {</span>
+<span class="nc" id="L221">						dispose();</span>
+<span class="nc" id="L222">						JFrame a = new RateDriverGUI(r);</span>
+<span class="nc" id="L223">						a.setVisible(true);</span>
+<span class="nc" id="L224">					}else {</span>
+<span class="nc" id="L225">						jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError4&quot;));</span>
+					}
+<span class="nc" id="L227">				}else {</span>
+<span class="nc" id="L228">					jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckOwnReservationsGUI.jLabelError3&quot;));</span>
+				}
+<span class="nc" id="L230">			}</span>
+		});
+<span class="nc" id="L232">		jButtonRate.setBounds(515, 345, 100, 44);</span>
+<span class="nc" id="L233">		getContentPane().add(jButtonRate);</span>
+		
+<span class="nc" id="L235">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

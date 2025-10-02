@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TestDataAccess.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">testOperations</a> &gt; <span class="el_source">TestDataAccess.java</span></div><h1>TestDataAccess.java</h1><pre class="source lang-java linenums">package testOperations;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import configuration.ConfigXML;
+import domain.Car;
+import domain.Driver;
+import domain.Ride;
+
+
+public class TestDataAccess {
+	protected  EntityManager  db;
+	protected  EntityManagerFactory emf;
+
+<span class="fc" id="L21">	ConfigXML  c=ConfigXML.getInstance();</span>
+
+
+<span class="fc" id="L24">	public TestDataAccess()  {</span>
+		
+<span class="fc" id="L26">		System.out.println(&quot;TestDataAccess created&quot;);</span>
+
+		//open();
+		
+<span class="fc" id="L30">	}</span>
+
+	
+	public void open(){
+		
+
+<span class="fc" id="L36">		String fileName=c.getDbFilename();</span>
+		
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">		if (c.isDatabaseLocal()) {</span>
+<span class="fc" id="L39">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb:&quot;+fileName);</span>
+<span class="fc" id="L40">			  db = emf.createEntityManager();</span>
+<span class="fc" id="L41">		} else {</span>
+<span class="nc" id="L42">			Map&lt;String, String&gt; properties = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L43">			  properties.put(&quot;javax.persistence.jdbc.user&quot;, c.getUser());</span>
+<span class="nc" id="L44">			  properties.put(&quot;javax.persistence.jdbc.password&quot;, c.getPassword());</span>
+
+<span class="nc" id="L46">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb://&quot;+c.getDatabaseNode()+&quot;:&quot;+c.getDatabasePort()+&quot;/&quot;+fileName, properties);</span>
+
+<span class="nc" id="L48">			  db = emf.createEntityManager();</span>
+    	   }
+<span class="fc" id="L50">		System.out.println(&quot;TestDataAccess opened&quot;);</span>
+
+		
+<span class="fc" id="L53">	}</span>
+	public void close(){
+<span class="fc" id="L55">		db.close();</span>
+<span class="fc" id="L56">		System.out.println(&quot;TestDataAccess closed&quot;);</span>
+<span class="fc" id="L57">	}</span>
+
+	public boolean removeDriver(String driverEmail) {
+<span class="fc" id="L60">		System.out.println(&quot;&gt;&gt; TestDataAccess: removeRide&quot;);</span>
+<span class="fc" id="L61">		Driver d = db.find(Driver.class, driverEmail);</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		if (d!=null) {</span>
+<span class="fc" id="L63">			db.getTransaction().begin();</span>
+<span class="fc" id="L64">			db.remove(d);</span>
+<span class="fc" id="L65">			db.getTransaction().commit();</span>
+<span class="fc" id="L66">			return true;</span>
+		} else 
+<span class="nc" id="L68">		return false;</span>
+    }
+	public Driver createDriver(String email, String name) {
+<span class="nc" id="L71">		System.out.println(&quot;&gt;&gt; TestDataAccess: addDriver&quot;);</span>
+<span class="nc" id="L72">		Driver driver=null;</span>
+<span class="nc" id="L73">			db.getTransaction().begin();</span>
+			try {
+<span class="nc" id="L75">			    driver=new Driver(name,email, name);</span>
+<span class="nc" id="L76">				db.persist(driver);</span>
+<span class="nc" id="L77">				db.getTransaction().commit();</span>
+<span class="nc" id="L78">			}</span>
+<span class="nc" id="L79">			catch (Exception e){</span>
+<span class="nc" id="L80">				e.printStackTrace();</span>
+			}
+<span class="nc" id="L82">			return driver;</span>
+    }
+	public boolean existDriver(String email) {
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		 return  db.find(Driver.class, email)!=null;</span>
+		 
+
+	}
+		
+	public Driver addDriverWithRide(String email, String name, String from, String to, Date date, int nPlaces, float price) {
+<span class="fc" id="L91">	    System.out.println(&quot;&gt;&gt; TestDataAccess: addDriverWithRide&quot;);</span>
+<span class="fc" id="L92">	    Driver driver = db.find(Driver.class, email);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">	    if (driver == null)</span>
+<span class="fc" id="L94">	        driver = new Driver(email, name, &quot;123&quot;);</span>
+
+<span class="fc" id="L96">	    Car car = new Car(&quot;PLATE&quot; + Math.random(), nPlaces, driver, false);</span>
+<span class="fc" id="L97">	    driver.addCar(car);</span>
+
+<span class="fc" id="L99">	    db.getTransaction().begin();</span>
+<span class="fc" id="L100">	    driver.addRide(from, to, date, price, car); // ✅ ahora coincide con la firma</span>
+<span class="fc" id="L101">	    db.persist(driver);</span>
+<span class="fc" id="L102">	    db.persist(car);</span>
+<span class="fc" id="L103">	    db.getTransaction().commit();</span>
+<span class="fc" id="L104">	    return driver;</span>
+	}
+		
+		
+		public boolean existRide(String email, String from, String to, Date date) {
+<span class="nc" id="L109">			System.out.println(&quot;&gt;&gt; TestDataAccess: existRide&quot;);</span>
+<span class="nc" id="L110">			Driver d = db.find(Driver.class, email);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">			if (d!=null) {</span>
+<span class="nc" id="L112">				return d.doesRideExists(from, to, date);</span>
+			} else 
+<span class="nc" id="L114">			return false;</span>
+		}
+		public Ride removeRide(String email, String from, String to, Date date ) {
+			System.out.println(&quot;&gt;&gt; TestDataAccess: removeRide&quot;);
+			Driver d = db.find(Driver.class, email);
+			if (d!=null) {
+				db.getTransaction().begin();
+<span class="nc" id="L121">				Ride r= d.removeRide(from, to, date);</span>
+				db.getTransaction().commit();
+				return r;
+
+			} else 
+			return null;
+
+		}
+
+
+		
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

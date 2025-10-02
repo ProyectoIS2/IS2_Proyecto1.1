@@ -249,3 +249,73 @@ Type domain.Alert is not enhanced.
 [2025-10-02 18:05:27 #11 type] 
 Type domain.Admin is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-02 18:12:02 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 92-101)
+
+[2025-10-02 18:12:02 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 19484@DESKTOP-KL7S583
+
+[2025-10-02 18:12:02 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-02 18:12:02 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-02 18:12:02 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-02 18:12:02 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-02 18:12:02 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-02 18:12:02 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-02 18:12:02 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-02 18:12:02 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-02 18:12:02 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-02 18:32:32 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 102-111)
+
+[2025-10-02 18:32:32 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 19468@DESKTOP-KL7S583
+
+[2025-10-02 18:32:32 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-02 18:32:32 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-02 18:32:32 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-02 18:32:32 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-02 18:32:32 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-02 18:32:32 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-02 18:32:32 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-02 18:32:32 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-02 18:32:32 #11 type] 
+Type domain.Admin is not enhanced.
+

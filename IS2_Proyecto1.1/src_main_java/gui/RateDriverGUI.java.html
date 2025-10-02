@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RateDriverGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">RateDriverGUI.java</span></div><h1>RateDriverGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import configuration.UtilDate;
+
+import com.toedter.calendar.JCalendar;
+
+import businesslogic.BLFacade;
+import domain.*;
+import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.text.DateFormat;
+import java.util.*;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+
+public class RateDriverGUI extends JFrame {
+	private Reservation r;
+	private static final long serialVersionUID = 1L;
+	
+<span class="nc" id="L26">	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RateDriverGUI.maintitle&quot;)); </span>
+<span class="nc" id="L27">	private JLabel jLabelError = new JLabel(&quot;&quot;);</span>
+
+<span class="nc" id="L29">	private JButton jButtonClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;));</span>
+
+<span class="nc" id="L31">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+
+<span class="nc" id="L33">	public RateDriverGUI(Reservation r)</span>
+	{
+<span class="nc" id="L35">		this.r=r;</span>
+		
+<span class="nc" id="L37">		JRadioButton radioButtonOne = new JRadioButton(&quot;1&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L38">		buttonGroup.add(radioButtonOne);</span>
+<span class="nc" id="L39">		radioButtonOne.setBounds(60, 214, 103, 21);</span>
+<span class="nc" id="L40">		getContentPane().add(radioButtonOne);</span>
+		
+<span class="nc" id="L42">		JRadioButton radioButtonTwo = new JRadioButton(&quot;2&quot;);</span>
+<span class="nc" id="L43">		buttonGroup.add(radioButtonTwo);</span>
+<span class="nc" id="L44">		radioButtonTwo.setBounds(165, 214, 103, 21);</span>
+<span class="nc" id="L45">		getContentPane().add(radioButtonTwo);</span>
+		
+<span class="nc" id="L47">		JRadioButton radioButtonThree = new JRadioButton(&quot;3&quot;);</span>
+<span class="nc" id="L48">		buttonGroup.add(radioButtonThree);</span>
+<span class="nc" id="L49">		radioButtonThree.setBounds(271, 214, 103, 21);</span>
+<span class="nc" id="L50">		getContentPane().add(radioButtonThree);</span>
+		
+<span class="nc" id="L52">		JRadioButton radioButtonFour = new JRadioButton(&quot;4&quot;);</span>
+<span class="nc" id="L53">		buttonGroup.add(radioButtonFour);</span>
+<span class="nc" id="L54">		radioButtonFour.setBounds(381, 214, 103, 21);</span>
+<span class="nc" id="L55">		getContentPane().add(radioButtonFour);</span>
+		
+<span class="nc" id="L57">		JRadioButton radioButtonFive = new JRadioButton(&quot;5&quot;);</span>
+<span class="nc" id="L58">		buttonGroup.add(radioButtonFive);</span>
+<span class="nc" id="L59">		radioButtonFive.setBounds(495, 214, 103, 21);</span>
+<span class="nc" id="L60">		getContentPane().add(radioButtonFive);</span>
+		
+<span class="nc" id="L62">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L63">		this.setSize(new Dimension(700, 500));</span>
+<span class="nc" id="L64">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RateGUI.jButtonRate&quot;));</span>
+<span class="nc" id="L65">		jLabelEvents.setBounds(210, 62, 259, 16);</span>
+<span class="nc" id="L66">		this.getContentPane().add(jLabelEvents);</span>
+<span class="nc" id="L67">		jLabelEvents.setHorizontalAlignment(SwingConstants.CENTER);</span>
+
+<span class="nc" id="L69">		jButtonClose.setBounds(new Rectangle(404, 423, 130, 30));</span>
+
+<span class="nc" id="L71">		jButtonClose.addActionListener(new ActionListener()</span>
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L75">				JFrame a = new CheckOwnReservationsGUI(r.getTraveler());</span>
+<span class="nc" id="L76">				a.setVisible(true);</span>
+<span class="nc" id="L77">				dispose();</span>
+<span class="nc" id="L78">			}</span>
+		});
+<span class="nc" id="L80">		BLFacade facade = MainGUI.getBusinessLogic();</span>
+
+<span class="nc" id="L82">		this.getContentPane().add(jButtonClose, null);</span>
+
+<span class="nc" id="L84">		jLabelError = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L85">		jLabelError.setBounds(210, 77, 324, 30);</span>
+<span class="nc" id="L86">		getContentPane().add(jLabelError);</span>
+<span class="nc" id="L87">		jLabelError.setHorizontalAlignment(SwingConstants.CENTER);</span>
+		
+<span class="nc" id="L89">		JButton jButtonRate = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RateGUI.jButtonRate&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L90">		jButtonRate.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">				if(radioButtonOne.isSelected()) {</span>
+<span class="nc" id="L93">					facade.addRatingToDriver(r.getDriver().getEmail(), 1, r.getReservationCode());</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">				}else if(radioButtonTwo.isSelected()) {</span>
+<span class="nc" id="L95">					facade.addRatingToDriver(r.getDriver().getEmail(), 2, r.getReservationCode());</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">				}else if(radioButtonThree.isSelected()) {</span>
+<span class="nc" id="L97">					facade.addRatingToDriver(r.getDriver().getEmail(), 3, r.getReservationCode());</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">				}else if(radioButtonFour.isSelected()) {</span>
+<span class="nc" id="L99">					facade.addRatingToDriver(r.getDriver().getEmail(), 4, r.getReservationCode());</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">				}else if(radioButtonFive.isSelected()) {</span>
+<span class="nc" id="L101">					facade.addRatingToDriver(r.getDriver().getEmail(), 5, r.getReservationCode());</span>
+<span class="nc" id="L102">				}else {</span>
+<span class="nc" id="L103">					jLabelError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RateGUI.jLabelError&quot;));</span>
+				}
+<span class="nc" id="L105">				JFrame a = new CheckOwnReservationsGUI(r.getTraveler());</span>
+<span class="nc" id="L106">				a.setVisible(true);</span>
+<span class="nc" id="L107">				dispose();</span>
+<span class="nc" id="L108">			}</span>
+		});
+<span class="nc" id="L110">		jButtonRate.setBounds(200, 425, 94, 26);</span>
+<span class="nc" id="L111">		getContentPane().add(jButtonRate);</span>
+<span class="nc" id="L112">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

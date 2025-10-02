@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CreateReservationMockWhiteTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">createReservationTest</a> &gt; <span class="el_source">CreateReservationMockWhiteTest.java</span></div><h1>CreateReservationMockWhiteTest.java</h1><pre class="source lang-java linenums">package createReservationTest;
+
+import dataAccess.DataAccess;
+import domain.Car;
+import domain.Driver;
+import domain.Reservation;
+import domain.Ride;
+import domain.Traveler;
+import exceptions.NotEnoughAvailableSeatsException;
+import exceptions.ReservationAlreadyExistException;
+import org.junit.*;
+import org.mockito.*;
+
+import org.junit.Test;
+
+import javax.persistence.*;
+import java.util.Date;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+/**
+ * Mocked white-box tests for DataAccess.createReservation(...)
+ * - Uses real domain objects (Ride, Traveler, Driver)
+ * - Mocks persistence (EntityManager, EntityTransaction, EntityManagerFactory)
+ */
+<span class="nc" id="L27">public class CreateReservationMockWhiteTest {</span>
+
+    static DataAccess dataAccess;           // SUT (constructed with mocked EntityManager)
+    static Traveler traveler;
+    static Driver driver;
+    static Car car1;
+    static Car car2;
+    static Ride ride1; // ride with plenty of seats
+    static Ride ride2; // ride with few seats
+
+    protected MockedStatic&lt;Persistence&gt; persistenceMock;
+
+    @Mock
+    protected EntityManagerFactory entityManagerFactory;
+    @Mock
+    protected EntityManager db;
+    @Mock
+    protected EntityTransaction et;
+
+    @Before
+    public void setUp() {
+        // init mocks annotated with @Mock
+<span class="nc" id="L49">        MockitoAnnotations.openMocks(this);</span>
+
+        // mock static Persistence.createEntityManagerFactory(...) (keeps pattern from your example)
+<span class="nc" id="L52">        persistenceMock = Mockito.mockStatic(Persistence.class);</span>
+<span class="nc" id="L53">        persistenceMock.when(() -&gt; Persistence.createEntityManagerFactory(Mockito.any()))</span>
+<span class="nc" id="L54">                .thenReturn(entityManagerFactory);</span>
+
+        // entityManagerFactory -&gt; entityManager (not strictly needed since we pass db to DataAccess constructor,
+        // but kept to mimic your example)
+<span class="nc" id="L58">        when(entityManagerFactory.createEntityManager()).thenReturn(db);</span>
+        // db.getTransaction() returns our mocked transaction
+<span class="nc" id="L60">        when(db.getTransaction()).thenReturn(et);</span>
+
+        // Create real domain objects using the constructors from your project
+<span class="nc" id="L63">        driver = new Driver(&quot;driver1@test.com&quot;, &quot;Driver One&quot;, &quot;pwd&quot;);          // (email, name, password)</span>
+<span class="nc" id="L64">        traveler = new Traveler(&quot;t1@test.com&quot;, &quot;Traveler One&quot;, &quot;pwd&quot;);        // (email, name, password)</span>
+
+<span class="nc" id="L66">        car1 = new Car(&quot;1234ABC&quot;, 4, driver, false);</span>
+<span class="nc" id="L67">        car2 = new Car(&quot;5678ABC&quot;, 1, driver, false);</span>
+        // rides constructed with (from, to, date, nPlaces, price, driver)
+<span class="nc" id="L69">        ride1 = new Ride(&quot;A&quot;, &quot;B&quot;, new Date(), 20.0f, driver,car1); // plenty of seats</span>
+<span class="nc" id="L70">        ride2 = new Ride(&quot;C&quot;, &quot;D&quot;, new Date(), 30.0f, driver,car2); // only 1 seat</span>
+
+<span class="nc" id="L72">        when(db.find(Ride.class, 1)).thenReturn(ride1);</span>
+<span class="nc" id="L73">        when(db.find(Ride.class, 2)).thenReturn(ride2);</span>
+<span class="nc" id="L74">        when(db.find(Traveler.class, traveler.getEmail())).thenReturn(traveler);</span>
+<span class="nc" id="L75">        when(db.find(Driver.class, driver.getEmail())).thenReturn(driver);</span>
+
+        // Build SUT using the mocked EntityManager
+<span class="nc" id="L78">        dataAccess = new DataAccess(db);</span>
+<span class="nc" id="L79">    }</span>
+
+    @After
+    public void tearDown() {
+        // close the static mock created for Persistence
+<span class="nc" id="L84">        persistenceMock.close();</span>
+        // no real DB resources to close because we passed mocked EntityManager
+<span class="nc" id="L86">    }</span>
+
+    /**
+     * Caso 1: Ride inexistente -&gt; db.find(Ride.class,id) devuelve null =&gt; NPE capturada y método devuelve null
+     */
+    @Test
+    public void test1() {
+        // Arrange: la búsqueda del ride devuelve null
+<span class="nc" id="L94">        when(db.find(Ride.class, 99)).thenReturn(null);</span>
+
+        try {
+<span class="nc" id="L97">            Reservation res = dataAccess.createReservation(1, 99, traveler.getEmail());</span>
+<span class="nc" id="L98">            assertNull(&quot;Si ride == null, createReservation debe devolver null (catch NullPointerException)&quot;, res);</span>
+<span class="nc" id="L99">        } catch (Exception e) {</span>
+<span class="nc" id="L100">            fail(&quot;No debía lanzar excepción, debía devolver null. Excepción: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L102">    }</span>
+
+    /**
+     * Caso 2: NotEnoughAvailableSeatsException
+     * - ride2 tiene 1 plaza, solicitamos 5 -&gt; excepción.
+     */
+    @Test
+    public void test2() {
+        // Arrange: ride2 (id=2) tiene 1 plaza (ya configurado en setUp)
+<span class="nc" id="L111">        when(db.find(Ride.class, 2)).thenReturn(ride2);</span>
+<span class="nc" id="L112">        when(db.find(Traveler.class, traveler.getEmail())).thenReturn(traveler);</span>
+
+        try {
+<span class="nc" id="L115">            dataAccess.createReservation(5, 2, traveler.getEmail());</span>
+<span class="nc" id="L116">            fail(&quot;Se esperaba NotEnoughAvailableSeatsException&quot;);</span>
+<span class="nc" id="L117">        } catch (NotEnoughAvailableSeatsException expected) {</span>
+            // OK
+<span class="nc" id="L119">        } catch (Exception e) {</span>
+<span class="nc" id="L120">            fail(&quot;Se esperaba NotEnoughAvailableSeatsException, se lanzó otra excepción: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L122">    }</span>
+
+    /**
+     * Caso 3: ReservationAlreadyExistException
+     * Simulamos reserva previa creando una Reservation real y añadiéndola al ride.
+     */
+    @Test
+    public void test3() {
+        // Arrange: ride1 (id=1) tiene suficiente plazas.
+<span class="nc" id="L131">        when(db.find(Ride.class, 1)).thenReturn(ride1);</span>
+<span class="nc" id="L132">        when(db.find(Traveler.class, traveler.getEmail())).thenReturn(traveler);</span>
+<span class="nc" id="L133">        when(db.find(Driver.class, driver.getEmail())).thenReturn(driver);</span>
+
+        // Creamos una reserva real y la añadimos a ride1 para simular que ya existe
+<span class="nc" id="L136">        Reservation existing = traveler.makeReservation(ride1, 2);</span>
+<span class="nc" id="L137">        driver.addReservation(existing);</span>
+<span class="nc" id="L138">        ride1.addReservation(existing);</span>
+
+        try {
+<span class="nc" id="L141">            dataAccess.createReservation(2, 1, traveler.getEmail());</span>
+<span class="nc" id="L142">            fail(&quot;Se esperaba ReservationAlreadyExistException&quot;);</span>
+<span class="nc" id="L143">        } catch (ReservationAlreadyExistException expected) {</span>
+            // OK
+<span class="nc" id="L145">        } catch (Exception e) {</span>
+<span class="nc" id="L146">            fail(&quot;Se esperaba ReservationAlreadyExistException, se lanzó otra excepción: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L148">    }</span>
+
+    /**
+     * Caso 4: Flujo correcto -&gt; reserva creada y retornada
+     */
+    @Test
+    public void test4() {
+        // Arrange: ride1 (id=1) sin reservas previas
+<span class="nc" id="L156">        when(db.find(Ride.class, 1)).thenReturn(ride1);</span>
+<span class="nc" id="L157">        when(db.find(Traveler.class, traveler.getEmail())).thenReturn(traveler);</span>
+<span class="nc" id="L158">        when(db.find(Driver.class, driver.getEmail())).thenReturn(driver);</span>
+
+        try {
+<span class="nc" id="L161">            Reservation res = dataAccess.createReservation(2, 1, traveler.getEmail());</span>
+<span class="nc" id="L162">            assertNotNull(&quot;Se esperaba una Reservation creada&quot;, res);</span>
+<span class="nc" id="L163">            assertEquals(&quot;Ride asociado debe ser ride1&quot;, ride1, res.getRide());</span>
+<span class="nc" id="L164">            assertEquals(&quot;Traveler asociado debe ser traveler&quot;, traveler, res.getTraveler());</span>
+<span class="nc" id="L165">        } catch (Exception e) {</span>
+<span class="nc" id="L166">            fail(&quot;No se esperaba excepción en flujo correcto: &quot; + e.getMessage());</span>
+        }
+<span class="nc" id="L168">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Alert.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Alert.java</span></div><h1>Alert.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class Alert implements Serializable{
+	@XmlID
+	@Id 
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer alertCode;
+	private String jatorria;
+	private String helburua;
+	private Traveler traveler;
+<span class="nc" id="L31">	private boolean sortuta = false;</span>
+	
+	
+
+<span class="nc" id="L35">	public Alert (String j, String h, Traveler t) {</span>
+<span class="nc" id="L36">		this.jatorria=j;</span>
+<span class="nc" id="L37">		this.helburua=h;</span>
+<span class="nc" id="L38">		this.traveler=t;</span>
+<span class="nc" id="L39">	}</span>
+	
+	public Alert() {
+<span class="nc" id="L42">		super();</span>
+<span class="nc" id="L43">	}</span>
+	
+	public boolean isSortuta() {
+<span class="nc" id="L46">		return sortuta;</span>
+	}
+
+	public void setSortuta(boolean sortuta) {
+<span class="nc" id="L50">		this.sortuta = sortuta;</span>
+<span class="nc" id="L51">	}</span>
+
+	public Integer getAlertCode() {
+<span class="nc" id="L54">		return alertCode;</span>
+	}
+
+	public void setAlertCode(Integer alertCode) {
+<span class="nc" id="L58">		this.alertCode = alertCode;</span>
+<span class="nc" id="L59">	}</span>
+
+	public String getJatorria() {
+<span class="nc" id="L62">		return jatorria;</span>
+	}
+
+	public void setJatorria(String jatorria) {
+<span class="nc" id="L66">		this.jatorria = jatorria;</span>
+<span class="nc" id="L67">	}</span>
+
+	public String getHelburua() {
+<span class="nc" id="L70">		return helburua;</span>
+	}
+
+	public void setHelburua(String helburua) {
+<span class="nc" id="L74">		this.helburua = helburua;</span>
+<span class="nc" id="L75">	}</span>
+
+	public Traveler getTraveler() {
+<span class="nc" id="L78">		return traveler;</span>
+	}
+
+	public void setTraveler(Traveler traveler) {
+<span class="nc" id="L82">		this.traveler = traveler;</span>
+<span class="nc" id="L83">	}</span>
+	
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L87" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L88">			return true;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L90">			return false;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L92">			return false;</span>
+<span class="nc" id="L93">		Alert other = (Alert) obj;</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">		if (this.jatorria.equals(other.jatorria)&amp;&amp;this.helburua.equals(other.helburua))</span>
+<span class="nc" id="L95">			return true;</span>
+<span class="nc" id="L96">		return false;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

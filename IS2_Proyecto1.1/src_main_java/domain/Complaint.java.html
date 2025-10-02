@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Complaint.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Complaint.java</span></div><h1>Complaint.java</h1><pre class="source lang-java linenums">package domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@SuppressWarnings(&quot;serial&quot;)
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class Complaint {
+	@XmlID
+	@Id 
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer id;
+	private String comp;
+	private Reservation res;
+<span class="nc" id="L22">	private boolean denied = false;</span>
+	
+	public Complaint () {
+<span class="nc" id="L25">		super();</span>
+<span class="nc" id="L26">	}</span>
+	
+<span class="nc" id="L28">	public Complaint (String comp, Reservation r){</span>
+<span class="nc" id="L29">		this.comp=comp;</span>
+<span class="nc" id="L30">		this.res=r;</span>
+<span class="nc" id="L31">	}</span>
+
+	public Integer getId() {
+<span class="nc" id="L34">		return id;</span>
+	}
+
+	public void setId(Integer id) {
+<span class="nc" id="L38">		this.id = id;</span>
+<span class="nc" id="L39">	}</span>
+
+	public String getComplaint() {
+<span class="nc" id="L42">		return comp;</span>
+	}
+
+	public void setComplaint(String complaint) {
+<span class="nc" id="L46">		this.comp = complaint;</span>
+<span class="nc" id="L47">	}</span>
+
+	public Reservation getRes() {
+<span class="nc" id="L50">		return res;</span>
+	}
+
+	public void setRes(Reservation res) {
+<span class="nc" id="L54">		this.res = res;</span>
+<span class="nc" id="L55">	}</span>
+
+	public boolean isDenied() {
+<span class="nc" id="L58">		return denied;</span>
+	}
+
+	public void setDenied(boolean denied) {
+<span class="nc" id="L62">		this.denied = denied;</span>
+<span class="nc" id="L63">	}</span>
+	
+	public String getDriverEmail() {
+<span class="nc" id="L66">		return this.res.getDriver().getEmail();</span>
+	}
+	
+	public String getTravelerEmail() {
+<span class="nc" id="L70">		return this.res.getTraveler().getEmail();</span>
+	}
+	
+	public String getDriverName() {
+<span class="nc" id="L74">		return this.res.getDriver().getName();</span>
+	}
+	
+	public String getTravelerName() {
+<span class="nc" id="L78">		return this.res.getTraveler().getName();</span>
+	}
+	
+	public Ride getRide() {
+<span class="nc" id="L82">		return this.res.getRide();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

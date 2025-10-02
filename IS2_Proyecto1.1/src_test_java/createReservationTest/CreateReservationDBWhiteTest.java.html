@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CreateReservationDBWhiteTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">createReservationTest</a> &gt; <span class="el_source">CreateReservationDBWhiteTest.java</span></div><h1>CreateReservationDBWhiteTest.java</h1><pre class="source lang-java linenums">package createReservationTest;
+
+import dataAccess.DataAccess;
+import domain.*;
+import exceptions.*;
+import testOperations.TestDataAccess;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
+import org.junit.Test;
+
+import java.time.Instant;
+import java.util.Date;
+
+import org.junit.*;
+
+<span class="fc" id="L20">public class CreateReservationDBWhiteTest {</span>
+
+    private DataAccess dataAccess;
+    private TestDataAccess testDA;
+
+    private Traveler t1;
+    private Ride r1;
+
+    @Before
+    public void setUp() {
+<span class="fc" id="L30">        dataAccess = new DataAccess();</span>
+<span class="fc" id="L31">        testDA = new TestDataAccess();</span>
+
+<span class="fc" id="L33">        testDA.open();</span>
+<span class="fc" id="L34">        dataAccess.open();</span>
+
+        // Crear driver con ride de prueba
+<span class="fc" id="L37">        Driver d1 = testDA.addDriverWithRide(</span>
+<span class="fc" id="L38">            &quot;driver1@test.com&quot;, &quot;Driver1&quot;,</span>
+<span class="fc" id="L39">            &quot;Donostia&quot;, &quot;Bilbao&quot;, Date.from(Instant.now()), 5, 10</span>
+        );
+<span class="fc" id="L41">        r1 = d1.getRides().get(0);</span>
+
+        // Crear traveler
+        try {
+<span class="nc" id="L45">            t1 = dataAccess.createTraveler(&quot;t1@test.com&quot;, &quot;Traveler1&quot;, &quot;123&quot;);</span>
+<span class="pc" id="L46">        } catch (UserAlreadyExistException e) {</span>
+<span class="fc" id="L47">            t1 = null; // ya existía</span>
+        }
+<span class="fc" id="L49">    }</span>
+
+    @After
+    public void tearDown() {
+<span class="fc" id="L53">        dataAccess.close();</span>
+<span class="fc" id="L54">        testDA.close();</span>
+
+        // Limpieza de datos
+<span class="fc" id="L57">        testDA.open();</span>
+<span class="fc" id="L58">        testDA.removeDriver(&quot;driver1@test.com&quot;);</span>
+   //     if (t1 != null) testDA.removeTraveler(t1.getEmail());
+<span class="fc" id="L60">        testDA.close();</span>
+<span class="fc" id="L61">    }</span>
+
+    // Test 1: Ride inexistente
+    @Test
+    public void test1() {
+        try {
+<span class="fc" id="L67">            Reservation res = dataAccess.createReservation(1, 99999, &quot;t1@test.com&quot;);</span>
+<span class="fc" id="L68">            assertNull(res);</span>
+<span class="pc" id="L69">        } catch (Exception e) {</span>
+<span class="nc" id="L70">            fail(&quot;No debería lanzar excepción en test1: &quot; + e.getMessage());</span>
+        }
+<span class="fc" id="L72">    }</span>
+
+    // Test 2: Asientos insuficientes
+    @Test
+    public void test2() {
+        try {
+<span class="fc" id="L78">            assertThrows(NotEnoughAvailableSeatsException.class,</span>
+<span class="pc" id="L79">                () -&gt; dataAccess.createReservation(99, r1.getRideNumber(), &quot;t1@test.com&quot;));</span>
+<span class="pc" id="L80">        } catch (Exception e) {</span>
+<span class="nc" id="L81">            fail(&quot;Error inesperado en test2: &quot; + e.getMessage());</span>
+        }
+<span class="fc" id="L83">    }</span>
+
+    // Caso 3: Reserva ya existe
+    @Test
+    public void test3() {
+        try {
+<span class="fc" id="L89">            dataAccess.createReservation(1, r1.getRideNumber(), &quot;t1@test.com&quot;); // primera OK</span>
+<span class="fc" id="L90">            assertThrows(ReservationAlreadyExistException.class,</span>
+<span class="pc" id="L91">                () -&gt; dataAccess.createReservation(1, r1.getRideNumber(), &quot;t1@test.com&quot;)); // segunda falla</span>
+<span class="pc" id="L92">        } catch (Exception e) {</span>
+<span class="nc" id="L93">            fail(&quot;Error inesperado en test3: &quot; + e.getMessage());</span>
+        }
+<span class="fc" id="L95">    }</span>
+
+    // Caso 4: Reserva creada correctamente
+    @Test
+    public void test4() {
+        try {
+<span class="fc" id="L101">            Reservation res = dataAccess.createReservation(2, r1.getRideNumber(), &quot;t1@test.com&quot;);</span>
+<span class="fc" id="L102">            assertNotNull(res);</span>
+<span class="fc" id="L103">            assertEquals(&quot;t1@test.com&quot;, res.getTraveler().getEmail());</span>
+<span class="fc" id="L104">            assertEquals(r1.getRideNumber(), res.getRide().getRideNumber());</span>
+<span class="pc" id="L105">        } catch (Exception e) {</span>
+<span class="nc" id="L106">            fail(&quot;Error inesperado en test4: &quot; + e.getMessage());</span>
+        }
+<span class="fc" id="L108">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>

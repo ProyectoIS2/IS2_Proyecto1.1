@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TravelerGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</a> &gt; <a href="../../index.html" class="el_group">IS2_Proyecto1.1</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">TravelerGUI.java</span></div><h1>TravelerGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+/**
+ * @author Software Engineering teachers
+ */
+
+
+import javax.swing.*;
+
+import businesslogic.BLFacade;
+import domain.*;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class TravelerGUI extends JFrame {
+	
+    private Traveler traveler;
+	private static final long serialVersionUID = 1L;
+
+<span class="nc" id="L30">	private JPanel jContentPane = null;</span>
+<span class="nc" id="L31">	private JButton jButtonQueryQueries = null;</span>
+
+    private static BLFacade appFacadeInterface;
+	
+	public static BLFacade getBusinessLogic(){
+<span class="nc" id="L36">		return appFacadeInterface;</span>
+	}
+	 
+	public static void setBussinessLogic (BLFacade afi){
+<span class="nc" id="L40">		appFacadeInterface=afi;</span>
+<span class="nc" id="L41">	}</span>
+	protected JLabel jLabelSelectOption;
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
+	private JRadioButton rdbtnNewRadioButton_2;
+	private JPanel panel;
+<span class="nc" id="L47">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+	private JButton jButtonPutMoney;
+	private JButton jButtonLogOut;
+	private JButton jButtonCheckReservations;
+	private JButton jButtonCheckTrans;
+	private JButton jButtonDeleteAccount;
+	private JButton jButtonCheckOwnRatings;
+	private JButton jButtonCheckAlerts;
+	private JButton jButtonCreateAlert;
+	
+	/**
+	 * This is the default constructor
+	 */
+	public TravelerGUI(Traveler t) {
+<span class="nc" id="L61">		super();</span>
+
+<span class="nc" id="L63">		this.traveler=t;</span>
+		
+<span class="nc" id="L65">		BLFacade facade = MainGUI.getBusinessLogic();</span>
+		// this.setSize(271, 295);
+<span class="nc" id="L67">		this.setSize(495, 290);</span>
+<span class="nc" id="L68">		jLabelSelectOption = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverAndTravelerGUI.Welcome&quot;)+&quot; &quot;+traveler.getName());</span>
+<span class="nc" id="L69">		jLabelSelectOption.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 13));</span>
+<span class="nc" id="L70">		jLabelSelectOption.setForeground(Color.BLACK);</span>
+<span class="nc" id="L71">		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);</span>
+		
+<span class="nc" id="L73">		rdbtnNewRadioButton = new JRadioButton(&quot;English&quot;);</span>
+<span class="nc" id="L74">		rdbtnNewRadioButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L76">				Locale.setDefault(new Locale(&quot;en&quot;));</span>
+<span class="nc" id="L77">				System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L78">				paintAgain();				}</span>
+		});
+<span class="nc" id="L80">		buttonGroup.add(rdbtnNewRadioButton);</span>
+		
+<span class="nc" id="L82">		rdbtnNewRadioButton_1 = new JRadioButton(&quot;Euskara&quot;);</span>
+<span class="nc" id="L83">		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L85">				Locale.setDefault(new Locale(&quot;eus&quot;));</span>
+<span class="nc" id="L86">				System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L87">				paintAgain();				}</span>
+		});
+<span class="nc" id="L89">		buttonGroup.add(rdbtnNewRadioButton_1);</span>
+		
+<span class="nc" id="L91">		rdbtnNewRadioButton_2 = new JRadioButton(&quot;Castellano&quot;);</span>
+<span class="nc" id="L92">		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L94">				Locale.setDefault(new Locale(&quot;es&quot;));</span>
+<span class="nc" id="L95">				System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L96">				paintAgain();</span>
+<span class="nc" id="L97">			}</span>
+		});
+<span class="nc" id="L99">		buttonGroup.add(rdbtnNewRadioButton_2);</span>
+	
+<span class="nc" id="L101">		panel = new JPanel();</span>
+<span class="nc" id="L102">		panel.add(rdbtnNewRadioButton_1);</span>
+<span class="nc" id="L103">		panel.add(rdbtnNewRadioButton_2);</span>
+<span class="nc" id="L104">		panel.add(rdbtnNewRadioButton);</span>
+		
+<span class="nc" id="L106">		jButtonQueryQueries = new JButton();</span>
+<span class="nc" id="L107">		jButtonQueryQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MainGUI.QueryRides&quot;));</span>
+<span class="nc" id="L108">		jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {</span>
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+<span class="nc" id="L110">				JFrame a = new FindAndBookRidesGUI(traveler);</span>
+<span class="nc" id="L111">				a.setVisible(true);</span>
+<span class="nc" id="L112">			}</span>
+		});
+		
+<span class="nc" id="L115">		jContentPane = new JPanel();</span>
+<span class="nc" id="L116">		jContentPane.setLayout(new GridLayout(6, 2, 0, 0));</span>
+<span class="nc" id="L117">		jContentPane.add(jLabelSelectOption);</span>
+<span class="nc" id="L118">		jContentPane.add(jButtonQueryQueries);</span>
+		
+<span class="nc" id="L120">		jButtonPutMoney = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.JButtonPutMoney&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L121">		jButtonPutMoney.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L123">				JFrame a = new PutMoneyGUI(traveler);</span>
+<span class="nc" id="L124">				a.setVisible(true);</span>
+<span class="nc" id="L125">			}</span>
+		});
+<span class="nc" id="L127">		jContentPane.add(jButtonPutMoney);</span>
+		
+<span class="nc" id="L129">		jButtonLogOut = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverAndTravelerGUI.JButtonLogOut&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L130">		jButtonLogOut.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L132">				dispose();</span>
+<span class="nc" id="L133">			}</span>
+		});
+		
+<span class="nc" id="L136">		jButtonCheckReservations = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.JButtonCheckReservations&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L137">		jButtonCheckReservations.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L139">				JFrame a = new CheckOwnReservationsGUI(traveler);</span>
+<span class="nc" id="L140">				a.setVisible(true);</span>
+<span class="nc" id="L141">			}</span>
+		});
+<span class="nc" id="L143">		jContentPane.add(jButtonCheckReservations);</span>
+		
+<span class="nc" id="L145">		jButtonCheckTrans = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverAndTravelerGUI.jButtonCheckTrans&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L146">		jButtonCheckTrans.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L148">				JFrame a = new CheckTransactionsGUI(facade.getTravelerTransactions(traveler.getEmail()));</span>
+<span class="nc" id="L149">				a.setVisible(true);</span>
+<span class="nc" id="L150">			}</span>
+		});
+<span class="nc" id="L152">		jContentPane.add(jButtonCheckTrans);</span>
+		
+<span class="nc" id="L154">		jButtonDeleteAccount = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverGUI.jButtonDeleteAccount&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L155">		jButtonDeleteAccount.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L157">				facade.deleteAccountTraveler(traveler.getEmail());</span>
+<span class="nc" id="L158">				dispose();</span>
+<span class="nc" id="L159">			}</span>
+		});
+<span class="nc" id="L161">		jContentPane.add(jButtonDeleteAccount);</span>
+		
+<span class="nc" id="L163">		jButtonCheckOwnRatings = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.jButtonCheckOwnRatings&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L164">		jButtonCheckOwnRatings.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L166">				JFrame a = new CheckOwnRatingsGUI(traveler.getRatings());</span>
+<span class="nc" id="L167">				a.setVisible(true);</span>
+<span class="nc" id="L168">			}</span>
+		});
+<span class="nc" id="L170">		jContentPane.add(jButtonCheckOwnRatings);</span>
+<span class="nc" id="L171">		jContentPane.add(jButtonLogOut);</span>
+		
+<span class="nc" id="L173">		jButtonCheckAlerts = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.jButtonCheckAlerts&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L174">		jButtonCheckAlerts.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L176">				JFrame a = new CheckMyAlertsGUI(t);</span>
+<span class="nc" id="L177">				a.setVisible(true);</span>
+<span class="nc" id="L178">			}</span>
+		});
+<span class="nc" id="L180">		jContentPane.add(jButtonCheckAlerts);</span>
+		
+<span class="nc" id="L182">		jButtonCreateAlert = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.jButtonCreateAlert&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L183">		jButtonCreateAlert.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L185">				JFrame a = new CreateAlertGUI(t);</span>
+<span class="nc" id="L186">				a.setVisible(true);</span>
+<span class="nc" id="L187">			}</span>
+		});
+<span class="nc" id="L189">		jContentPane.add(jButtonCreateAlert);</span>
+<span class="nc" id="L190">		jContentPane.add(panel);</span>
+		
+		
+<span class="nc" id="L193">		setContentPane(jContentPane);</span>
+<span class="nc" id="L194">		setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MainGUI.MainTitle&quot;) + &quot; - traveler :&quot;+ traveler.getName());</span>
+		
+<span class="nc" id="L196">		addWindowListener(new WindowAdapter() {</span>
+			@Override
+			public void windowClosing(WindowEvent e) {
+<span class="nc" id="L199">				System.exit(1);</span>
+<span class="nc" id="L200">			}</span>
+		});
+<span class="nc" id="L202">	}</span>
+	
+	private void paintAgain() {
+<span class="nc" id="L205">		jButtonDeleteAccount.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverGUI.jButtonDeleteAccount&quot;));</span>
+<span class="nc" id="L206">		jLabelSelectOption.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverAndTravelerGUI.Welcome&quot;)+&quot; &quot;+traveler.getName());</span>
+<span class="nc" id="L207">		jButtonQueryQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MainGUI.QueryRides&quot;));</span>
+<span class="nc" id="L208">		jButtonPutMoney.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.JButtonPutMoney&quot;));</span>
+<span class="nc" id="L209">		jButtonLogOut.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverAndTravelerGUI.JButtonLogOut&quot;));</span>
+<span class="nc" id="L210">		jButtonCheckReservations.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.JButtonCheckReservations&quot;));</span>
+<span class="nc" id="L211">		jButtonCheckTrans.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DriverAndTravelerGUI.jButtonCheckTrans&quot;));</span>
+<span class="nc" id="L212">		jButtonCheckAlerts.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.jButtonCheckAlerts&quot;));</span>
+<span class="nc" id="L213">		jButtonCreateAlert.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.jButtonCreateAlert&quot;)); </span>
+<span class="nc" id="L214">		jButtonCheckOwnRatings.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TravelerGUI.jButtonCheckOwnRatings&quot;));</span>
+<span class="nc" id="L215">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MainGUI.MainTitle&quot;)+ &quot; - traveler :&quot;+traveler.getName());</span>
+<span class="nc" id="L216">	}</span>
+	
+} // @jve:decl-index=0:visual-constraint=&quot;0,0&quot;
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span>CreateReservationDBWhiteTest (2 oct 2025 18:05:28)</div></body></html>
