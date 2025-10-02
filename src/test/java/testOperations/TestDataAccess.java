@@ -113,7 +113,8 @@ public class TestDataAccess {
 			} else 
 			return false;
 		}
-/**		public Ride removeRide(String email, String from, String to, Date date ) {
+/**c o dios mio, por favor, FUNCIONA O ME CONVIERTO EN MUSULMAN		
+ * public Ride removeRide(String email, String from, String to, Date date ) {
 			System.out.println(">> TestDataAccess: removeRide");
 			Driver d = db.find(Driver.class, email);
 			if (d!=null) {
@@ -121,7 +122,7 @@ public class TestDataAccess {
 				Ride r= d.removeRide(from, to, date);
 				db.getTransaction().commit();
 				return r;
-			} else 
+			} else  
 			return null;
 		}
 */
