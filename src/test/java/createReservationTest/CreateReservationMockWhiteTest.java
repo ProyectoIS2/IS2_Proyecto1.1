@@ -11,6 +11,8 @@ import exceptions.ReservationAlreadyExistException;
 import org.junit.*;
 import org.mockito.*;
 
+import org.junit.Test;
+
 import javax.persistence.*;
 import java.util.Date;
 
