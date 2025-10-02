@@ -71,7 +71,7 @@ public class TestDataAccess {
 		Driver driver=null;
 			db.getTransaction().begin();
 			try {
-			    driver=new Driver(name,email);
+			    driver=new Driver(name,email, name);
 				db.persist(driver);
 				db.getTransaction().commit();
 			}
@@ -93,7 +93,7 @@ public class TestDataAccess {
 				try {
 					 driver = db.find(Driver.class, email);
 					if (driver==null)
-						driver=new Driver(name,email);
+						driver=new Driver(name,email, to);
 				    driver.addRide(from, to, date, nPlaces, price);
 					db.getTransaction().commit();
 					return driver;
