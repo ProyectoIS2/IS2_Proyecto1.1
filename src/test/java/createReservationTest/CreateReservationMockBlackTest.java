@@ -72,12 +72,13 @@ public class CreateReservationMockBlackTest {
         assertNotNull(res);
     }
 
-    // Test 2: hm <= 0
     @Test
     public void tc02() throws Exception {
-        Reservation res = dataAccess.createReservation(0, 1, traveler.getEmail());
-        assertNull(res);
+        Reservation res = dataAccess.createReservation(0, ride.getRideNumber(), traveler.getEmail());
+        assertNull("Con mocks, hm=0 igualmente crea la reserva", res);
     }
+
+
 
     // Test 3: rideNumber == null
     @Test
