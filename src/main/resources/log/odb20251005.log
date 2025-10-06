@@ -1,0 +1,70 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-05 19:27:40 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 312-341)
+
+[2025-10-05 19:27:41 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 13980@DESKTOP-KL7S583
+
+[2025-10-05 19:27:41 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 19:27:41 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 19:27:41 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 19:27:41 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 19:27:41 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 19:27:41 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 19:27:41 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 19:27:41 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 19:27:41 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-05 19:29:01 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 342-371)
+
+[2025-10-05 19:29:01 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 19092@DESKTOP-KL7S583
+
+[2025-10-05 19:29:02 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 19:29:02 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 19:29:02 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 19:29:02 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 19:29:02 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 19:29:02 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 19:29:02 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 19:29:02 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 19:29:02 #11 type] 
+Type domain.Admin is not enhanced.
+
