@@ -275,6 +275,7 @@ Type domain.Alert is not enhanced.
 [2025-10-03 17:06:24 #11 type] 
 Type domain.Admin is not enhanced.
 
+<<<<<<< HEAD
 ------------------------------------------------------------------------------------------------------------------------
 
 [2025-10-03 17:30:14 #1 store] 
@@ -310,3 +311,5 @@ Type domain.Alert is not enhanced.
 [2025-10-03 17:30:15 #11 type] 
 Type domain.Admin is not enhanced.
 
+=======
+>>>>>>> branch 'main' of https://github.com/ProyectoIS2/IS2_Proyecto1.1.git

@@ -1,0 +1,206 @@
+------------------------------------------------------------------------------------------------------------------------
+
+<<<<<<< HEAD
+[2025-10-05 19:27:40 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 312-341)
+
+[2025-10-05 19:27:41 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 13980@DESKTOP-KL7S583
+
+[2025-10-05 19:27:41 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 19:27:41 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 19:27:41 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 19:27:41 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 19:27:41 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 19:27:41 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 19:27:41 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 19:27:41 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 19:27:41 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-05 19:29:01 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 342-371)
+
+[2025-10-05 19:29:01 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 19092@DESKTOP-KL7S583
+
+[2025-10-05 19:29:02 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 19:29:02 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 19:29:02 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 19:29:02 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 19:29:02 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 19:29:02 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 19:29:02 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 19:29:02 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 19:29:02 #11 type] 
+=======
+[2025-10-05 21:43:35 #1 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 282-311)
+
+[2025-10-05 21:43:35 #2 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 15324@DESKTOP-EFGPFA0
+
+[2025-10-05 21:43:35 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 21:43:35 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 21:43:35 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 21:43:35 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 21:43:35 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 21:43:35 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 21:43:35 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 21:43:35 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 21:43:35 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-05 21:44:47 #1 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 15400@DESKTOP-EFGPFA0
+
+[2025-10-05 21:44:47 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 21:44:47 #3 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 21:44:47 #4 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 21:44:47 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 21:44:47 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 21:44:47 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 21:44:47 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 21:44:47 #9 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 21:44:47 #10 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-05 21:46:37 #1 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 312-358)
+
+[2025-10-05 21:46:38 #2 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 16000@DESKTOP-EFGPFA0
+
+[2025-10-05 21:46:38 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 21:46:38 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 21:46:38 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 21:46:38 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 21:46:38 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 21:46:38 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 21:46:38 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 21:46:38 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 21:46:38 #11 type] 
+Type domain.Admin is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-05 23:06:06 #1 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 359-438)
+
+[2025-10-05 23:06:07 #2 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 6068@DESKTOP-EFGPFA0
+
+[2025-10-05 23:06:07 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-05 23:06:07 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-05 23:06:07 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-05 23:06:07 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-05 23:06:07 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-05 23:06:07 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-05 23:06:07 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-05 23:06:07 #10 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-05 23:06:07 #11 type] 
+>>>>>>> branch 'main' of https://github.com/ProyectoIS2/IS2_Proyecto1.1.git
+Type domain.Admin is not enhanced.
+

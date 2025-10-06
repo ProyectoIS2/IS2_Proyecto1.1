@@ -1,0 +1,426 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 20:15:56 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 18212@DESKTOP-KL7S583
+
+[2025-10-06 20:15:56 #2 type.registry] 
+New type domain.Driver
+
+[2025-10-06 20:15:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 20:15:56 #4 type.registry] 
+New type domain.Complaint
+
+[2025-10-06 20:15:56 #5 type.registry] 
+New type domain.Transaction
+
+[2025-10-06 20:15:56 #6 type.registry] 
+New type domain.Car
+
+[2025-10-06 20:15:56 #7 type.registry] 
+New type domain.Reservation
+
+[2025-10-06 20:15:56 #8 type.registry] 
+New type domain.Ride
+
+[2025-10-06 20:15:56 #9 type.registry] 
+New type int[]
+
+[2025-10-06 20:15:56 #10 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 20:15:56 #11 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 20:15:56 #12 type.registry] 
+New type domain.Traveler
+
+[2025-10-06 20:15:56 #13 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 20:15:56 #14 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 20:15:56 #15 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 20:15:56 #16 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 20:15:56 #17 type.registry] 
+New type domain.Alert
+
+[2025-10-06 20:15:56 #18 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-06 20:15:56 #19 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-10-06 20:15:56 #20 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2025-10-06 20:15:56 #21 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-10-06 20:15:56 #22 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-10-06 20:15:56 #23 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-10-06 20:15:56 #24 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+[2025-10-06 20:15:56 #25 type.registry] 
+New type java.util.Vector<domain.Complaint>
+
+[2025-10-06 20:15:56 #26 type.registry] 
+New type java.util.ArrayList<domain.Ride>
+
+[2025-10-06 20:15:56 #27 type.registry] 
+New type java.util.Vector<domain.Alert>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:10:25 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 1-53)
+
+[2025-10-06 21:10:25 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 6352@DESKTOP-KL7S583
+
+[2025-10-06 21:10:25 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:10:25 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:10:25 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:10:25 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:10:25 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:10:25 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:10:25 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:10:25 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:23:28 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 54-55)
+
+[2025-10-06 21:23:28 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 16712@DESKTOP-KL7S583
+
+[2025-10-06 21:23:28 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:23:28 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:23:28 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:23:28 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:23:28 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:23:28 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:23:28 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:23:28 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:30:17 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 14580@DESKTOP-KL7S583
+
+[2025-10-06 21:30:17 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:30:17 #3 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:30:17 #4 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:30:17 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:30:17 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:30:17 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:30:17 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:30:17 #9 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:31:11 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 6652@DESKTOP-KL7S583
+
+[2025-10-06 21:31:11 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:31:11 #3 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:31:11 #4 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:31:11 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:31:11 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:31:11 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:31:11 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:31:11 #9 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:37:17 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 18272@DESKTOP-KL7S583
+
+[2025-10-06 21:37:17 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:37:17 #3 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:37:17 #4 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:37:17 #5 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:37:17 #6 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:37:17 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:37:17 #8 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:37:17 #9 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:48:01 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 56-95)
+
+[2025-10-06 21:48:01 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 24884@DESKTOP-KL7S583
+
+[2025-10-06 21:48:01 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:48:01 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:48:01 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:48:01 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:48:01 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:48:01 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:48:01 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:48:01 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:48:18 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 96-109)
+
+[2025-10-06 21:48:19 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 7984@DESKTOP-KL7S583
+
+[2025-10-06 21:48:19 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:48:19 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:48:19 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:48:19 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:48:19 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:48:19 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:48:19 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:48:19 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:50:27 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 110-123)
+
+[2025-10-06 21:50:28 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 15088@DESKTOP-KL7S583
+
+[2025-10-06 21:50:28 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:50:28 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:50:28 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:50:28 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:50:28 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:50:28 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:50:28 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:50:28 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:50:44 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 127-180)
+
+[2025-10-06 21:50:44 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 21836@DESKTOP-KL7S583
+
+[2025-10-06 21:50:44 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:50:44 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:50:44 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:50:44 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:50:44 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:50:44 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:50:44 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:50:44 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 21:51:27 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 183-236)
+
+[2025-10-06 21:51:27 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 27752@DESKTOP-KL7S583
+
+[2025-10-06 21:51:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 21:51:27 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 21:51:27 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 21:51:27 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 21:51:27 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 21:51:27 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 21:51:27 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 21:51:27 #10 type] 
+Type domain.Alert is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-06 23:49:48 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 237-276)
+
+[2025-10-06 23:49:48 #2 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 25376@DESKTOP-KL7S583
+
+[2025-10-06 23:49:48 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-06 23:49:48 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-06 23:49:48 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-06 23:49:48 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-06 23:49:48 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-06 23:49:48 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-06 23:49:48 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-06 23:49:48 #10 type] 
+Type domain.Alert is not enhanced.
+

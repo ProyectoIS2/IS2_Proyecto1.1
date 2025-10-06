@@ -25,7 +25,7 @@ import exceptions.*;
  * It implements the data access to the objectDb database
  */
 public class DataAccess  {
-	private  EntityManager  db;
+	public EntityManager  db;
 	private  EntityManagerFactory emf;
 
 
@@ -535,7 +535,7 @@ public class DataAccess  {
 		}
 	}
 	
-	private void returnMoneyTravelers(List<Reservation>resList, String email) {
+	public void returnMoneyTravelers(List<Reservation>resList, String email) {
 		try {
 			Traveler t;
 			Transaction trans;
