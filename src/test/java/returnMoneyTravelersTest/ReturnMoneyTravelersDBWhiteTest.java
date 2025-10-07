@@ -27,8 +27,17 @@ public class ReturnMoneyTravelersDBWhiteTest {
         dataAccess.open();
         testDA.open();
 
+        //Limpiar la base de datos entera antes de los tests
+        dataAccess.db.getTransaction().begin();
+        dataAccess.db.createQuery("DELETE FROM Reservation").executeUpdate();
+        dataAccess.db.createQuery("DELETE FROM Ride").executeUpdate();
+        dataAccess.db.createQuery("DELETE FROM Car").executeUpdate();
+        dataAccess.db.createQuery("DELETE FROM Traveler").executeUpdate();
+        dataAccess.db.createQuery("DELETE FROM Driver").executeUpdate();
+        dataAccess.db.getTransaction().commit();
+        
         // Crear driver + traveler + coche + viaje
-        driver = testDA.createDriver("driver@test.com", "Driver");
+        driver = new Driver("driver@test.com", "Driver", "pwd");
         traveler = new Traveler("t1@test.com", "Traveler", "pwd");
         car = new Car("1234ABC", 4, driver, false);
         ride = new Ride("A", "B", new Date(), 20.0f, driver, car);
@@ -37,6 +46,15 @@ public class ReturnMoneyTravelersDBWhiteTest {
         reservation = new Reservation(1, ride, traveler);
         reservation.setPayed(true);
 
+        //Para persistir los cambios en la BD
+        dataAccess.db.getTransaction().begin();
+        dataAccess.db.persist(driver);
+        dataAccess.db.persist(traveler);
+        dataAccess.db.persist(car);
+        dataAccess.db.persist(ride);
+        dataAccess.db.persist(reservation);
+        dataAccess.db.getTransaction().commit(); // Confirmar la inserción
+        // Volver a abrir transacción para los tests
         dataAccess.db.getTransaction().begin();
     }
 

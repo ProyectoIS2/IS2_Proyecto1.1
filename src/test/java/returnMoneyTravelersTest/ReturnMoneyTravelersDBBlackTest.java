@@ -68,20 +68,23 @@ public class ReturnMoneyTravelersDBBlackTest {
     // Test 1: Todo correcto => reembolso ok
     @Test
     public void tc01() {
+    	
         List<Reservation> list = Arrays.asList(reservation);
 
+        //para guardar los valores iniciales
         double beforeTraveler = traveler.getMoney();
         double beforeDriver = driver.getMoney();
-
+        
         dataAccess.returnMoneyTravelers(list, driver.getEmail());
-
-        double afterTraveler = traveler.getMoney();
-        double afterDriver = driver.getMoney();
-
+        
+        //recuperar valores actualizados de BD
+        Driver driverFromDB = dataAccess.db.find(Driver.class, driver.getEmail());
+        Traveler travelerFromDB = dataAccess.db.find(Traveler.class, traveler.getEmail());
+        
         double cost = reservation.getCost();
 
-        assertEquals(beforeTraveler + cost, afterTraveler, 0.001);
-        assertEquals(beforeDriver - cost, afterDriver, 0.001);
+        assertEquals(travelerFromDB.getMoney(), beforeTraveler + cost, 0.001);
+        assertEquals(driverFromDB.getMoney(), beforeDriver - cost, 0.001);
     }
 
     // Caso 2: resList null (no lanza excepción)
