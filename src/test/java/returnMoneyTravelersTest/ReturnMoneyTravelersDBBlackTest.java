@@ -65,7 +65,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         dataAccess.close();
     }
 
-    // Caso 1: Todo correcto
+    // Test 1: Todo correcto => reembolso ok
     @Test
     public void tc01() {
         List<Reservation> list = Arrays.asList(reservation);
@@ -84,7 +84,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         assertEquals(beforeDriver - cost, afterDriver, 0.001);
     }
 
-    // Caso 2: resList = null (manejado internamente, no lanza excepción)
+    // Caso 2: resList null (no lanza excepción)
     @Test
     public void tc02() {
         double beforeTraveler = traveler.getMoney();
@@ -104,7 +104,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         assertTrue(true); // simplemente comprobar que no lanza excepción
     }
 
-    // Caso 4: Traveler no en BD
+    // Caso 4: Traveler no está en BD
     @Test
     public void tc04() {
         reservation.getTraveler().setEmail("noExiste@test.com");
@@ -113,7 +113,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         assertTrue(true);
     }
 
-    // Caso 5: Driver no en BD
+    // Caso 5: Driver no está en BD
     @Test
     public void tc05() {
         List<Reservation> list = Arrays.asList(reservation);
@@ -121,7 +121,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         assertTrue(true);
     }
 
-    // Caso 6: email = null
+    // Caso 6: email null => IllegalArgumentException
     @Test
     public void tc06() {
         List<Reservation> list = Arrays.asList(reservation);
@@ -133,7 +133,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         }
     }
 
-    // Caso 7: reserva no pagada
+    // Caso 7: reserva no pagada => sin cambios
     @Test
     public void tc07() {
         reservation.setPayed(false);

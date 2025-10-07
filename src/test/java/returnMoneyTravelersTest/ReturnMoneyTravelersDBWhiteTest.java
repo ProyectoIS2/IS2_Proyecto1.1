@@ -51,7 +51,7 @@ public class ReturnMoneyTravelersDBWhiteTest {
         dataAccess.close();
     }
 
-    // ✅ Test 1: Flujo completo, se realiza el reembolso correctamente
+    // Test 1: reserva pagada, se realiza el reembolso correctamente
     @Test
     public void tc01() {
         float dineroInicialTraveler = traveler.getMoney();
@@ -67,7 +67,7 @@ public class ReturnMoneyTravelersDBWhiteTest {
         assertEquals(esperadoDriver, driver.getMoney(), 0.001);
     }
 
-    // ✅ Test 2: Lista vacía → no se modifica el estado
+    // Test 2: Lista vacía => no se modifica el estado
     @Test
     public void tc02() {
         float dineroInicialTraveler = traveler.getMoney();
@@ -79,7 +79,7 @@ public class ReturnMoneyTravelersDBWhiteTest {
         assertEquals(dineroInicialDriver, driver.getMoney(), 0.001);
     }
 
-    // ✅ Test 3: Una reserva no pagada → no cambia dinero
+    // Test 3: Una reserva no pagada => no cambia el dinero
     @Test
     public void tc03() {
         reservation.setPayed(false);
@@ -93,7 +93,7 @@ public class ReturnMoneyTravelersDBWhiteTest {
         assertEquals(dineroInicialDriver, driver.getMoney(), 0.001);
     }
 
-    // ✅ Test 4: resList = null → entra en el catch
+    // Test 4: resList null => entra en el catch
     @Test
     public void tc04() {
         try {

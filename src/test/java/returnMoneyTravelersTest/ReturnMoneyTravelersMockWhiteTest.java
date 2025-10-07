@@ -65,7 +65,7 @@ public class ReturnMoneyTravelersMockWhiteTest {
         persistenceMock.close();
     }
 
-    // ✅ Test 1: flujo completo → persiste las entidades esperadas
+    // Test 1: flujo completo => se persisten las entidades esperadas
     @Test
     public void tc01() {
         List<Reservation> list = Arrays.asList(reservation);
@@ -76,7 +76,7 @@ public class ReturnMoneyTravelersMockWhiteTest {
         verify(db, atLeastOnce()).persist(any(Transaction.class));
     }
 
-    // ✅ Test 2: reserva no pagada → no hace persistencias
+    // Test 2: reserva no pagada => sin persistencias
     @Test
     public void tc02() {
         reservation.setPayed(false);
@@ -86,7 +86,7 @@ public class ReturnMoneyTravelersMockWhiteTest {
         verify(db, never()).persist(any(Transaction.class));
     }
 
-    // ✅ Test 3: driver no encontrado → sin persistencias
+    // Test 3: driver no encontrado => sin persistencias
     @Test
     public void tc03() {
         when(db.find(Driver.class, driver.getEmail())).thenReturn(null);
@@ -96,7 +96,7 @@ public class ReturnMoneyTravelersMockWhiteTest {
         verify(db, never()).persist(any(Transaction.class));
     }
 
-    // ✅ Test 4: resList = null → no persistencias
+    // Test 4: resList null => sin persistencias
     @Test
     public void tc04() {
         dataAccess.returnMoneyTravelers(null, driver.getEmail());

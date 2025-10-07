@@ -27,7 +27,7 @@ public class CreateReservationDBWhiteTest {
 
     @Before
     public void setUp() {
-        dataAccess = new DataAccess();
+        dataAccess = new DataAccess(); //se abre la conexión real
         testDA = new TestDataAccess();
 
         testDA.open();
@@ -38,13 +38,13 @@ public class CreateReservationDBWhiteTest {
             "driver1@test.com", "Driver1",
             "Donostia", "Bilbao", Date.from(Instant.now()), 5, 10
         );
-        r1 = d1.getRides().get(0);
+        r1 = d1.getRides().get(0); //el primer ride de d1
 
-        // Crear traveler
+        // Crear traveler de prueba
         try {
             t1 = dataAccess.createTraveler("t1@test.com", "Traveler1", "123");
         } catch (UserAlreadyExistException e) {
-            t1 = null; // ya existía
+            t1 = null; // en caso de q existiese no se crea
         }
     }
 
@@ -65,13 +65,13 @@ public class CreateReservationDBWhiteTest {
     public void test1() {
         try {
             Reservation res = dataAccess.createReservation(1, 99999, "t1@test.com");
-            assertNull(res);
+            assertNull(res); //comprobar que no se ha creado ninguna reserva
         } catch (Exception e) {
             fail("No debería lanzar excepción en test1: " + e.getMessage());
         }
     }
 
-    // Test 2: Asientos insuficientes
+    // Test 2: Asientos insuficientes, se solicitan más asientos de los q el ride tiene
     @Test
     public void test2() {
         try {
@@ -86,9 +86,9 @@ public class CreateReservationDBWhiteTest {
     @Test
     public void test3() {
         try {
-            dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com"); // primera OK
+            dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com"); // primera correcta
             assertThrows(ReservationAlreadyExistException.class,
-                () -> dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com")); // segunda falla
+                () -> dataAccess.createReservation(1, r1.getRideNumber(), "t1@test.com")); // segunda reserva identica falla
         } catch (Exception e) {
             fail("Error inesperado en test3: " + e.getMessage());
         }
@@ -99,8 +99,8 @@ public class CreateReservationDBWhiteTest {
     public void test4() {
         try {
             Reservation res = dataAccess.createReservation(2, r1.getRideNumber(), "t1@test.com");
-            assertNotNull(res);
-            assertEquals("t1@test.com", res.getTraveler().getEmail());
+            assertNotNull(res); //se crea la reserva
+            assertEquals("t1@test.com", res.getTraveler().getEmail()); //traveler y ride correcto
             assertEquals(r1.getRideNumber(), res.getRide().getRideNumber());
         } catch (Exception e) {
             fail("Error inesperado en test4: " + e.getMessage());

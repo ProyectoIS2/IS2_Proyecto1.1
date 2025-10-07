@@ -28,30 +28,27 @@ public class CreateReservationDBBlackTest {
 
     @Before
     public void setUp() throws Exception {
-        // Abrir conexiones helpers y SUT
         testDA = new TestDataAccess();
         testDA.open();
 
         dataAccess = new DataAccess();
         dataAccess.open();
 
-        //    addDriverWithRide persiste driver, car y ride en la BD de testDA
+        // Crear driver + ride persistidos en BD
         driver = testDA.addDriverWithRide("driver@test.com", "Driver",
                 "A", "B", new Date(), 4, 20.0f);
 
-        // Recuperamos el ride creado (el helper devuelve el driver con la ride añadida)
-        // tomamos la última ride añadida
+        // Recuperar el ride creado
         if (driver.getRides().isEmpty()) {
             throw new RuntimeException("addDriverWithRide no ha creado rides correctamente");
         }
         ride = driver.getRides().get(driver.getRides().size()-1);
 
-        // 2) Creamos / persistimos traveler usando DataAccess.createTraveler (API pública)
-        //    Si ya existe, capturamos la excepción y continuamos (usaremos el email)
+        // Crear el traveler
         try {
             traveler = dataAccess.createTraveler(travelerEmail, "Traveler", "pwd");
         } catch (Exception e) {
-            // Si ya existía, nos quedamos con un objeto local con el mismo email para las comprobaciones por mail
+            // en caso de que ya exista, nos quedamos con un objeto local con el mismo email para las comprobaciones por mail
             traveler = new Traveler(travelerEmail, "Traveler", "pwd");
         }
     }
@@ -74,7 +71,7 @@ public class CreateReservationDBBlackTest {
         }
     }
 
-    // Test 1: todas las entradas válidas → reserva correcta
+    // Test 1: todas las entradas válidas => reserva correcta
     @Test
     public void tc01() throws Exception {
         Reservation res = dataAccess.createReservation(1, ride.getRideNumber(), travelerEmail);
@@ -86,12 +83,12 @@ public class CreateReservationDBBlackTest {
     // Test 2: hm <= 0
     @Test
     public void tc02() throws Exception {
-        // Según tu implementación actual, crea la reserva aunque hm=0, por eso assertNotNull.
+        // Según la implementación actual, crea la reserva aunque hm=0, por eso assertNotNull.
         Reservation res = dataAccess.createReservation(0, ride.getRideNumber(), travelerEmail);
         assertNotNull("Según implementación actual, hm=0 produce reserva -> comprobamos no nulo", res);
     }
 
-    // Test 3: rideNumber == null
+    // Test 3: rideNumber null => IllegalArgumentException
     @Test(expected = IllegalArgumentException.class)
     public void tc03() throws Exception {
         dataAccess.createReservation(1, null, traveler.getEmail());
@@ -111,7 +108,7 @@ public class CreateReservationDBBlackTest {
         assertNull(res);
     }
 
-    // Test 6: travelerEmail == null
+    // Test 6: travelerEmail null => IllegalArgumentException
     @Test(expected = IllegalArgumentException.class)
     public void tc06() throws Exception {
         dataAccess.createReservation(1, ride.getRideNumber(), null);
@@ -130,7 +127,7 @@ public class CreateReservationDBBlackTest {
         // Primera reserva OK
         Reservation first = dataAccess.createReservation(1, ride.getRideNumber(), travelerEmail);
         assertNotNull(first);
-        // Segunda reserva idéntica -> debe lanzar ReservationAlreadyExistException
+        // Segunda reserva idéntica => lanza ReservationAlreadyExistException
         dataAccess.createReservation(1, ride.getRideNumber(), travelerEmail);
     }
 
