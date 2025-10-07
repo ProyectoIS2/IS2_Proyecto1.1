@@ -82,8 +82,8 @@ public class CreateReservationMockWhiteTest {
      // Test 1: Ride inexistente, db.find devuelve null => NullPointerException capturada internamente y método devuelve null     
     @Test
     public void test1() {
-        // Arrange: la búsqueda del ride devuelve null
-        when(db.find(Ride.class, 99)).thenReturn(null);
+        // la búsqueda del ride devuelve null
+        when(db.find(Ride.class, 99)).thenReturn(null); 
 
         try {
             Reservation res = dataAccess.createReservation(1, 99, traveler.getEmail());
@@ -98,7 +98,7 @@ public class CreateReservationMockWhiteTest {
     @Test
     public void test2() {
         // ride2 (id=2) tiene 1 plaza
-        when(db.find(Ride.class, 2)).thenReturn(ride2);
+        when(db.find(Ride.class, 2)).thenReturn(ride2); // Simula que cuando DataAccess intenta buscar un Ride con número 2, se devuelve el objeto ride2 ya creado.
         when(db.find(Traveler.class, traveler.getEmail())).thenReturn(traveler);
 
         try {

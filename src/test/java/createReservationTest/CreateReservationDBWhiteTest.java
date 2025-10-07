@@ -65,9 +65,9 @@ public class CreateReservationDBWhiteTest {
     public void test1() {
         try {
             Reservation res = dataAccess.createReservation(1, 99999, "t1@test.com");
-            assertNull(res); //comprobar que no se ha creado ninguna reserva
+            assertNull(res); //esto verifica que res sea null
         } catch (Exception e) {
-            fail("No debería lanzar excepción en test1: " + e.getMessage());
+            fail("No debería lanzar excepción en test1: " + e.getMessage()); //fuerza el fallo del test, indica que no se debería haber llegado a este punto
         }
     }
 
@@ -76,7 +76,7 @@ public class CreateReservationDBWhiteTest {
     public void test2() {
         try {
             assertThrows(NotEnoughAvailableSeatsException.class,
-                () -> dataAccess.createReservation(99, r1.getRideNumber(), "t1@test.com"));
+                () -> dataAccess.createReservation(99, r1.getRideNumber(), "t1@test.com")); //verifica que se lanza una excepción especifica al ejecutar el metodo de la derecha de ,()->
         } catch (Exception e) {
             fail("Error inesperado en test2: " + e.getMessage());
         }
@@ -99,8 +99,8 @@ public class CreateReservationDBWhiteTest {
     public void test4() {
         try {
             Reservation res = dataAccess.createReservation(2, r1.getRideNumber(), "t1@test.com");
-            assertNotNull(res); //se crea la reserva
-            assertEquals("t1@test.com", res.getTraveler().getEmail()); //traveler y ride correcto
+            assertNotNull(res); //esto verifica que res no sea null, es decir, que la reserva sea correcta
+            assertEquals("t1@test.com", res.getTraveler().getEmail()); //para comparar valores, en este caso entre el email del traveler de la reserva es correcto
             assertEquals(r1.getRideNumber(), res.getRide().getRideNumber());
         } catch (Exception e) {
             fail("Error inesperado en test4: " + e.getMessage());
