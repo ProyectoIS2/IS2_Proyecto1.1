@@ -20,7 +20,7 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.*;
 import exceptions.*;
-
+import dataAccess.RideInfo;
 /**
  * It implements the data access to the objectDb database
  */
@@ -62,69 +62,94 @@ public class DataAccess  {
 	 * This is the data access method that initializes the database with some events and questions.
 	 * This method is invoked by the business logic (constructor of BLFacadeImplementation) when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
-	public void initializeDB(){
-		
-		db.getTransaction().begin();
+    public void initializeDB() {
+        db.getTransaction().begin();
+        try {
+            Calendar today = Calendar.getInstance();
+            int month = today.get(Calendar.MONTH);
+            int year = today.get(Calendar.YEAR);
+            if (month == 12) { month = 1; year += 1; }
 
-		try {
+            List<Driver> drivers = createDrivers();
+            assignCarsToDrivers(drivers);
+            createRides(drivers, month, year);
 
-		   Calendar today = Calendar.getInstance();
-		   
-		   int month=today.get(Calendar.MONTH);
-		   int year=today.get(Calendar.YEAR);
-		   if (month==12) { month=1; year+=1;}  
-	    
-		   
-		    //Create drivers 
-			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernandez", "123");
-			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga", "456");
-			Driver driver3=new Driver("driver3@gmail.com","Test driver", "789");
-			
-			Car car1 = new Car("1234 ABC", 4, driver1, false);
-			Car car2 = new Car("2345 DFG", 4, driver2, false);
-			Car car3 = new Car("3456 HIJ", 6, driver3, true);
-			Car car4 = new Car("4567 KLM", 9, driver2, true);
-			Car car5 = new Car("5678 NÑO", 1, driver1, false);
-			
-			driver1.addCar(car1);
-			driver1.addCar(car5);
-			driver2.addCar(car4);
-			driver2.addCar(car2);
-			driver3.addCar(car3);
+            List<Admin> admins = createAdmins();
 
-			
-			//Create rides
-			String Bilbao = "bilbo";
-			String Donosti = "Donostia";
-			driver1.addRide(Donosti, Bilbao, UtilDate.newDate(year,month,15), 7, car1);
-			driver1.addRide(Donosti, "Gazteiz", UtilDate.newDate(year,month,6), 8, car1);
-			driver1.addRide(Bilbao, Donosti, UtilDate.newDate(year,month,25), 4, car5);
-			driver1.addRide(Donosti, "Iruña", UtilDate.newDate(year,month,7), 8, car5);
-			
-			driver2.addRide(Donosti, Bilbao, UtilDate.newDate(year,month,15), 3, car2);
-			driver2.addRide(Bilbao, Donosti, UtilDate.newDate(year,month,25), 5, car4);
-			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 5, car2);
+            persistEntities(drivers, admins);
 
-			driver3.addRide(Bilbao, Donosti, UtilDate.newDate(year,month,14), 3, car3);
+            db.getTransaction().commit();
+            System.out.println("Db initialized");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-			Admin admin1 = new Admin("aitzol@gmail.com", "Aitzol", "123");
-			Admin admin2 = new Admin("eneko@gmail.com", "Eneko", "123");
-						
-			db.persist(driver1);
-			db.persist(driver2);
-			db.persist(driver3);
+    private List<Driver> createDrivers() {
+        List<Driver> drivers = new ArrayList<>();
+        Driver driver1 = new Driver("driver1@gmail.com","Aitor Fernandez", "123");
+        Driver driver2 = new Driver("driver2@gmail.com","Ane Gaztañaga", "456");
+        Driver driver3 = new Driver("driver3@gmail.com","Test driver", "789");
+        drivers.add(driver1);
+        drivers.add(driver2);
+        drivers.add(driver3);
+        return drivers;
 
-			db.persist(admin1);
-			db.persist(admin2);
-			
-			db.getTransaction().commit();
-			System.out.println("Db initialized");
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
-	}
-	
+
+    }
+
+    private void assignCarsToDrivers(List<Driver> drivers) {
+        Driver driver1 = drivers.get(0);
+        Driver driver2 = drivers.get(1);
+        Driver driver3 = drivers.get(2);
+
+        Car car1 = new Car("1234 ABC", 4, driver1, false);
+        Car car2 = new Car("2345 DFG", 4, driver2, false);
+        Car car3 = new Car("3456 HIJ", 6, driver3, true);
+        Car car4 = new Car("4567 KLM", 9, driver2, true);
+        Car car5 = new Car("5678 NÑO", 1, driver1, false);
+
+        driver1.addCar(car1);
+        driver1.addCar(car5);
+        driver2.addCar(car2);
+        driver2.addCar(car4);
+        driver3.addCar(car3);
+    }
+
+    private void createRides(List<Driver> drivers, int month, int year) {
+       String Bilbo = "Bilbo";
+       String Donostia = "Donostia";
+       String Gasteiz = "Gasteiz";
+        Driver driver1 = drivers.get(0);
+        Driver driver2 = drivers.get(1);
+        Driver driver3 = drivers.get(2);
+
+        driver1.addRide(Donostia, Bilbo, UtilDate.newDate(year, month, 15), 7, driver1.getCars().get(0));
+        driver1.addRide(Donostia, Gasteiz, UtilDate.newDate(year, month, 6), 8, driver1.getCars().get(0));
+        driver1.addRide(Bilbo, Donostia, UtilDate.newDate(year, month, 25), 4, driver1.getCars().get(1));
+        driver1.addRide(Donostia, "Iruña", UtilDate.newDate(year, month, 7), 8, driver1.getCars().get(1));
+
+        driver2.addRide(Donostia, Bilbo, UtilDate.newDate(year, month, 15), 3, driver2.getCars().get(0));
+        driver2.addRide(Bilbo, Donostia, UtilDate.newDate(year, month, 25), 5, driver2.getCars().get(1));
+        driver2.addRide("Eibar", Gasteiz, UtilDate.newDate(year, month, 6), 5, driver2.getCars().get(0));
+
+        driver3.addRide(Bilbo, Donostia , UtilDate.newDate(year, month, 14), 3, driver3.getCars().get(0));
+    }
+
+    private List<Admin> createAdmins() {
+        List<Admin> admins = new ArrayList<>();
+        Admin admin1 = new Admin("aitzol@gmail.com", "Aitzol", "123");
+        Admin admin2 = new Admin("eneko@gmail.com", "Eneko", "123");
+        admins.add(admin1);
+        admins.add(admin2);
+        return admins;
+
+    }
+
+    private void persistEntities(List<Driver> drivers, List<Admin> admins) {
+        for (Driver d : drivers) db.persist(d);
+        for (Admin a : admins) db.persist(a);
+    }
 	/**
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities
@@ -161,33 +186,40 @@ public class DataAccess  {
 	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
-	public Ride createRide(String from, String to, Date date, float price, String driverEmail, String carPlate) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
-		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
-		try {
-			if(new Date().compareTo(date)>0) {
-				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
-			}
-			db.getTransaction().begin();
-			
-			Driver driver = db.find(Driver.class, driverEmail);
-			if (driver.doesRideExists(from, to, date)) {
-				db.getTransaction().commit();
-				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
-			}
-			
-			Car car = db.find(Car.class, carPlate);
-			Ride ride = driver.addRide(from, to, date, price, car);
-			//next instruction can be obviated
-			db.persist(driver); 
-			db.getTransaction().commit();
+	public Ride createRide(RideInfo rideInfo) throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
+        System.out.println(">> DataAccess: createRide=> from= "+rideInfo.getFrom()+" to= "+rideInfo.getTo()+" driver="+rideInfo.getDriverEmail()+" date "+rideInfo.getDate());
 
-			return ride;
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			db.getTransaction().commit();
-			return null;
-		}
-	}
+        db.getTransaction().begin();
+        try {
+            Driver driver = db.find(Driver.class, rideInfo.getDriverEmail());
+            Car car = db.find(Car.class, rideInfo.getCarPlate());
+
+            validateRide(rideInfo, driver);
+
+            Ride ride = createAndPersistRide(rideInfo, driver, car);
+
+            db.getTransaction().commit();
+            return ride;
+        } catch (NullPointerException e) {
+            db.getTransaction().commit();
+            return null;
+        }
+    }
+    private void validateRide(RideInfo rideInfo, Driver driver) throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
+        if (new Date().compareTo(rideInfo.getDate()) > 0) {
+            throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+        }
+
+        if (driver.doesRideExists(rideInfo.getFrom(), rideInfo.getTo(), rideInfo.getDate())) {
+            throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+        }
+    }
+
+    private Ride createAndPersistRide(RideInfo rideInfo, Driver driver, Car car) {
+        Ride ride = driver.addRide(rideInfo.getFrom(), rideInfo.getTo(), rideInfo.getDate(), rideInfo.getPrice(), car);
+        db.persist(driver);
+        return ride;
+    }
 	
 	/**
 	 * This method retrieves the rides from two locations on a given date 
