@@ -47,13 +47,13 @@ public class ReturnMoneyTravelersDBBlackTest {
         reservation.setPayed(true);
         dataAccess.db.persist(reservation);
 
-        // ✅ Iniciar transacción aquí
+        // Iniciar transacción aquí
         dataAccess.db.getTransaction().begin();
     }
 
     @After
     public void tearDown() throws Exception {
-        // ✅ Solo commit si la transacción sigue activa (evita error 613)
+        //  Solo commit si la transacción sigue activa (evita error 613)
         if (dataAccess.db.getTransaction().isActive()) {
             dataAccess.db.getTransaction().commit();
         }
@@ -101,7 +101,7 @@ public class ReturnMoneyTravelersDBBlackTest {
     public void tc03() {
         List<Reservation> list = new ArrayList<>();
         dataAccess.returnMoneyTravelers(list, driver.getEmail());
-        assertTrue(true); // simplemente comprobar que no lanza excepción
+        assertTrue(true); 
     }
 
     // Caso 4: Traveler no en BD

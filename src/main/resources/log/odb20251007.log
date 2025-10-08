@@ -30,3 +30,35 @@ Type domain.Traveler is not enhanced.
 [2025-10-07 00:06:24 #10 type] 
 Type domain.Alert is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-07 15:40:02 #1 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' has been recovered (tr. 336-476)
+
+[2025-10-07 15:40:02 #2 store] 
+Database 'C:\Users\Gaizka\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 2400@DESKTOP-EFGPFA0
+
+[2025-10-07 15:40:02 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-07 15:40:02 #4 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-07 15:40:02 #5 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-07 15:40:02 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-07 15:40:02 #7 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-07 15:40:02 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-07 15:40:02 #9 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-07 15:40:02 #10 type] 
+Type domain.Alert is not enhanced.
+
