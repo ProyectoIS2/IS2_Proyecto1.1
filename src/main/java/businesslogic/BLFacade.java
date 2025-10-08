@@ -1,6 +1,7 @@
 package businesslogic;
 
 import java.util.Date;
+import dataAccess.RideInfo;
 import java.util.List;
 
 import domain.Ride;
@@ -61,7 +62,7 @@ public interface BLFacade  {
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
    @WebMethod
-   public Ride createRide( String from, String to, Date date, float price, String driverEmail, String carPlate) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
+   public Ride createRide(RideInfo rideInfo) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	
 	/**

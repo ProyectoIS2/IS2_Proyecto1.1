@@ -1,5 +1,6 @@
 package businesslogic;
 import java.util.logging.Logger;
+import dataAccess.RideInfo;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -63,12 +64,12 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * {@inheritDoc}
 	 */
    @WebMethod
-   public Ride createRide( String from, String to, Date date,float price, String driverEmail, String carPlaces ) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
-	   
-		dbManager.open();
-		Ride ride=dbManager.createRide(from, to, date, price, driverEmail, carPlaces);		
-		dbManager.close();
-		return ride;
+   public Ride createRide(RideInfo rideInfo) throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
+
+       dbManager.open();
+       Ride ride = dbManager.createRide(rideInfo);
+       dbManager.close();
+       return ride;
    }
 	
    /**
