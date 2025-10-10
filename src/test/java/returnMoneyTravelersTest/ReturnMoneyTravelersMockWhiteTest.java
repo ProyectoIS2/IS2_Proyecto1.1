@@ -1,67 +1,106 @@
 package returnMoneyTravelersTest;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
 import dataAccess.DataAccess;
-import domain.Reservation;
+import domain.*;
+import org.junit.*;
+import org.mockito.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import java.util.*;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class ReturnMoneyTravelersMockWhiteTest {
 
-    @Mock
-    private DataAccess dataAccess;
+    static DataAccess dataAccess;
+    static Traveler traveler;
+    static Driver driver;
+    static Ride ride;
+    static Reservation reservation;
+    static Car car;
+
+    protected MockedStatic<Persistence> persistenceMock;
 
     @Mock
-    private Reservation res1, res2;
+    protected EntityManagerFactory emf;
+    @Mock
+    protected EntityManager db;
+    @Mock
+    protected EntityTransaction et;
 
-    public void ReturnMoneyTravelersDBWhiteTestMock() {
+    @Before
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
+
+        // Mock estático de Persistence
+        persistenceMock = Mockito.mockStatic(Persistence.class);
+        persistenceMock.when(() -> Persistence.createEntityManagerFactory(any()))
+                .thenReturn(emf);
+
+        when(emf.createEntityManager()).thenReturn(db);
+        when(db.getTransaction()).thenReturn(et);
+
+        // Objetos reales
+        driver = new Driver("driver@test.com", "Driver", "pwd");
+        traveler = new Traveler("t1@test.com", "Traveler", "pwd");
+        car = new Car("1234ABC", 4, driver, false);
+        ride = new Ride("A", "B", new Date(), 20.0f, driver, car);
+        reservation = new Reservation(1, ride, traveler);
+        reservation.setPayed(true);
+
+        // Mock comportamiento de EntityManager
+        when(db.find(Driver.class, driver.getEmail())).thenReturn(driver);
+        when(db.find(Traveler.class, traveler.getEmail())).thenReturn(traveler);
+
+        dataAccess = new DataAccess(db);
     }
 
-    // Test 1: Lista vacía - no se ejecuta el bucle
+    @After
+    public void tearDown() {
+        persistenceMock.close();
+    }
+
+    // Test 1: flujo completo => se persisten las entidades esperadas
     @Test
-    public void test1() throws Exception {
-        executeReturnMoneyTravelers(Collections.emptyList(), "driver@test.com");
+    public void tc01() {
+        List<Reservation> list = Arrays.asList(reservation);
+        dataAccess.returnMoneyTravelers(list, driver.getEmail());
+
+        verify(db, atLeastOnce()).persist(any(Traveler.class));
+        verify(db, atLeastOnce()).persist(any(Driver.class));
+        verify(db, atLeastOnce()).persist(any(Transaction.class));
     }
 
-    // Test 2: Reservas no pagadas - no se procesan
+    // Test 2: reserva no pagada => sin persistencias
     @Test
-    public void test2() throws Exception {
-        List<Reservation> resList = Arrays.asList(res1, res2);
-        executeReturnMoneyTravelers(resList, "driver@test.com");
+    public void tc02() {
+        reservation.setPayed(false);
+        List<Reservation> list = Arrays.asList(reservation);
+
+        dataAccess.returnMoneyTravelers(list, driver.getEmail());
+        verify(db, never()).persist(any(Transaction.class));
     }
 
-    // Test 3: Reservas pagadas - procesamiento exitoso
+    // Test 3: driver no encontrado => sin persistencias
     @Test
-    public void test3() throws Exception {
-        List<Reservation> resList = Arrays.asList(res1, res2);
-        executeReturnMoneyTravelers(resList, "driver@test.com");
+    public void tc03() {
+        when(db.find(Driver.class, driver.getEmail())).thenReturn(null);
+        List<Reservation> list = Arrays.asList(reservation);
+
+        dataAccess.returnMoneyTravelers(list, driver.getEmail());
+        verify(db, never()).persist(any(Transaction.class));
     }
 
-    // Test 4: Driver no existe
+    // Test 4: resList null => sin persistencias
     @Test
-    public void test4() throws Exception {
-        List<Reservation> resList = Arrays.asList(res1);
-        executeReturnMoneyTravelers(resList, "noexiste@test.com");
+    public void tc04() {
+        dataAccess.returnMoneyTravelers(null, driver.getEmail());
+        verify(db, never()).persist(any());
     }
 
-    // Test 5: Traveler no existe
-    @Test
-    public void test5() throws Exception {
-        List<Reservation> resList = Arrays.asList(res1, res2);
-        executeReturnMoneyTravelers(resList, "driver@test.com");
-    }
-
-    // Método auxiliar para invocar el método privado
-    private void executeReturnMoneyTravelers(List<Reservation> resList, String driverEmail) throws Exception {
-        Method method = DataAccess.class.getDeclaredMethod("returnMoneyTravelers", List.class, String.class);
-        method.setAccessible(true);
-        method.invoke(dataAccess, resList, driverEmail);
-    }
 }

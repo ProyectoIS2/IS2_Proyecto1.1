@@ -74,7 +74,7 @@ public class ReturnMoneyTravelersMockBlackTest {
         persistenceMock.close();
     }
 
-    // Caso 1: Todo correcto
+    // Caso 1: Todo correcto / dinero reembolsado correctamente
     @Test
     public void tc01() {
         List<Reservation> list = Arrays.asList(reservation);
@@ -93,7 +93,7 @@ public class ReturnMoneyTravelersMockBlackTest {
         assertEquals(beforeDriver - cost, afterDriver, 0.001);
     }
 
-    // Caso 2: resList = null
+    // Caso 2: resList null
     @Test
     public void tc02() {
         double beforeTraveler = traveler.getMoney();
@@ -113,7 +113,7 @@ public class ReturnMoneyTravelersMockBlackTest {
         assertTrue(true); // no lanza excepción
     }
 
-    // Caso 4: Traveler no en BD
+    // Caso 4: Traveler no está en BD
     @Test
     public void tc04() {
         when(db.find(Traveler.class, traveler.getEmail())).thenReturn(null);
@@ -122,7 +122,7 @@ public class ReturnMoneyTravelersMockBlackTest {
         assertTrue(true);
     }
 
-    // Caso 5: Driver no en BD
+    // Caso 5: Driver no está en BD
     @Test
     public void tc05() {
         when(db.find(Driver.class, driver.getEmail())).thenReturn(null);
@@ -131,7 +131,7 @@ public class ReturnMoneyTravelersMockBlackTest {
         assertTrue(true);
     }
 
-    // Caso 6: email = null
+    // Caso 6: email null => IllegalArgumentException
     @Test
     public void tc06() {
         List<Reservation> list = Arrays.asList(reservation);

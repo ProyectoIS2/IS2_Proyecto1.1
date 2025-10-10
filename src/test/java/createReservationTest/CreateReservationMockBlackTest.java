@@ -65,7 +65,7 @@ public class CreateReservationMockBlackTest {
         persistenceMock.close();
     }
 
-    // Test 1: todas las entradas válidas → reserva creada
+    // Test 1: todas las entradas válidas => reserva creada
     @Test
     public void tc01() throws Exception {
         Reservation res = dataAccess.createReservation(1, 1, traveler.getEmail());
@@ -80,7 +80,7 @@ public class CreateReservationMockBlackTest {
 
 
 
-    // Test 3: rideNumber == null
+    // Test 3: rideNumber null
     @Test
     public void tc03() throws Exception {
         Reservation res = dataAccess.createReservation(1, null, traveler.getEmail());
@@ -94,7 +94,7 @@ public class CreateReservationMockBlackTest {
         assertNull(res);
     }
 
-    // Test 5: ride ∉ BD
+    // Test 5: ride no está en BD
     @Test
     public void tc05() throws Exception {
         when(db.find(Ride.class, 999)).thenReturn(null);
@@ -102,14 +102,14 @@ public class CreateReservationMockBlackTest {
         assertNull(res);
     }
 
-    // Test 6: travelerEmail == null
+    // Test 6: travelerEmail null
     @Test
     public void tc06() throws Exception {
         Reservation res = dataAccess.createReservation(1, 1, null);
         assertNull(res);
     }
 
-    // Test 7: traveler ∉ BD
+    // Test 7: traveler no está en BD
     @Test
     public void tc07() throws Exception {
         when(db.find(Traveler.class, "otro@test.com")).thenReturn(null);
@@ -121,7 +121,7 @@ public class CreateReservationMockBlackTest {
     @Test(expected = ReservationAlreadyExistException.class)
     public void tc08() throws Exception {
         dataAccess.createReservation(1, 1, traveler.getEmail());
-        dataAccess.createReservation(1, 1, traveler.getEmail()); // segunda → excepción
+        dataAccess.createReservation(1, 1, traveler.getEmail()); // la segunda hará saltar la excepción
     }
 
     // Test 9: no hay suficientes plazas
