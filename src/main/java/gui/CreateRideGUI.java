@@ -1,5 +1,6 @@
 package gui;
 
+import dataAccess.RideInfo;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.List;
@@ -185,7 +186,7 @@ public class CreateRideGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				float price = Float.parseFloat(jTextFieldPrice.getText());
 				Car car = (Car)carBox.getSelectedItem();
-				Ride r=facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()),price, driver.getEmail(), car.getPlate() );
+				Ride r=facade.createRide(new RideInfo(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()),price, driver.getEmail(), car.getPlate()) );
 				facade.updateAlerts(fieldOrigin.getText(), fieldDestination.getText());
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
 
