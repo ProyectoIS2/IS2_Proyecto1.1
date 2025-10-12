@@ -27,7 +27,7 @@ import dataAccess.RideInfo;
 public class DataAccess  {
 	public EntityManager  db;
 	private  EntityManagerFactory emf;
-
+	String etiquetas = "Etiquetas";
 
 	ConfigXML c=ConfigXML.getInstance();
 
@@ -207,11 +207,11 @@ public class DataAccess  {
     }
     private void validateRide(RideInfo rideInfo, Driver driver) throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
         if (new Date().compareTo(rideInfo.getDate()) > 0) {
-            throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+            throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle(etiquetas).getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
         }
 
         if (driver.doesRideExists(rideInfo.getFrom(), rideInfo.getTo(), rideInfo.getDate())) {
-            throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+            throw new RideAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.RideAlreadyExist"));
         }
     }
 
@@ -301,7 +301,7 @@ public class DataAccess  {
 			Driver driver = db.find(Driver.class, email);
 			if (driver!=null) {
 				db.getTransaction().commit();
-				throw new UserAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserAlreadyExist"));
+				throw new UserAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserAlreadyExist"));
 			}
 			driver = new Driver (email, name, password);
 			db.persist(driver); 
@@ -323,7 +323,7 @@ public class DataAccess  {
 			Traveler traveler = db.find(Traveler.class, email);
 			if (traveler!=null) {
 				db.getTransaction().commit();
-				throw new UserAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserAlreadyExist"));
+				throw new UserAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserAlreadyExist"));
 			}
 			traveler = new Traveler (email, name, password);
 			db.persist(traveler); 
@@ -342,32 +342,37 @@ public class DataAccess  {
 		try {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rideNumber);
-			if(r.getnPlaces()<hm) {
-				throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle("Etiquetas").getString("MakeReservationGUI.jButtonError2"));
-			}
-			
 			Traveler t = db.find(Traveler.class, travelerEmail);
 		    Driver d = db.find(Driver.class, r.getDriver().getEmail());
+			validateReservation(r,t,hm);
 			
-			if (r.doesReservationExist(hm, t)) {
-				db.getTransaction().commit();
-				throw new ReservationAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.ReservationAlreadyExist"));
-			}
 			Reservation res = t.makeReservation(r, hm);
+			persistReservationEntities(d,t,r,res);
 			
-			d.addReservation(res);
-			r.addReservation(res);
-			db.persist(d); 
-			db.persist(t);
-			db.persist(r);
 			db.getTransaction().commit();
-
 			return res;
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
 			db.getTransaction().commit();
 			return null;
 		}
+	}
+	//Métodos complementarios para createReservation
+	private void validateReservation(Ride r, Traveler t, int hm) throws NotEnoughAvailableSeatsException, ReservationAlreadyExistException {
+		if(r.getnPlaces()<hm) {
+			throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle(etiquetas).getString("MakeReservationGUI.jButtonError2"));
+		}
+		
+		if (r.doesReservationExist(hm, t)) {
+			throw new ReservationAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.ReservationAlreadyExist"));
+		}
+	}
+	private void persistReservationEntities(Driver d, Traveler t, Ride r, Reservation res) {
+		d.addReservation(res);
+		r.addReservation(res);
+		db.persist(d); 
+		db.persist(t);
+		db.persist(r);
 	}
 	
 	public Driver getDriverByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
@@ -376,11 +381,11 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		if(d==null) {
 			this.close();
-			throw new UserDoesNotExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserDoesNotExist"));
+			throw new UserDoesNotExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserDoesNotExist"));
 		}
 		if(!d.getPassword().equals(password)) {
 			this.close();
-			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.PasswordDoesNotMatch"));
+			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.PasswordDoesNotMatch"));
 		}
 		return d;
 	}
@@ -391,11 +396,11 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		if(t==null) {
 			this.close();
-			throw new UserDoesNotExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserDoesNotExist"));
+			throw new UserDoesNotExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserDoesNotExist"));
 		}
 		if(!t.getPassword().equals(password)) {
 			this.close();
-			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.PasswordDoesNotMatch"));
+			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.PasswordDoesNotMatch"));
 		}
 		return t;
 	}
@@ -406,11 +411,11 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		if(a==null) {
 			this.close();
-			throw new UserDoesNotExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserDoesNotExist"));
+			throw new UserDoesNotExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserDoesNotExist"));
 		}
 		if(!a.getPassword().equals(password)) {
 			this.close();
-			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.PasswordDoesNotMatch"));
+			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.PasswordDoesNotMatch"));
 		}
 		return a;
 	}
@@ -421,26 +426,37 @@ public class DataAccess  {
 			Traveler t = db.find(Traveler.class, res.getTraveler().getEmail());
 			Driver d = db.find(Driver.class, res.getDriver().getEmail());
 			float price = res.getHmTravelers()*res.getRide().getPrice();
-			if(t.getMoney()-price<0){
-				db.getTransaction().commit();
-				throw new NotEnoughMoneyException();
-			}
+			
+			validateFunds(t,price);
+			
 			Reservation r = db.find(Reservation.class, res.getReservationCode());
-			r.setPayed(true);
-			t.setMoney(t.getMoney()-price);
-			d.setMoney(d.getMoney()+price);
-			Transaction tr = new Transaction(price, d, t);
-			d.addTransaction(tr);
-			t.addTransaction(tr);
-			db.persist(r);
-			db.persist(tr);
-			db.persist(d); 
-			db.persist(t);
+			
+			processPayment(r,d,t,price);
 			db.getTransaction().commit();
 		}catch(NullPointerException e) {
 			db.getTransaction().commit();
 		}	
 	}
+	//Método auxiliar para pay()
+	private void validateFunds(Traveler t, float price) throws NotEnoughMoneyException {
+		if(t.getMoney()-price<0){
+			throw new NotEnoughMoneyException();
+		}
+	}
+	//Método auxiliar para pay()
+	private void processPayment(Reservation r, Driver d, Traveler t, float price) {
+		r.setPayed(true);
+		t.setMoney(t.getMoney()-price);
+		d.setMoney(d.getMoney()+price);
+		Transaction tr = new Transaction(price, d, t);
+		d.addTransaction(tr);
+		t.addTransaction(tr);
+		db.persist(r);
+		db.persist(tr);
+		db.persist(d); 
+		db.persist(t);
+	}
+	
 	
 	public List<Reservation> getDriverReservations(String email){
 		db.getTransaction().begin();
@@ -513,15 +529,15 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public void addCarToDriver(String driverEmail, String carPlate, int nPlaces, boolean dis) throws CarAlreadyExistsException{
+	public void addCarToDriver(String driverEmail, CarInfo carInfo) throws CarAlreadyExistsException{
 		db.getTransaction().begin();
 		Driver d = db.find(Driver.class, driverEmail);
-		Car c = db.find(Car.class, carPlate);
+		Car c = db.find(Car.class, carInfo.getCarPlate());
 		if(c != null) {
 			db.getTransaction().commit();
 			throw new CarAlreadyExistsException();
 		}
-		Car car = new Car (carPlate, nPlaces, d, dis);
+		Car car = new Car (carInfo.getCarPlate(), carInfo.getnPlaces(), d, carInfo.isDis());
 		d.addCar(car);
 		db.persist(car);
 		db.persist(d);
@@ -536,35 +552,45 @@ public class DataAccess  {
 	}
 	
 	public List<Transaction> getTravelerTransactions(String email){
-		db.getTransaction().begin();
-		Traveler t = db.find(Traveler.class, email);
-		db.getTransaction().commit();
-		return t.getTransactions();
+	    return getTransactions(Traveler.class, email);
 	}
-	
+
 	public List<Transaction> getDriverTransactions(String email){
-		db.getTransaction().begin();
-		Driver d = db.find(Driver.class, email);
-		db.getTransaction().commit();
-		return d.getTransactions();
+	    return getTransactions(Driver.class, email);
+	}
+
+	private <T> List<Transaction> getTransactions(Class<T> userClass, String email) {
+	    db.getTransaction().begin();
+	    T user = db.find(userClass, email);
+	    db.getTransaction().commit();
+	    
+	    if (user instanceof Traveler) {
+	        return ((Traveler) user).getTransactions();
+	    } else if (user instanceof Driver) {
+	        return ((Driver) user).getTransactions();
+	    }
+	    return new ArrayList<>();
 	}
 	
 	public void removeRideDriver(Integer rideNumber, String email) {
-		System.out.println(">> DataAccess: removeRideDriver=> ride number= "+rideNumber+" Driver="+email);
-		try {
-			db.getTransaction().begin();
-			Ride r = db.find(Ride.class, rideNumber);
-			List<Reservation>resList=r.getReservations();
-			this.returnMoneyTravelers(resList, email);
-		    Driver d = db.find(Driver.class, email);
-		    d.removeRide(r.getFrom(), r.getTo(), r.getDate());
-		    db.remove(r);
-			db.persist(d); 
-			db.getTransaction().commit();
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			db.getTransaction().commit();
-		}
+	    System.out.println(">> DataAccess: removeRideDriver=> ride number= "+rideNumber+" Driver="+email);
+	    removeRide2(rideNumber, email);
+	}
+
+	private void removeRide2(Integer rideNumber, String email) {
+	    try {
+	        db.getTransaction().begin();
+	        Ride r = db.find(Ride.class, rideNumber);
+	        List<Reservation> resList = r.getReservations();
+	        this.returnMoneyTravelers(resList, email);
+	        Driver d = db.find(Driver.class, email);
+	        d.removeRide(r.getFrom(), r.getTo(), r.getDate());
+	        db.remove(r);
+	        db.persist(d);
+	        db.getTransaction().commit();
+	    } catch (NullPointerException e) {
+	        db.getTransaction().commit();
+	    }
 	}
 	
 	public void returnMoneyTravelers(List<Reservation>resList, String email) {
@@ -637,15 +663,19 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public void addRatingToTraveler(String e, int z, Integer resCode) {
-		db.getTransaction().begin();
-		Reservation r = db.find(Reservation.class, resCode);
-		Traveler t = db.find(Traveler.class, e);
-		r.setRatedD(true);
-		t.addRating(z);
-		db.persist(t);
-		db.persist(r);
-		db.getTransaction().commit();
+	public void addRatingToTraveler(String email, int rating, Integer reservationCode) {
+	    db.getTransaction().begin();
+	    Reservation reservation = db.find(Reservation.class, reservationCode);
+	    Traveler traveler = db.find(Traveler.class, email);
+	    updateRating(reservation, traveler, rating);
+	    db.persist(traveler);
+	    db.persist(reservation);
+	    db.getTransaction().commit();
+	}
+
+	private void updateRating(Reservation reservation, Traveler traveler, int rating) {
+	    reservation.setRatedD(true);
+	    traveler.addRating(rating);
 	}
 	
 	public void addRatingToDriver(String email, int z, Integer resCode){
@@ -674,19 +704,20 @@ public class DataAccess  {
 	}
 	
 	private boolean doesAlertExist(Traveler tra, String jatorria, String helmuga) {
-		Traveler t = db.find(Traveler.class, tra.getEmail());
-		Alert momentukoa = new Alert(jatorria, helmuga, t);
-		List<Alert>alertList = t.getAlerts();
-		System.out.println(alertList.size());
-		boolean found = false;
-		int i = 0;
-		while(!found && i<alertList.size()) {
-			if(alertList.get(i).equals(momentukoa)) {
-				found = true;
-			}
-			i++;
-		}
-		return found;
+	    Traveler traveler = db.find(Traveler.class, tra.getEmail());
+	    Alert targetAlert = new Alert(jatorria, helmuga, traveler);
+	    List<Alert> alerts = traveler.getAlerts();
+	    System.out.println(alerts.size());
+	    return containsAlert(alerts, targetAlert);
+	}
+
+	private boolean containsAlert(List<Alert> alerts, Alert targetAlert) {
+	    for (Alert alert : alerts) {
+	        if (alert.equals(targetAlert)) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 	
 	public List<Ride> isRideBeenCreated(Alert alert) {
