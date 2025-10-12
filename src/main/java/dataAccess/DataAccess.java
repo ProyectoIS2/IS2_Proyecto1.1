@@ -529,15 +529,15 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public void addCarToDriver(String driverEmail, String carPlate, int nPlaces, boolean dis) throws CarAlreadyExistsException{
+	public void addCarToDriver(String driverEmail, CarInfo carInfo) throws CarAlreadyExistsException{
 		db.getTransaction().begin();
 		Driver d = db.find(Driver.class, driverEmail);
-		Car c = db.find(Car.class, carPlate);
+		Car c = db.find(Car.class, carInfo.getCarPlate());
 		if(c != null) {
 			db.getTransaction().commit();
 			throw new CarAlreadyExistsException();
 		}
-		Car car = new Car (carPlate, nPlaces, d, dis);
+		Car car = new Car (carInfo.getCarPlate(), carInfo.getnPlaces(), d, carInfo.isDis());
 		d.addCar(car);
 		db.persist(car);
 		db.persist(d);
