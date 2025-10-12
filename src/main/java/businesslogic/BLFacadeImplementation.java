@@ -9,6 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import configuration.ConfigXML;
+import dataAccess.CarInfo;
 import dataAccess.DataAccess;
 import domain.*;
 import exceptions.*;
@@ -207,7 +208,8 @@ public class BLFacadeImplementation  implements BLFacade {
     @WebMethod
 	public void addCarToDriver(String driverEmail, String carPlate, int nPlaces, boolean dis) throws CarAlreadyExistsException{
 		dbManager.open();
-		dbManager.addCarToDriver(driverEmail, carPlate, nPlaces, dis);
+		CarInfo carInfo = new CarInfo(carPlate,nPlaces,dis); 
+		dbManager.addCarToDriver(driverEmail, carInfo);
 		dbManager.close();
 	}
 	
