@@ -21,11 +21,12 @@ public class ReturnMoneyTravelersDBBlackTest {
 
     @Before
     public void setUp() throws Exception {
-        dataAccess = new DataAccess();
+        dataAccess = new DataAccess(); 
         testDA = new TestDataAccess();
         dataAccess.open();
         testDA.open();
 
+/**
         // Limpiar la BD antes de cada test
         dataAccess.db.getTransaction().begin();
         dataAccess.db.createQuery("DELETE FROM Traveler t").executeUpdate();
@@ -33,7 +34,7 @@ public class ReturnMoneyTravelersDBBlackTest {
         dataAccess.db.createQuery("DELETE FROM Reservation r").executeUpdate();
         dataAccess.db.createQuery("DELETE FROM Transaction t").executeUpdate();
         dataAccess.db.getTransaction().commit();
-        
+ */       
         // Crear driver + ride (persistido)
         driver = testDA.addDriverWithRide("driver@test.com", "Driver", "A", "B", new Date(), 4, 20.0f);
         ride = driver.getRides().get(driver.getRides().size() - 1);

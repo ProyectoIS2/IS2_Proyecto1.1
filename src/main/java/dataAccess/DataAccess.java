@@ -27,7 +27,7 @@ import dataAccess.RideInfo;
 public class DataAccess  {
 	public EntityManager  db;
 	private  EntityManagerFactory emf;
-
+	String etiquetas = "Etiquetas";
 
 	ConfigXML c=ConfigXML.getInstance();
 
@@ -207,11 +207,11 @@ public class DataAccess  {
     }
     private void validateRide(RideInfo rideInfo, Driver driver) throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
         if (new Date().compareTo(rideInfo.getDate()) > 0) {
-            throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+            throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle(etiquetas).getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
         }
 
         if (driver.doesRideExists(rideInfo.getFrom(), rideInfo.getTo(), rideInfo.getDate())) {
-            throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+            throw new RideAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.RideAlreadyExist"));
         }
     }
 
@@ -301,7 +301,7 @@ public class DataAccess  {
 			Driver driver = db.find(Driver.class, email);
 			if (driver!=null) {
 				db.getTransaction().commit();
-				throw new UserAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserAlreadyExist"));
+				throw new UserAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserAlreadyExist"));
 			}
 			driver = new Driver (email, name, password);
 			db.persist(driver); 
@@ -323,7 +323,7 @@ public class DataAccess  {
 			Traveler traveler = db.find(Traveler.class, email);
 			if (traveler!=null) {
 				db.getTransaction().commit();
-				throw new UserAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserAlreadyExist"));
+				throw new UserAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserAlreadyExist"));
 			}
 			traveler = new Traveler (email, name, password);
 			db.persist(traveler); 
@@ -343,7 +343,7 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rideNumber);
 			if(r.getnPlaces()<hm) {
-				throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle("Etiquetas").getString("MakeReservationGUI.jButtonError2"));
+				throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle(etiquetas).getString("MakeReservationGUI.jButtonError2"));
 			}
 			
 			Traveler t = db.find(Traveler.class, travelerEmail);
@@ -351,7 +351,7 @@ public class DataAccess  {
 			
 			if (r.doesReservationExist(hm, t)) {
 				db.getTransaction().commit();
-				throw new ReservationAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.ReservationAlreadyExist"));
+				throw new ReservationAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.ReservationAlreadyExist"));
 			}
 			Reservation res = t.makeReservation(r, hm);
 			
@@ -376,11 +376,11 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		if(d==null) {
 			this.close();
-			throw new UserDoesNotExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserDoesNotExist"));
+			throw new UserDoesNotExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserDoesNotExist"));
 		}
 		if(!d.getPassword().equals(password)) {
 			this.close();
-			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.PasswordDoesNotMatch"));
+			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.PasswordDoesNotMatch"));
 		}
 		return d;
 	}
@@ -391,11 +391,11 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		if(t==null) {
 			this.close();
-			throw new UserDoesNotExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserDoesNotExist"));
+			throw new UserDoesNotExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserDoesNotExist"));
 		}
 		if(!t.getPassword().equals(password)) {
 			this.close();
-			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.PasswordDoesNotMatch"));
+			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.PasswordDoesNotMatch"));
 		}
 		return t;
 	}
@@ -406,11 +406,11 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		if(a==null) {
 			this.close();
-			throw new UserDoesNotExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserDoesNotExist"));
+			throw new UserDoesNotExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.UserDoesNotExist"));
 		}
 		if(!a.getPassword().equals(password)) {
 			this.close();
-			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.PasswordDoesNotMatch"));
+			throw new PasswordDoesNotMatchException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.PasswordDoesNotMatch"));
 		}
 		return a;
 	}

@@ -51,7 +51,6 @@ public class CreateReservationMockWhiteTest {
 
         //configurar factoty => entity manager
         when(entityManagerFactory.createEntityManager()).thenReturn(db);
-        // db.getTransaction() returns our mocked transaction
         when(db.getTransaction()).thenReturn(et);
 
         // Crear objetos de dominio reales
