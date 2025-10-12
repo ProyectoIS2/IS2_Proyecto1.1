@@ -342,32 +342,37 @@ public class DataAccess  {
 		try {
 			db.getTransaction().begin();
 			Ride r = db.find(Ride.class, rideNumber);
-			if(r.getnPlaces()<hm) {
-				throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle(etiquetas).getString("MakeReservationGUI.jButtonError2"));
-			}
-			
 			Traveler t = db.find(Traveler.class, travelerEmail);
 		    Driver d = db.find(Driver.class, r.getDriver().getEmail());
+			validateReservation(r,t,hm);
 			
-			if (r.doesReservationExist(hm, t)) {
-				db.getTransaction().commit();
-				throw new ReservationAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.ReservationAlreadyExist"));
-			}
 			Reservation res = t.makeReservation(r, hm);
+			persistReservationEntities(d,t,r,res);
 			
-			d.addReservation(res);
-			r.addReservation(res);
-			db.persist(d); 
-			db.persist(t);
-			db.persist(r);
 			db.getTransaction().commit();
-
 			return res;
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
 			db.getTransaction().commit();
 			return null;
 		}
+	}
+	//Métodos complementarios para createReservation
+	private void validateReservation(Ride r, Traveler t, int hm) throws NotEnoughAvailableSeatsException, ReservationAlreadyExistException {
+		if(r.getnPlaces()<hm) {
+			throw new NotEnoughAvailableSeatsException(ResourceBundle.getBundle(etiquetas).getString("MakeReservationGUI.jButtonError2"));
+		}
+		
+		if (r.doesReservationExist(hm, t)) {
+			throw new ReservationAlreadyExistException(ResourceBundle.getBundle(etiquetas).getString("DataAccess.ReservationAlreadyExist"));
+		}
+	}
+	private void persistReservationEntities(Driver d, Traveler t, Ride r, Reservation res) {
+		d.addReservation(res);
+		r.addReservation(res);
+		db.persist(d); 
+		db.persist(t);
+		db.persist(r);
 	}
 	
 	public Driver getDriverByEmail(String email, String password) throws UserDoesNotExistException, PasswordDoesNotMatchException{
