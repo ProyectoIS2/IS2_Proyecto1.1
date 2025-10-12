@@ -421,26 +421,37 @@ public class DataAccess  {
 			Traveler t = db.find(Traveler.class, res.getTraveler().getEmail());
 			Driver d = db.find(Driver.class, res.getDriver().getEmail());
 			float price = res.getHmTravelers()*res.getRide().getPrice();
-			if(t.getMoney()-price<0){
-				db.getTransaction().commit();
-				throw new NotEnoughMoneyException();
-			}
+			
+			validateFunds(t,price);
+			
 			Reservation r = db.find(Reservation.class, res.getReservationCode());
-			r.setPayed(true);
-			t.setMoney(t.getMoney()-price);
-			d.setMoney(d.getMoney()+price);
-			Transaction tr = new Transaction(price, d, t);
-			d.addTransaction(tr);
-			t.addTransaction(tr);
-			db.persist(r);
-			db.persist(tr);
-			db.persist(d); 
-			db.persist(t);
+			
+			processPayment(r,d,t,price);
 			db.getTransaction().commit();
 		}catch(NullPointerException e) {
 			db.getTransaction().commit();
 		}	
 	}
+	//Método auxiliar para pay()
+	private void validateFunds(Traveler t, float price) throws NotEnoughMoneyException {
+		if(t.getMoney()-price<0){
+			throw new NotEnoughMoneyException();
+		}
+	}
+	//Método auxiliar para pay()
+	private void processPayment(Reservation r, Driver d, Traveler t, float price) {
+		r.setPayed(true);
+		t.setMoney(t.getMoney()-price);
+		d.setMoney(d.getMoney()+price);
+		Transaction tr = new Transaction(price, d, t);
+		d.addTransaction(tr);
+		t.addTransaction(tr);
+		db.persist(r);
+		db.persist(tr);
+		db.persist(d); 
+		db.persist(t);
+	}
+	
 	
 	public List<Reservation> getDriverReservations(String email){
 		db.getTransaction().begin();
