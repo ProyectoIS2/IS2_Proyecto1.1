@@ -42,7 +42,7 @@ public class DataAccess  {
 
 				  System.out.println("File deleted");
 				} else {
-				  System.out.println("Operation failed");
+				  System.out.println("Operation delete failed");
 				}
 		}
 		open();
