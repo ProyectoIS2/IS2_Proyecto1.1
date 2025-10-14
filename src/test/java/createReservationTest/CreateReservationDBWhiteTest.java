@@ -96,7 +96,7 @@ public class CreateReservationDBWhiteTest {
     }
 
     // Caso 3: Reserva ya existe
-       /**         @Test
+   @Test
    public void test3() {
         try {
             dataAccess.open();
@@ -125,6 +125,6 @@ public class CreateReservationDBWhiteTest {
         }finally{
             dataAccess.close();
         }
-    }  */
+    } 
 }
 
