@@ -136,7 +136,7 @@ public class CreateReservationMockWhiteTest {
     }
 
     // Test 4: Flujo correcto -> se crea reserva valida
-/**    @Test
+    @Test
     public void test4() {
         // Arrange: ride1 (id=1) sin reservas previas
         when(db.find(Ride.class, 1)).thenReturn(ride1);
@@ -151,5 +151,5 @@ public class CreateReservationMockWhiteTest {
         } catch (Exception e) {
             fail("No se esperaba excepción en flujo correcto: " + e.getMessage());
         }
-    } */
+    }
 }

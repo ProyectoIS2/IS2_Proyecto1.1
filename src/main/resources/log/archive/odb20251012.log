@@ -354,3 +354,92 @@ New type java.util.ArrayList<domain.Ride>
 [2025-10-12 17:56:18 #29 type.registry] 
 New type java.util.Vector<domain.Alert>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-10-12 23:12:41 #1 store] 
+Database 'C:\Users\Agustin\git\IS2_Proyecto1.1\src\main\resources\rides.temp' is opened by 12672@DESKTOP-KL7S583
+
+[2025-10-12 23:12:41 #2 type.registry] 
+New type domain.Driver
+
+[2025-10-12 23:12:41 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-10-12 23:12:41 #4 type.registry] 
+New type domain.Complaint
+
+[2025-10-12 23:12:41 #5 type.registry] 
+New type domain.Transaction
+
+[2025-10-12 23:12:41 #6 type.registry] 
+New type domain.Car
+
+[2025-10-12 23:12:41 #7 type.registry] 
+New type domain.Reservation
+
+[2025-10-12 23:12:41 #8 type.registry] 
+New type domain.Ride
+
+[2025-10-12 23:12:41 #9 type.registry] 
+New type int[]
+
+[2025-10-12 23:12:41 #10 type] 
+Type domain.Complaint is not enhanced.
+
+[2025-10-12 23:12:41 #11 type] 
+Type domain.Transaction is not enhanced.
+
+[2025-10-12 23:12:41 #12 type.registry] 
+New type domain.Traveler
+
+[2025-10-12 23:12:41 #13 type] 
+Type domain.Car is not enhanced.
+
+[2025-10-12 23:12:41 #14 type] 
+Type domain.Reservation is not enhanced.
+
+[2025-10-12 23:12:41 #15 type] 
+Type domain.Ride is not enhanced.
+
+[2025-10-12 23:12:41 #16 type] 
+Type domain.Traveler is not enhanced.
+
+[2025-10-12 23:12:41 #17 type.registry] 
+New type domain.Alert
+
+[2025-10-12 23:12:41 #18 type] 
+Type domain.Alert is not enhanced.
+
+[2025-10-12 23:12:41 #19 type.registry] 
+New type domain.Admin
+
+[2025-10-12 23:12:41 #20 type] 
+Type domain.Admin is not enhanced.
+
+[2025-10-12 23:12:41 #21 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-10-12 23:12:41 #22 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2025-10-12 23:12:41 #23 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2025-10-12 23:12:41 #24 type.registry] 
+New type java.util.Vector<domain.Reservation>
+
+[2025-10-12 23:12:41 #25 type.registry] 
+New type java.util.Vector<domain.Car>
+
+[2025-10-12 23:12:41 #26 type.registry] 
+New type java.util.Vector<domain.Transaction>
+
+[2025-10-12 23:12:41 #27 type.registry] 
+New type java.util.Vector<domain.Complaint>
+
+[2025-10-12 23:12:41 #28 type.registry] 
+New type java.util.ArrayList<domain.Ride>
+
+[2025-10-12 23:12:41 #29 type.registry] 
+New type java.util.Vector<domain.Alert>
+
