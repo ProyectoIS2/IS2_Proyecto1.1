@@ -16,6 +16,7 @@ import domain.Reservation;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.UserAlreadyExistException;
 import exceptions.UserDoesNotExistException;
+import iterator.ExtendedIterator;
 import exceptions.AlertAlreadyExistsException;
 import exceptions.CarAlreadyExistsException;
 import exceptions.NotEnoughAvailableSeatsException;
@@ -38,6 +39,8 @@ public interface BLFacade  {
 	 * @return collection of cities
 	 */
 	@WebMethod public List<String> getDepartCities();
+	@WebMethod public ExtendedIterator<String> getDepartCitiesIterator();
+
 	
 	/**
 	 * This method returns all the arrival destinations, from all rides that depart from a given city  

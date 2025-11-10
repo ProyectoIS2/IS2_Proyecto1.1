@@ -13,6 +13,8 @@ import dataAccess.CarInfo;
 import dataAccess.DataAccess;
 import domain.*;
 import exceptions.*;
+import iterator.ExtendedIterator;
+import iterator.*;
 
 /**
  * It implements the business logic as a web service.
@@ -40,7 +42,8 @@ public class BLFacadeImplementation  implements BLFacade {
     /**
      * {@inheritDoc}
      */
-    @WebMethod public List<String> getDepartCities(){
+    @WebMethod 
+    public List<String> getDepartCities(){
     	dbManager.open();	
 		
 		 List<String> departLocations=dbManager.getDepartCities();		
@@ -50,10 +53,16 @@ public class BLFacadeImplementation  implements BLFacade {
 		return departLocations;
     	
     }
+	@WebMethod
+	public ExtendedIterator<String> getDepartCitiesIterator() {
+		List<String> ciudades = this.getDepartCities();
+		return new ExtendedIteratorImplementation(ciudades);
+	}
     /**
      * {@inheritDoc}
      */
-	@WebMethod public List<String> getDestinationCities(String from){
+	@WebMethod 
+	public List<String> getDestinationCities(String from){
 		dbManager.open();	
 		List<String> targetCities=dbManager.getArrivalCities(from);		
 		dbManager.close();
@@ -384,5 +393,6 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.updateAlerts(jatorria, helburua);
     	dbManager.close();
     }
+
 }
 
