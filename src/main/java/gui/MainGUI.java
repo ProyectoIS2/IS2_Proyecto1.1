@@ -149,5 +149,5 @@ public class MainGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle"));
 	}
 	
-} // @jve:decl-index=0:visual-constraint="0,0"
+}
 

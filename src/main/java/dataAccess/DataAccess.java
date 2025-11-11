@@ -90,9 +90,11 @@ public class DataAccess  {
         Driver driver1 = new Driver("driver1@gmail.com","Aitor Fernandez", "123");
         Driver driver2 = new Driver("driver2@gmail.com","Ane Gaztañaga", "456");
         Driver driver3 = new Driver("driver3@gmail.com","Test driver", "789");
+        Driver driver4 = new Driver("urtzi@email.com", "Urtzi", "1234");
         drivers.add(driver1);
         drivers.add(driver2);
         drivers.add(driver3);
+        drivers.add(driver4);
         return drivers;
 
 
@@ -102,38 +104,54 @@ public class DataAccess  {
         Driver driver1 = drivers.get(0);
         Driver driver2 = drivers.get(1);
         Driver driver3 = drivers.get(2);
+        Driver driver4 = drivers.get(3);
 
         Car car1 = new Car("1234 ABC", 4, driver1, false);
         Car car2 = new Car("2345 DFG", 4, driver2, false);
         Car car3 = new Car("3456 HIJ", 6, driver3, true);
         Car car4 = new Car("4567 KLM", 9, driver2, true);
         Car car5 = new Car("5678 NÑO", 1, driver1, false);
+        Car car6 = new Car("1111URT", 5, driver4, false);
+        Car car7 = new Car("2222ZIU", 0, driver4, false);
 
         driver1.addCar(car1);
         driver1.addCar(car5);
         driver2.addCar(car2);
         driver2.addCar(car4);
         driver3.addCar(car3);
+        driver4.addCar(car6);
+        driver4.addCar(car7);
     }
 
     private void createRides(List<Driver> drivers, int month, int year) {
        String Bilbo = "Bilbo";
        String Donostia = "Donostia";
        String Gasteiz = "Gasteiz";
+       String Madrid = "Madrid";
+       String Irun = "Irun";
+       String Barcelona = "Barcelona";
+       String Iruña = "Iruña";
+       String Eibar = "Eibar";
         Driver driver1 = drivers.get(0);
         Driver driver2 = drivers.get(1);
         Driver driver3 = drivers.get(2);
+        Driver driver4 = drivers.get(3);
 
         driver1.addRide(Donostia, Bilbo, UtilDate.newDate(year, month, 15), 7, driver1.getCars().get(0));
         driver1.addRide(Donostia, Gasteiz, UtilDate.newDate(year, month, 6), 8, driver1.getCars().get(0));
         driver1.addRide(Bilbo, Donostia, UtilDate.newDate(year, month, 25), 4, driver1.getCars().get(1));
-        driver1.addRide(Donostia, "Iruña", UtilDate.newDate(year, month, 7), 8, driver1.getCars().get(1));
+        driver1.addRide(Donostia, Iruña, UtilDate.newDate(year, month, 7), 8, driver1.getCars().get(1));
 
         driver2.addRide(Donostia, Bilbo, UtilDate.newDate(year, month, 15), 3, driver2.getCars().get(0));
         driver2.addRide(Bilbo, Donostia, UtilDate.newDate(year, month, 25), 5, driver2.getCars().get(1));
-        driver2.addRide("Eibar", Gasteiz, UtilDate.newDate(year, month, 6), 5, driver2.getCars().get(0));
+        driver2.addRide(Eibar, Gasteiz, UtilDate.newDate(year, month, 6), 5, driver2.getCars().get(0));
 
         driver3.addRide(Bilbo, Donostia , UtilDate.newDate(year, month, 14), 3, driver3.getCars().get(0));
+   
+        driver4.addRide(Donostia, Irun, UtilDate.newDate(2024, 4, 30), 20.0f, driver4.getCars().get(0));
+        driver4.addRide(Donostia, Madrid, UtilDate.newDate(2024, 4, 30), 2.0f, driver4.getCars().get(0));
+        driver4.addRide(Madrid, Donostia, UtilDate.newDate(2024, 4, 10), 5.0f, driver4.getCars().get(0));
+        driver4.addRide(Barcelona, Madrid, UtilDate.newDate(2024, 3, 20), 10.0f, driver4.getCars().get(1));
     }
 
     private List<Admin> createAdmins() {
